@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salon Invoice System</title>
+     <link rel="stylesheet" href="css/invoice.css">
+</head>
+<body>
+    <!-- Main Invoice Page -->
+    <div id="mainPage" class="page active">
+        <div class="header">
+            <h1>Invoice</h1>
+            <div class="header-buttons">
+                <button class="btn btn-secondary" onclick="showPreviousInvoices()">Previous Invoices</button>
+                <button class="btn btn-primary" onclick="createNewInvoice()">Create New</button>
+                <button class="btn btn-secondary" onclick="saveInvoice()">Save</button>
+            </div>
+        </div>
+
+      <div class="main-content">
+            <div class="invoice-layout">
+                <!-- Client Information Form -->
+                <div class="section">
+                    <h2>Client Information</h2>
+                    <div class="form-group">
+                        <label>Client Phone</label>
+                        <input type="tel" id="clientPhone" placeholder="Enter phone number" oninput="updateClientDisplay()">
+                    </div>
+                    <div class="form-group">
+                        <label>Client Name</label>
+                        <input type="text" id="clientName" placeholder="Enter client name" oninput="updateClientDisplay()">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="clientEmail" placeholder="Enter email address" oninput="updateClientDisplay()">
+                    </div>
+                    
+                    <!-- Services Dropdown in Client Form -->
+                    <div class="form-group">
+                        <label>Quick Add Services</label>
+                        <select id="servicesDropdown" class="services-dropdown" onchange="addServiceFromDropdown()">
+                            <option value="">Select a service to add...</option>
+                            <option value="haircut|Hair Cut & Style|1800">Hair Cut & Style - ₹1800</option>
+                            <option value="coloring|Hair Coloring|2500">Hair Coloring - ₹2500</option>
+                            <option value="conditioning|Deep Conditioning Treatment|1200">Deep Conditioning Treatment - ₹1200</option>
+                            <option value="facial|Facial Cleansing|1500">Facial Cleansing - ₹1500</option>
+                            <option value="antiaging|Anti-Aging Facial|2800">Anti-Aging Facial - ₹2800</option>
+                            <option value="fullmassage|Full Body Massage|3800">Full Body Massage - ₹3800</option>
+                            <option value="headmassage|Head & Shoulder Massage|1000">Head & Shoulder Massage - ₹1000</option>
+                            <option value="manicure|Manicure|600">Manicure - ₹600</option>
+                            <option value="pedicure|Pedicure|800">Pedicure - ₹800</option>
+                            <option value="gelnails|Gel Nail Polish|1200">Gel Nail Polish - ₹1200</option>
+                            <option value="spa|Spa Package Deluxe|5000">Spa Package Deluxe - ₹5000</option>
+                            <option value="bridal|Bridal Package|8000">Bridal Package - ₹8000</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Invoice Details & Client Display -->
+                <div class="client-display">
+                    <h2>Invoice Details</h2>
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" id="invoiceDate" value="2025-06-30">
+                    </div>
+                    <div class="form-group">
+                        <label>Invoice Number</label>
+                        <input type="text" id="invoiceNumber" value="INV-001" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Assigned Stylist</label>
+                        <select id="stylist">
+                            <option>Sarah Johnson</option>
+                            <option>Emily Davis</option>
+                            <option>Michael Brown</option>
+                        </select>
+                    </div>
+                    
+                    <div id="clientDisplayInfo" style="margin-top: 20px;">
+                        <h3>Client Information</h3>
+                        <div class="client-info-display">
+                            <strong>Phone:</strong>
+                            <span id="displayPhone">Not provided</span>
+                        </div>
+                        <div class="client-info-display">
+                            <strong>Name:</strong>
+                            <span id="displayName">Not provided</span>
+                        </div>
+                        <div class="client-info-display">
+                            <strong>Email:</strong>
+                            <span id="displayEmail">Not provided</span>
+                        </div>
+                        
+                        <!-- Services Display in Client Section -->
+                        <div class="services-display" id="servicesDisplay" style="display: none;">
+                            <strong style="color: #764ba2; font-size: 16px; margin-bottom: 15px; display: block;">Selected Services:</strong>
+                            <div class="services-list" id="servicesListDisplay"></div>
+                            <div class="services-total" id="servicesTotalDisplay">
+                                Total: ₹0
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!--</div>-->
+
+            <!-- Services Selection Section -->
+            <div class="services-section">
+                <h2>Select Services</h2>
+                <p style="color: #666; margin-bottom: 20px;">Choose from our premium salon services</p>
+                
+                <div class="services-grid">
+                    <div class="service-card" onclick="toggleService('haircut', 'Hair Cut & Style', 1800)">
+                        <div class="service-icon">✂️</div>
+                        <div class="service-name">Hair Cut & Style</div>
+                        <div class="service-price">₹1800</div>
+                    </div>
+                    
+                    <div class="service-card" onclick="toggleService('coloring', 'Hair Coloring', 2500)">
+                        <div class="service-icon">🎨</div>
+                        <div class="service-name">Hair Coloring</div>
+                        <div class="service-price">₹2500</div>
+                    </div>
+                    
+                    <div class="service-card" onclick="toggleService('conditioning', 'Deep Conditioning Treatment', 1200)">
+                        <div class="service-icon">👑</div>
+                        <div class="service-name">Deep Conditioning Treatment</div>
+                        <div class="service-price">₹1200</div>
+                    </div>
+                    
+                    <div class="service-card" onclick="toggleService('facial', 'Facial Cleansing', 1500)">
+                        <div class="service-icon">🧴</div>
+                        <div class="service-name">Facial Cleansing</div>
+                        <div class="service-price">₹1500</div>
+                    </div>
+                    
+                    <div class="service-card" onclick="toggleService('antiaging', 'Anti-Aging Facial', 2800)">
+                        <div class="service-icon">✨</div>
+                        <div class="service-name">Anti-Aging Facial</div>
+                        <div class="service-price">₹2800</div>
+                    </div>
+                    
+                    <div class="service-card" onclick="toggleService('fullmassage', 'Full Body Massage', 3800)">
+                        <div class="service-icon">🧖‍♀️</div>
+                        <div class="service-name">Full Body Massage</div>
+                        <div class="service-price">₹3800</div>
+                    </div>
+                    
+                    <div class="service-card" onclick="toggleService('headmassage', 'Head & Shoulder Massage', 1000)">
+                        <div class="service-icon">🙌</div>
+                        <div class="service-name">Head & Shoulder Massage</div>
+                        <div class="service-price">₹1000</div>
+                    </div>
+                    
+                    <div class="service-card" onclick="toggleService('manicure', 'Manicure', 600)">
+                        <div class="service-icon">💅</div>
+                        <div class="service-name">Manicure</div>
+                        <div class="service-price">₹600</div>
+                    </div>
+                    
+                    <div class="service-card" onclick="toggleService('pedicure', 'Pedicure', 800)">
+                        <div class="service-icon">🦶</div>
+                        <div class="service-name">Pedicure</div>
+                        <div class="service-price">₹800</div>
+                    </div>
+                    
+                    <div class="service-card" onclick="toggleService('gelnails', 'Gel Nail Polish', 1200)">
+                        <div class="service-icon">💎</div>
+                        <div class="service-name">Gel Nail Polish</div>
+                        <div class="service-price">₹1200</div>
+                    </div>
+                    
+                    <div class="service-card" onclick="toggleService('spa', 'Spa Package Deluxe', 5000)">
+                        <div class="service-icon">🛁</div>
+                        <div class="service-name">Spa Package Deluxe</div>
+                        <div class="service-price">₹5000</div>
+                    </div>
+                    
+                    <div class="service-card" onclick="toggleService('bridal', 'Bridal Package', 8000)">
+                        <div class="service-icon">👰‍♀️</div>
+                        <div class="service-name">Bridal Package</div>
+                        <div class="service-price">₹8000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Previous Invoices Page -->
+    <div id="previousInvoicesPage" class="page">
+        <div class="header">
+            <h1>Previous Invoices</h1>
+            <div class="header-buttons">
+                <button class="btn btn-secondary" onclick="showMainPage()">← Back to Main</button>
+                <button class="btn btn-primary" onclick="exportInvoices()">Export</button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <h2 style="color: #6d9fe5; margin-bottom: 20px;">Invoice History</h2>
+            
+            <table class="invoice-table">
+                <thead>
+                    <tr>
+                        <th>Invoice #</th>
+                        <th>Date</th>
+                        <th>Client Name</th>
+                        <th>Services</th>
+                        <th>Amount</th>
+                        <th>Stylist</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="invoiceTableBody">
+                    
+                </tbody>
+            </table>
+
+            <!-- Pagination Controls -->
+            
+        </div>
+    </div>
+
+    <script>
+        // Array to store selected services
+        let selectedServices = [];
+
+        // Function to update client display information
+        function updateClientDisplay() {
+            const phone = document.getElementById('clientPhone').value || 'Not provided';
+            const name = document.getElementById('clientName').value || 'Not provided';
+            const email = document.getElementById('clientEmail').value || 'Not provided';
+
+            document.getElementById('displayPhone').textContent = phone;
+            document.getElementById('displayName').textContent = name;
+            document.getElementById('displayEmail').textContent = email;
+        }
+
+        // Function to add service from dropdown
+        function addServiceFromDropdown() {
+            const dropdown = document.getElementById('servicesDropdown');
+            const selectedValue = dropdown.value;
+            
+            if (selectedValue) {
+                const [serviceId, serviceName, servicePrice] = selectedValue.split('|');
+                
+                // Check if service is already added
+                const existingService = selectedServices.find(service => service.id === serviceId);
+                if (existingService) {
+                    alert('This service is already added!');
+                    dropdown.value = '';
+                    return;
+                }
+                
+                // Add service to array
+                selectedServices.push({
+                    id: serviceId,
+                    name: serviceName,
+                    price: parseInt(servicePrice)
+                });
+                
+                // Reset dropdown
+                dropdown.value = '';
+                
+                // Update display
+                updateServicesDisplay();
+            }
+        }
+
+        // Function to remove service
+        function removeService(serviceId) {
+            selectedServices = selectedServices.filter(service => service.id !== serviceId);
+            updateServicesDisplay();
+        }
+
+        // Function to update services display
+        function updateServicesDisplay() {
+            const servicesDisplay = document.getElementById('servicesDisplay');
+            const servicesListDisplay = document.getElementById('servicesListDisplay');
+            const servicesTotalDisplay = document.getElementById('servicesTotalDisplay');
+            
+            if (selectedServices.length > 0) {
+                servicesDisplay.style.display = 'block';
+                
+                // Generate services list HTML
+                let servicesHTML = '';
+                let total = 0;
+                
+                selectedServices.forEach(service => {
+                    total += service.price;
+                    servicesHTML += `
+                        <div class="service-item">
+                            <span class="service-name">${service.name}</span>
+                            <div>
+                                <span class="service-price">₹${service.price}</span>
+                                <button class="remove-service" onclick="removeService('${service.id}')">×</button>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                servicesListDisplay.innerHTML = servicesHTML;
+                servicesTotalDisplay.innerHTML = `Total: ₹${total}`;
+            } else {
+                servicesDisplay.style.display = 'none';
+            }
+        }
+
+
+        // Sample invoices data (in a real app, this would come from a database)
+        
+
+        // Function to toggle service selection
+        function toggleService(serviceId, serviceName, servicePrice) {
+            const serviceCard = event.currentTarget;
+            const existingServiceIndex = selectedServices.findIndex(service => service.id === serviceId);
+            
+            if (existingServiceIndex > -1) {
+                // Remove service
+                selectedServices.splice(existingServiceIndex, 1);
+                serviceCard.classList.remove('selected');
+            } else {
+                // Add service
+                selectedServices.push({
+                    id: serviceId,
+                    name: serviceName,
+                    price: servicePrice
+                });
+                serviceCard.classList.add('selected');
+            }
+            
+            updateServicesDisplay();
+        }
+
+        // Function to update client display information
+        function updateClientDisplay() {
+            const phone = document.getElementById('clientPhone').value || 'Not provided';
+            const name = document.getElementById('clientName').value || 'Not provided';
+            const email = document.getElementById('clientEmail').value || 'Not provided';
+
+            document.getElementById('displayPhone').textContent = phone;
+            document.getElementById('displayName').textContent = name;
+            document.getElementById('displayEmail').textContent = email;
+        }
+
+        // Function to remove service
+        function removeService(serviceId) {
+            selectedServices = selectedServices.filter(service => service.id !== serviceId);
+            
+            // Update visual state of service card
+            const serviceCards = document.querySelectorAll('.service-card');
+            serviceCards.forEach(card => {
+                if (card.onclick.toString().includes(serviceId)) {
+                    card.classList.remove('selected');
+                }
+            });
+            
+            updateServicesDisplay();
+        }
+
+        // Function to update services display
+        function updateServicesDisplay() {
+            const servicesDisplay = document.getElementById('servicesDisplay');
+            const servicesListDisplay = document.getElementById('servicesListDisplay');
+            const servicesTotalDisplay = document.getElementById('servicesTotalDisplay');
+            
+            if (selectedServices.length > 0) {
+                servicesDisplay.style.display = 'block';
+                
+                // Generate services list HTML
+                let servicesHTML = '';
+                let total = 0;
+                
+                selectedServices.forEach(service => {
+                    total += service.price;
+                    servicesHTML += `
+                        <div class="service-item">
+                            <span class="service-name">${service.name}</span>
+                            <div>
+                                <span class="service-price">₹${service.price}</span>
+                                <button class="remove-service" onclick="removeService('${service.id}')">×</button>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                servicesListDisplay.innerHTML = servicesHTML;
+                servicesTotalDisplay.innerHTML = `Total: ₹${total}`;
+            } else {
+                servicesDisplay.style.display = 'none';
+            }
+        }
+
+        // Function to show previous invoices page
+        function showPreviousInvoices() {
+            document.getElementById('mainPage').classList.remove('active');
+            document.getElementById('previousInvoicesPage').classList.add('active');
+        }
+
+        // Function to show main page
+        function showMainPage() {
+            document.getElementById('previousInvoicesPage').classList.remove('active');
+            document.getElementById('mainPage').classList.add('active');
+        }
+
+        // Function to view specific invoice
+        function viewInvoice(invoiceId) {
+            const invoice = invoicesData.find(inv => inv.id === invoiceId);
+            if (invoice) {
+                alert(`Invoice Details:\n\nInvoice: ${invoice.id}\nClient: ${invoice.clientName}\nPhone: ${invoice.clientPhone}\nEmail: ${invoice.clientEmail}\nServices: ${invoice.services.join(', ')}\nAmount: ₹${invoice.amount}\nStylist: ${invoice.stylist}\nStatus: ${invoice.status}`);
+            }
+        }
+
+        // Function to export invoices
+        function exportInvoices() {
+            alert('Export functionality coming soon! This would export all invoices to CSV/PDF format.');
+        }
+
+        function createNewInvoice() {
+            // Clear all fields
+            document.getElementById('clientPhone').value = '';
+            document.getElementById('clientName').value = '';
+            document.getElementById('clientEmail').value = '';
+            selectedServices = [];
+            
+            // Clear selected service cards
+            const serviceCards = document.querySelectorAll('.service-card');
+            serviceCards.forEach(card => card.classList.remove('selected'));
+            
+            // Reset invoice number (you can implement auto-increment logic here)
+            const currentInvoiceNum = document.getElementById('invoiceNumber').value;
+            const num = parseInt(currentInvoiceNum.replace('INV-', '')) + 1;
+            document.getElementById('invoiceNumber').value = `INV-${num.toString().padStart(3, '0')}`;
+            
+            // Update displays
+            updateClientDisplay();
+            updateServicesDisplay();
+        }
+
+        function saveInvoice() {
+            const clientName = document.getElementById('clientName').value;
+            const clientPhone = document.getElementById('clientPhone').value;
+            const clientEmail = document.getElementById('clientEmail').value;
+            const invoiceNumber = document.getElementById('invoiceNumber').value;
+            const stylist = document.getElementById('stylist').value;
+            const invoiceDate = document.getElementById('invoiceDate').value;
+            
+            if (!clientName || !clientPhone || selectedServices.length === 0) {
+                alert('Please fill in client information and add at least one service before saving.');
+                return;
+            }
+            
+            // Calculate total
+            const total = selectedServices.reduce((sum, service) => sum + service.price, 0);
+            
+            // Create new invoice object
+            const newInvoice = {
+                id: invoiceNumber,
+                date: invoiceDate,
+                clientName: clientName,
+                clientPhone: clientPhone,
+                clientEmail: clientEmail,
+                services: selectedServices.map(s => s.name),
+                amount: total,
+                stylist: stylist,
+                status: 'Paid'
+            };
+            
+            // Add to invoices data (in a real app, this would be saved to a database)
+            invoicesData.unshift(newInvoice);
+            
+            // Update the table if currently viewing previous invoices
+            updateInvoiceTable();
+            
+            alert(`Invoice ${invoiceNumber} saved successfully for ${clientName}!\nTotal Amount: ₹${total}`);
+        }
+
+        // Function to update invoice table
+        function updateInvoiceTable() {
+            const tableBody = document.getElementById('invoiceTableBody');
+            let tableHTML = '';
+            
+            invoicesData.forEach(invoice => {
+                const statusClass = invoice.status.toLowerCase() === 'paid' ? 'status-paid' : 'status-pending';
+                tableHTML += `
+                    <tr>
+                        <td>${invoice.id}</td>
+                        <td>${invoice.date}</td>
+                        <td>${invoice.clientName}</td>
+                        <td>${invoice.services.join(', ')}</td>
+                        <td>₹${invoice.amount}</td>
+                        <td>${invoice.stylist}</td>
+                        <td><span class="status-badge ${statusClass}">${invoice.status}</span></td>
+                        <td>
+                            <button class="btn btn-secondary" style="padding: 5px 10px; font-size: 12px;" onclick="viewInvoice('${invoice.id}')">View</button>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            tableBody.innerHTML = tableHTML;
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set today's date
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('invoiceDate').value = today;
+            
+            // Initialize invoice table
+            updateInvoiceTable();
+        });
+    </script>
+</body>
+</html>

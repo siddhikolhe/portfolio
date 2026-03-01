@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salon Notifications</title>
+    <link rel="stylesheet" href="CSS/notification.css">
+</head>
+<body>
+    <div class="notification-container">
+        <div class="header">
+            <h1>✨ Salon Notifications</h1>
+            <p>Stay updated with your beauty appointments and offers</p>
+        </div>
+
+        <!-- Birthday Notifications -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🎂</span>
+                <span>Birthday Notifications</span>
+            </div>
+            
+            <div class="notification-item priority-high" data-id="1">
+                <div class="avatar birthday-avatar">🎉</div>
+                <div class="notification-content">
+                    <div class="notification-title">Happy Birthday, Sarah!</div>
+                    <div class="notification-subtitle">Enjoy 25% off on all services today</div>
+                </div>
+                <div class="notification-status">
+                    <div class="time-stamp">Today</div>
+                    <div class="notification-badge unread"></div>
+                </div>
+            </div>
+
+            <div class="notification-item priority-medium" data-id="2">
+                <div class="avatar birthday-avatar">🎁</div>
+                <div class="notification-content">
+                    <div class="notification-title">Birthday Special - Emma Johnson</div>
+                    <div class="notification-subtitle">Birthday is tomorrow - prepare special offer</div>
+                </div>
+                <div class="notification-status">
+                    <div class="time-stamp">Tomorrow</div>
+                    <div class="notification-badge unread"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Discount & Offers -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">💰</span>
+                <span>Discounts & Offers</span>
+            </div>
+            
+            <div class="notification-item priority-high" data-id="3">
+                <div class="avatar discount-avatar">%</div>
+                <div class="notification-content">
+                    <div class="notification-title">Flash Sale - 40% Off Hair Services</div>
+                    <div class="notification-subtitle">Limited time offer ending in 2 hours</div>
+                </div>
+                <div class="notification-status">
+                    <div class="status-icon">🔥</div>
+                    <div class="time-stamp">2h left</div>
+                    <div class="notification-badge unread"></div>
+                </div>
+            </div>
+
+            <div class="notification-item priority-medium" data-id="4">
+                <div class="avatar discount-avatar">🎊</div>
+                <div class="notification-content">
+                    <div class="notification-title">Weekend Special Package</div>
+                    <div class="notification-subtitle">Facial + Manicure combo at 30% off</div>
+                </div>
+                <div class="notification-status">
+                    <div class="time-stamp">This weekend</div>
+                    <div class="notification-badge"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Appointment Reminders -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">📅</span>
+                <span>Appointment Reminders</span>
+            </div>
+            
+            <div class="notification-item priority-high" data-id="5">
+                <div class="avatar appointment-avatar">🕐</div>
+                <div class="notification-content">
+                    <div class="notification-title">Appointment Reminder - Maria Garcia</div>
+                    <div class="notification-subtitle">Hair coloring appointment in 30 minutes</div>
+                </div>
+                <div class="notification-status">
+                    <div class="status-icon">⏰</div>
+                    <div class="time-stamp">30 min</div>
+                    <div class="notification-badge unread"></div>
+                </div>
+            </div>
+
+            <div class="notification-item priority-medium" data-id="6">
+                <div class="avatar appointment-avatar">📞</div>
+                <div class="notification-content">
+                    <div class="notification-title">Appointment Confirmation Needed</div>
+                    <div class="notification-subtitle">John Smith - Haircut tomorrow at 2 PM</div>
+                </div>
+                <div class="notification-status">
+                    <div class="time-stamp">Tomorrow</div>
+                    <div class="notification-badge unread"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service Updates -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">💅</span>
+                <span>Service Updates</span>
+            </div>
+            
+            <div class="notification-item priority-medium" data-id="7">
+                <div class="avatar service-avatar">✨</div>
+                <div class="notification-content">
+                    <div class="notification-title">New Service Added - Keratin Treatment</div>
+                    <div class="notification-subtitle">Now available with certified specialists</div>
+                </div>
+                <div class="notification-status">
+                    <div class="time-stamp">2 days ago</div>
+                    <div class="notification-badge"></div>
+                </div>
+            </div>
+
+            <div class="notification-item priority-low" data-id="8">
+                <div class="avatar service-avatar">🌟</div>
+                <div class="notification-content">
+                    <div class="notification-title">Service Price Update</div>
+                    <div class="notification-subtitle">Facial services - new pricing effective next month</div>
+                </div>
+                <div class="notification-status">
+                    <div class="time-stamp">1 week ago</div>
+                    <div class="notification-badge"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Staff Notifications -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">👥</span>
+                <span>Staff Updates</span>
+            </div>
+            
+            <div class="notification-item priority-medium" data-id="9">
+                <div class="avatar staff-avatar">👩‍💼</div>
+                <div class="notification-content">
+                    <div class="notification-title">New Staff Member - Lisa Chen</div>
+                    <div class="notification-subtitle">Nail specialist joining our team next week</div>
+                </div>
+                <div class="notification-status">
+                    <div class="time-stamp">3 days ago</div>
+                    <div class="notification-badge"></div>
+                </div>
+            </div>
+
+            <div class="notification-item priority-low" data-id="10">
+                <div class="avatar staff-avatar">📚</div>
+                <div class="notification-content">
+                    <div class="notification-title">Staff Training Session</div>
+                    <div class="notification-subtitle">New techniques workshop this Friday</div>
+                </div>
+                <div class="notification-status">
+                    <div class="time-stamp">This Friday</div>
+                    <div class="notification-badge"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Notifications -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">⚙️</span>
+                <span>System Notifications</span>
+            </div>
+            
+            <div class="notification-item priority-low" data-id="11">
+                <div class="avatar system-avatar">🔧</div>
+                <div class="notification-content">
+                    <div class="notification-title">System Maintenance Complete</div>
+                    <div class="notification-subtitle">All booking systems are now running smoothly</div>
+                </div>
+                <div class="notification-status">
+                    <div class="status-icon">✅</div>
+                    <div class="time-stamp">1 hour ago</div>
+                    <div class="notification-badge"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="notificationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Notification Details</h2>
+                <button class="close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="modalAvatar" class="modal-avatar"></div>
+                <div id="modalFullTitle" class="modal-title"></div>
+                <div id="modalMessage" class="modal-message"></div>
+                <div id="modalDetails" class="modal-details"></div>
+                <div class="action-buttons" id="actionButtons"></div>
+                <div id="modalTime" class="modal-time"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Salon notification data
+        const notifications = {
+            1: {
+                avatar: "🎉",
+                avatarClass: "birthday-avatar",
+                title: "Happy Birthday, Sarah!",
+                fullMessage: "🎂 It's Sarah Johnson's birthday today! She's one of our VIP customers and has been with us for over 2 years. Let's make her day special!",
+                details: "Customer: Sarah Johnson<br>Phone: (555) 123-4567<br>Birthday Offer: 25% off all services<br>Preferred Services: Hair styling, Facial treatments",
+                time: "Today - Birthday Special",
+                actions: ["Call Customer", "Send Gift Voucher", "Mark as Contacted"],
+                category: "birthday"
+            },
+            2: {
+                avatar: "🎁",
+                avatarClass: "birthday-avatar",
+                title: "Birthday Special - Emma Johnson",
+                fullMessage: "🎈 Emma Johnson's birthday is tomorrow! Prepare her favorite birthday package and send a special birthday message.",
+                details: "Customer: Emma Johnson<br>Phone: (555) 987-6543<br>Birthday: Tomorrow<br>Favorite Services: Manicure, Pedicure, Eyebrow threading",
+                time: "Tomorrow - Advance Birthday Reminder",
+                actions: ["Prepare Gift Package", "Send Birthday Message", "Schedule Follow-up"],
+                category: "birthday"
+            },
+            3: {
+                avatar: "%",
+                avatarClass: "discount-avatar",
+                title: "Flash Sale - 40% Off Hair Services",
+                fullMessage: "🔥 Limited time flash sale! 40% off all hair services including cuts, coloring, and styling. This amazing offer is ending soon!",
+                details: "Discount: 40% off<br>Valid For: All hair services<br>Time Remaining: 2 hours<br>Promo Code: FLASH40",
+                time: "Expires in 2 hours - Act Fast!",
+                actions: ["Share on Social Media", "Send SMS to Customers", "Extend Offer"],
+                category: "discount"
+            },
+            4: {
+                avatar: "🎊",
+                avatarClass: "discount-avatar",
+                title: "Weekend Special Package",
+                fullMessage: "✨ Perfect weekend combo! Facial + Manicure package at 30% off. Help your customers relax and rejuvenate this weekend.",
+                details: "Package: Facial + Manicure<br>Discount: 30% off<br>Valid: This weekend only<br>Package Price: $85 (was $120)",
+                time: "This Weekend Only",
+                actions: ["Book Appointments", "Create Social Post", "Send to VIP List"],
+                category: "discount"
+            },
+            5: {
+                avatar: "🕐",
+                avatarClass: "appointment-avatar",
+                title: "Appointment Reminder - Maria Garcia",
+                fullMessage: "⏰ Maria Garcia has a hair coloring appointment in 30 minutes. Please prepare the coloring station and confirm her arrival.",
+                details: "Customer: Maria Garcia<br>Service: Hair Coloring<br>Time: 30 minutes<br>Stylist: Jessica<br>Estimated Duration: 2 hours",
+                time: "In 30 minutes - Immediate Action Required",
+                actions: ["Call Customer", "Prepare Station", "Confirm Arrival"],
+                category: "appointment"
+            },
+            6: {
+                avatar: "📞",
+                avatarClass: "appointment-avatar",
+                title: "Appointment Confirmation Needed",
+                fullMessage: "📅 John Smith has a haircut appointment tomorrow at 2 PM. Please call to confirm his attendance and remind him about our new location.",
+                details: "Customer: John Smith<br>Service: Men's Haircut<br>Time: Tomorrow 2:00 PM<br>Stylist: Mike<br>Phone: (555) 456-7890",
+                time: "Tomorrow at 2:00 PM",
+                actions: ["Call to Confirm", "Send Reminder SMS", "Reschedule if Needed"],
+                category: "appointment"
+            },
+            7: {
+                avatar: "✨",
+                avatarClass: "service-avatar",
+                title: "New Service Added - Keratin Treatment",
+                fullMessage: "🌟 Exciting news! We now offer professional Keratin treatments with our certified specialists. This popular service will attract more customers.",
+                details: "Service: Keratin Treatment<br>Duration: 3-4 hours<br>Price: $180<br>Specialist: Sarah (certified)<br>Booking: Available from next week",
+                time: "New Service Available",
+                actions: ["Update Service Menu", "Train Staff", "Market New Service"],
+                category: "service"
+            },
+            8: {
+                avatar: "🌟",
+                avatarClass: "service-avatar",
+                title: "Service Price Update",
+                fullMessage: "💼 Facial service prices will be updated next month due to premium product upgrades. Existing bookings will honor current prices.",
+                details: "Effective Date: Next month<br>Services Affected: All facial treatments<br>Price Increase: 10-15%<br>Reason: Premium product upgrade",
+                time: "Effective Next Month",
+                actions: ["Notify Customers", "Update Price List", "Honor Existing Bookings"],
+                category: "service"
+            },
+            9: {
+                avatar: "👩‍💼",
+                avatarClass: "staff-avatar",
+                title: "New Staff Member - Lisa Chen",
+                fullMessage: "👋 Welcome Lisa Chen to our team! She's a skilled nail specialist with 5 years of experience and will be joining us next week.",
+                details: "Name: Lisa Chen<br>Position: Nail Specialist<br>Experience: 5 years<br>Start Date: Next week<br>Specialties: Nail art, Gel manicures",
+                time: "Joining Next Week",
+                actions: ["Prepare Welcome Package", "Schedule Orientation", "Introduce to Team"],
+                category: "staff"
+            },
+            10: {
+                avatar: "📚",
+                avatarClass: "staff-avatar",
+                title: "Staff Training Session",
+                fullMessage: "🎓 Mandatory training session this Friday on new hair coloring techniques. All stylists must attend to stay updated with latest trends.",
+                details: "Date: This Friday<br>Time: 2:00 PM - 5:00 PM<br>Topic: Advanced Hair Coloring<br>Instructor: Professional Trainer<br>Attendance: Mandatory",
+                time: "This Friday 2:00 PM",
+                actions: ["Confirm Attendance", "Prepare Materials", "Block Schedule"],
+                category: "staff"
+            },
+            11: {
+                avatar: "🔧",
+                avatarClass: "system-avatar",
+                title: "System Maintenance Complete",
+                fullMessage: "✅ The scheduled system maintenance has been completed successfully. All booking systems, payment processing, and customer management tools are now running smoothly.",
+                details: "Duration: 2 hours<br>Systems Updated: Booking, Payment, CRM<br>Downtime: Minimal<br>Status: All systems operational",
+                time: "Completed 1 hour ago",
+                actions: ["Test All Systems", "Notify Staff", "Resume Normal Operations"],
+                category: "system"
+            }
+        };
+
+        // Get modal elements
+        const modal = document.getElementById('notificationModal');
+        const closeBtn = document.querySelector('.close');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalAvatar = document.getElementById('modalAvatar');
+        const modalFullTitle = document.getElementById('modalFullTitle');
+        const modalMessage = document.getElementById('modalMessage');
+        const modalDetails = document.getElementById('modalDetails');
+        const modalTime = document.getElementById('modalTime');
+        const actionButtons = document.getElementById('actionButtons');
+
+        // Add click event listeners to notification items
+        document.querySelectorAll('.notification-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const notificationId = this.dataset.id;
+                const notification = notifications[notificationId];
+                
+                if (notification) {
+                    // Update modal content
+                    modalTitle.textContent = 'Salon Notification Details';
+                    modalAvatar.textContent = notification.avatar;
+                    modalAvatar.className = `modal-avatar ${notification.avatarClass}`;
+                    modalFullTitle.textContent = notification.title;
+                    modalMessage.textContent = notification.fullMessage;
+                    modalDetails.innerHTML = notification.details;
+                    modalTime.textContent = notification.time;
+                    
+                    // Add action buttons
+                    actionButtons.innerHTML = '';
+                    notification.actions.forEach(action => {
+                        const button = document.createElement('button');
+                        button.className = 'btn btn-primary';
+                        button.textContent = action;
+                        button.onclick = () => {
+                            alert(`Action: ${action}\nThis would integrate with your salon management system.`);
+                        };
+                        actionButtons.appendChild(button);
+                    });
+                    
+                    // Show modal
+                    modal.style.display = 'block';
+                    
+                    // Mark as read
+                    const badge = this.querySelector('.notification-badge.unread');
+                    if (badge) {
+                        badge.classList.remove('unread');
+                    }
+                }
+            });
+        });
+
+        // Close modal functionality
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && modal.style.display === 'block') {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Add hover effects
+        document.querySelectorAll('.notification-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(8px)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateX(0)';
+            });
+        });
+
+        // Add some dynamic effects
+        setTimeout(() => {
+            document.querySelectorAll('.notification-badge.unread').forEach(badge => {
+                badge.style.animation = 'pulse 2s infinite';
+            });
+        }, 1000);
+    </script>
+</body>
+</html>

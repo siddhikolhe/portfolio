@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Management - Glamora</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/staff.css">
+</head>
+
+<body>
+    <div class="page" id="staff-page">
+        <div class="content-area">
+            <div class="page-header">
+                <h2 class="page-title">Staff Management</h2>
+                <div class="header-buttons">
+                    <button class="btn btn-primary" id="addStaffBtn">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Add Staff Member
+                    </button>
+                </div>
+            </div>
+
+            <div class="search-filters">
+                <div class="filter-group">
+                    <label class="filter-label">Search</label>
+                    <input type="text" class="filter-input" placeholder="Search by name or ID" id="searchInput">
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Branch</label>
+                    <select class="filter-input" id="branchFilter">
+                        <option value="all">All</option>
+                        <option value="iba">International Beauty Academy</option>
+                        <option value="city">City Center Branch</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Role</label>
+                    <select class="filter-input" id="roleFilter">
+                        <option value="all">All</option>
+                        <option value="stylist">Stylist</option>
+                        <option value="therapist">Therapist</option>
+                        <option value="receptionist">Receptionist</option>
+                        <option value="manager">Manager</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Status</label>
+                    <select class="filter-input" id="statusFilter">
+                        <option value="all">All</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="staff-table-container">
+                <div class="staff-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Phone No</th>
+                                <th>Email</th>
+                                <th>Specialization</th>
+                                <th>Status</th>
+                                <th>Date Of Joining</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="staffTableBody">
+                            <!-- Table rows will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script>
+        // Staff Management JavaScript
+        let staffData = [
+            {
+                id: 1,
+                name: "John Doe",
+                phone: "123-456-7890",
+                email: "johndoe@example.com",
+                specialization: "Stylist",
+                status: "Active",
+                dateOfJoining: "2021-06-15",
+                salary: "$3500",
+                workingHours: "9:00 AM - 6:00 PM",
+                branch: "International Beauty Academy",
+                address: "123 Main Street, City",
+                emergencyContact: "Jane Doe - 123-456-7891"
+            },
+            {
+                id: 2,
+                name: "Jane Smith",
+                phone: "987-654-3210",
+                email: "janesmith@example.com",
+                specialization: "Therapist",
+                status: "Active",
+                dateOfJoining: "2020-09-10",
+                salary: "$3200",
+                workingHours: "10:00 AM - 7:00 PM",
+                branch: "City Center Branch",
+                address: "456 Oak Avenue, City",
+                emergencyContact: "John Smith - 987-654-3211"
+            },
+            {
+                id: 3,
+                name: "Emily Johnson",
+                phone: "555-123-4567",
+                email: "emilyj@example.com",
+                specialization: "Manager",
+                status: "Inactive",
+                dateOfJoining: "2019-03-22",
+                salary: "$4500",
+                workingHours: "8:00 AM - 5:00 PM",
+                branch: "International Beauty Academy",
+                address: "789 Pine Street, City",
+                emergencyContact: "Mike Johnson - 555-123-4568"
+            },
+            {
+                id: 4,
+                name: "Michael Brown",
+                phone: "444-555-6666",
+                email: "michael@example.com",
+                specialization: "Receptionist",
+                status: "Active",
+                dateOfJoining: "2022-01-10",
+                salary: "$2800",
+                workingHours: "9:00 AM - 6:00 PM",
+                branch: "City Center Branch",
+                address: "321 Elm Street, City",
+                emergencyContact: "Sarah Brown - 444-555-6667"
+            },
+            {
+                id: 5,
+                name: "Sarah Wilson",
+                phone: "777-888-9999",
+                email: "sarah@example.com",
+                specialization: "Stylist",
+                status: "Active",
+                dateOfJoining: "2021-11-05",
+                salary: "$3300",
+                workingHours: "10:00 AM - 7:00 PM",
+                branch: "International Beauty Academy",
+                address: "654 Maple Avenue, City",
+                emergencyContact: "Tom Wilson - 777-888-9998"
+            }
+        ];
+
+        let nextId = 6;
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderStaffTable();
+            setupEventListeners();
+        });
+
+        // Setup event listeners
+        function setupEventListeners() {
+            const addButton = document.getElementById('addStaffBtn');
+            if (addButton) {
+                addButton.addEventListener('click', showAddStaffModal);
+            }
+
+            const searchInput = document.getElementById('searchInput');
+            const branchFilter = document.getElementById('branchFilter');
+            const roleFilter = document.getElementById('roleFilter');
+            const statusFilter = document.getElementById('statusFilter');
+
+            if (searchInput) searchInput.addEventListener('input', filterStaff);
+            if (branchFilter) branchFilter.addEventListener('change', filterStaff);
+            if (roleFilter) roleFilter.addEventListener('change', filterStaff);
+            if (statusFilter) statusFilter.addEventListener('change', filterStaff);
+        }
+
+        // Render staff table
+        function renderStaffTable(dataToRender = staffData) {
+            const tbody = document.getElementById('staffTableBody');
+            if (!tbody) return;
+
+            tbody.innerHTML = '';
+
+            dataToRender.forEach(staff => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${staff.id}</td>
+                    <td><strong>${staff.name}</strong></td>
+                    <td>${staff.phone}</td>
+                    <td>${staff.email}</td>
+                    <td>${staff.specialization}</td>
+                    <td><span class="status-badge ${staff.status.toLowerCase() === 'active' ? 'status-active' : 'status-inactive'}">${staff.status}</span></td>
+                    <td>${staff.dateOfJoining}</td>
+                    <td>
+                        <div class="actions-cell">
+                            <button class="action-btn btn-view" onclick="viewStaff(${staff.id})" title="View Details">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn btn-edit" onclick="editStaff(${staff.id})" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn btn-delete" onclick="deleteStaff(${staff.id})" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Filter staff based on search and filters
+        function filterStaff() {
+            const searchTerm = document.getElementById('searchInput')?.value.toLowerCase() || '';
+            const branchFilter = document.getElementById('branchFilter')?.value || 'all';
+            const roleFilter = document.getElementById('roleFilter')?.value || 'all';
+            const statusFilter = document.getElementById('statusFilter')?.value || 'all';
+
+            const filteredData = staffData.filter(staff => {
+                const matchesSearch = staff.name.toLowerCase().includes(searchTerm) || 
+                                    staff.id.toString().includes(searchTerm);
+                const matchesBranch = branchFilter === 'all' || staff.branch.toLowerCase().includes(branchFilter);
+                const matchesRole = roleFilter === 'all' || staff.specialization.toLowerCase() === roleFilter;
+                const matchesStatus = statusFilter === 'all' || staff.status.toLowerCase() === statusFilter;
+
+                return matchesSearch && matchesBranch && matchesRole && matchesStatus;
+            });
+
+            renderStaffTable(filteredData);
+        }
+
+        // Show Add Staff Modal
+        function showAddStaffModal() {
+            createModal('Add Staff Member', getStaffForm(), (formData) => {
+                addStaffMember(formData);
+            });
+        }
+
+        // Add new staff member
+        function addStaffMember(formData) {
+            const newStaff = {
+                id: nextId++,
+                name: formData.name,
+                phone: formData.phone,
+                email: formData.email,
+                specialization: formData.specialization,
+                status: formData.status,
+                dateOfJoining: formData.dateOfJoining,
+                salary: formData.salary,
+                workingHours: formData.workingHours,
+                branch: formData.branch,
+                address: formData.address,
+                emergencyContact: formData.emergencyContact
+            };
+
+            staffData.push(newStaff);
+            renderStaffTable();
+            showNotification('Staff member added successfully!', 'success');
+        }
+
+        // Edit staff member
+        function editStaff(id) {
+            const staff = staffData.find(s => s.id === id);
+            if (!staff) return;
+
+            createModal('Edit Staff Member', getStaffForm(staff), (formData) => {
+                updateStaffMember(id, formData);
+            });
+        }
+
+        // Update staff member
+        function updateStaffMember(id, formData) {
+            const index = staffData.findIndex(s => s.id === id);
+            if (index === -1) return;
+
+            staffData[index] = {
+                ...staffData[index],
+                name: formData.name,
+                phone: formData.phone,
+                email: formData.email,
+                specialization: formData.specialization,
+                status: formData.status,
+                dateOfJoining: formData.dateOfJoining,
+                salary: formData.salary,
+                workingHours: formData.workingHours,
+                branch: formData.branch,
+                address: formData.address,
+                emergencyContact: formData.emergencyContact
+            };
+
+            renderStaffTable();
+            showNotification('Staff member updated successfully!', 'success');
+        }
+
+        // View staff details
+        function viewStaff(id) {
+            const staff = staffData.find(s => s.id === id);
+            if (!staff) return;
+
+            const detailsHTML = `
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; line-height: 1.6;">
+                    <div>
+                        <h4 style="margin-bottom: 15px; color: #374151; border-bottom: 2px solid #e5e7eb; padding-bottom: 8px;">Personal Information</h4>
+                        <p><strong>ID:</strong> ${staff.id}</p>
+                        <p><strong>Name:</strong> ${staff.name}</p>
+                        <p><strong>Phone:</strong> ${staff.phone}</p>
+                        <p><strong>Email:</strong> ${staff.email}</p>
+                        <p><strong>Address:</strong> ${staff.address}</p>
+                        <p><strong>Emergency Contact:</strong> ${staff.emergencyContact}</p>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 15px; color: #374151; border-bottom: 2px solid #e5e7eb; padding-bottom: 8px;">Work Information</h4>
+                        <p><strong>Specialization:</strong> ${staff.specialization}</p>
+                        <p><strong>Branch:</strong> ${staff.branch}</p>
+                        <p><strong>Status:</strong> <span class="status-badge ${staff.status.toLowerCase() === 'active' ? 'status-active' : 'status-inactive'}">${staff.status}</span></p>
+                        <p><strong>Date of Joining:</strong> ${staff.dateOfJoining}</p>
+                        <p><strong>Salary:</strong> ${staff.salary}</p>
+                        <p><strong>Working Hours:</strong> ${staff.workingHours}</p>
+                    </div>
+                </div>
+            `;
+
+            createModal(`Staff Details - ${staff.name}`, detailsHTML, null, true);
+        }
+
+        // Delete staff member
+        function deleteStaff(id) {
+            const staff = staffData.find(s => s.id === id);
+            if (!staff) return;
+
+            if (confirm(`Are you sure you want to delete ${staff.name}?`)) {
+                staffData = staffData.filter(s => s.id !== id);
+                renderStaffTable();
+                showNotification('Staff member deleted successfully!', 'error');
+            }
+        }
+
+        // Get staff form HTML
+        function getStaffForm(staff = null) {
+            const isEdit = staff !== null;
+            return `
+                <form id="staffForm" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" value="${isEdit ? staff.name : ''}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" value="${isEdit ? staff.phone : ''}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" value="${isEdit ? staff.email : ''}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="specialization">Specialization *</label>
+                        <select id="specialization" name="specialization" required>
+                            <option value="">Select Specialization</option>
+                            <option value="Stylist" ${isEdit && staff.specialization === 'Stylist' ? 'selected' : ''}>Stylist</option>
+                            <option value="Therapist" ${isEdit && staff.specialization === 'Therapist' ? 'selected' : ''}>Therapist</option>
+                            <option value="Receptionist" ${isEdit && staff.specialization === 'Receptionist' ? 'selected' : ''}>Receptionist</option>
+                            <option value="Manager" ${isEdit && staff.specialization === 'Manager' ? 'selected' : ''}>Manager</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="branch">Branch *</label>
+                        <select id="branch" name="branch" required>
+                            <option value="">Select Branch</option>
+                            <option value="International Beauty Academy" ${isEdit && staff.branch === 'International Beauty Academy' ? 'selected' : ''}>International Beauty Academy</option>
+                            <option value="City Center Branch" ${isEdit && staff.branch === 'City Center Branch' ? 'selected' : ''}>City Center Branch</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status *</label>
+                        <select id="status" name="status" required>
+                            <option value="Active" ${isEdit && staff.status === 'Active' ? 'selected' : ''}>Active</option>
+                            <option value="Inactive" ${isEdit && staff.status === 'Inactive' ? 'selected' : ''}>Inactive</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dateOfJoining">Date of Joining *</label>
+                        <input type="date" id="dateOfJoining" name="dateOfJoining" value="${isEdit ? staff.dateOfJoining : ''}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="salary">Salary *</label>
+                        <input type="text" id="salary" name="salary" value="${isEdit ? staff.salary : ''}" placeholder="e.g., $3500" required>
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label for="workingHours">Working Hours *</label>
+                        <input type="text" id="workingHours" name="workingHours" value="${isEdit ? staff.workingHours : ''}" placeholder="e.g., 9:00 AM - 6:00 PM" required>
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label for="address">Address *</label>
+                        <textarea id="address" name="address" rows="2" required>${isEdit ? staff.address : ''}</textarea>
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label for="emergencyContact">Emergency Contact *</label>
+                        <input type="text" id="emergencyContact" name="emergencyContact" value="${isEdit ? staff.emergencyContact : ''}" placeholder="Name - Phone Number" required>
+                    </div>
+                </form>
+            `;
+        }
+
+        // Create modal
+        function createModal(title, content, onSubmit = null, isViewOnly = false) {
+            const existingModal = document.getElementById('staffModal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+
+            const modal = document.createElement('div');
+            modal.id = 'staffModal';
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            `;
+
+            const modalContent = document.createElement('div');
+            modalContent.style.cssText = `
+                background: white;
+                border-radius: 12px;
+                padding: 25px;
+                width: 90%;
+                max-width: 600px;
+                max-height: 90vh;
+                overflow-y: auto;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            `;
+
+            const header = document.createElement('div');
+            header.style.cssText = `
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+                padding-bottom: 15px;
+                border-bottom: 2px solid #e5e7eb;
+            `;
+
+            const titleElement = document.createElement('h3');
+            titleElement.textContent = title;
+            titleElement.style.cssText = `
+                margin: 0;
+                color: #374151;
+                font-size: 20px;
+            `;
+
+            const closeButton = document.createElement('button');
+            closeButton.innerHTML = '×';
+            closeButton.style.cssText = `
+                background: none;
+                border: none;
+                font-size: 24px;
+                cursor: pointer;
+                color: #6b7280;
+                padding: 0;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                transition: background-color 0.3s ease;
+            `;
+            closeButton.onmouseover = () => closeButton.style.backgroundColor = '#f3f4f6';
+            closeButton.onmouseout = () => closeButton.style.backgroundColor = 'transparent';
+            closeButton.onclick = () => modal.remove();
+
+            header.appendChild(titleElement);
+            header.appendChild(closeButton);
+
+            const body = document.createElement('div');
+            body.innerHTML = content;
+
+            const footer = document.createElement('div');
+            footer.style.cssText = `
+                display: flex;
+                justify-content: flex-end;
+                gap: 10px;
+                margin-top: 20px;
+                padding-top: 15px;
+                border-top: 1px solid #e5e7eb;
+            `;
+
+            const cancelButton = document.createElement('button');
+            cancelButton.textContent = 'Cancel';
+            cancelButton.style.cssText = `
+                background: #f3f4f6;
+                color: #374151;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 6px;
+                cursor: pointer;
+                font-weight: 500;
+                transition: background-color 0.3s ease;
+            `;
+            cancelButton.onmouseover = () => cancelButton.style.backgroundColor = '#e5e7eb';
+            cancelButton.onmouseout = () => cancelButton.style.backgroundColor = '#f3f4f6';
+            cancelButton.onclick = () => modal.remove();
+
+            footer.appendChild(cancelButton);
+
+            if (!isViewOnly && onSubmit) {
+                const submitButton = document.createElement('button');
+                submitButton.textContent = title.includes('Add') ? 'Add Staff' : 'Update Staff';
+                submitButton.style.cssText = `
+                    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+                    color: white;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-weight: 500;
+                    transition: all 0.3s ease;
+                `;
+                submitButton.onmouseover = () => {
+                    submitButton.style.transform = 'translateY(-1px)';
+                    submitButton.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
+                };
+                submitButton.onmouseout = () => {
+                    submitButton.style.transform = 'translateY(0)';
+                    submitButton.style.boxShadow = 'none';
+                };
+                
+                submitButton.onclick = (e) => {
+                    e.preventDefault();
+                    const form = document.getElementById('staffForm');
+                    if (form && form.checkValidity()) {
+                        const formData = new FormData(form);
+                        const data = {};
+                        for (let [key, value] of formData.entries()) {
+                            data[key] = value;
+                        }
+                        onSubmit(data);
+                        modal.remove();
+                    } else {
+                        form.reportValidity();
+                    }
+                };
+
+                footer.appendChild(submitButton);
+            }
+
+            modalContent.appendChild(header);
+            modalContent.appendChild(body);
+            modalContent.appendChild(footer);
+            modal.appendChild(modalContent);
+
+            // Close modal when clicking outside
+            modal.onclick = (e) => {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            };
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function escapeHandler(e) {
+                if (e.key === 'Escape') {
+                    modal.remove();
+                    document.removeEventListener('keydown', escapeHandler);
+                }
+            });
+
+            document.body.appendChild(modal);
+        }
+
+        // Show notification
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+
+            document.body.appendChild(notification);
+
+            // Auto-remove notification after 3 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.style.animation = 'slideOut 0.3s ease forwards';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.remove();
+                        }
+                    }, 300);
+                }
+            }, 3000);
+        }
+
+        // Add slideOut animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Attendence Form
+        document.getElementById('attendanceBtn').addEventListener('click', function () {
+    document.getElementById('attendanceForm').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+});
+
+document.getElementById('closeAttendanceForm').addEventListener('click', function () {
+    document.getElementById('attendanceForm').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+});
+    </script>
+</body>
+</html>

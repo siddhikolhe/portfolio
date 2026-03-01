@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, 1200px">
+  <title>GLAMORA Report Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/reports.css">
+</head>
+<body>
+
+<div class="header" id="main-header">
+  <div class="container">
+    Reports
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="container">
+  <div class="dashboard" id="dashboard">
+    <div class="card inventory" onclick="openSection('inventory')">
+      <i class="fas fa-box-open icon"></i>
+      <p>Inventory</p>
+    </div>
+    <div class="card client" onclick="openSection('client')">
+      <i class="fas fa-user icon"></i>
+      <p>Client</p>
+    </div>
+    <div class="card staff" onclick="openSection('staff')">
+      <i class="fas fa-users icon"></i>
+      <p>Staff</p>
+    </div>
+    <div class="card appointment" onclick="openSection('appointment')">
+      <i class="fas fa-calendar-check icon"></i>
+      <p>Appointment</p>
+    </div>
+    <div class="card revenue" onclick="openSection('revenue')">
+      <i class="fas fa-chart-line icon"></i>
+      <p>Revenue</p>
+    </div>
+    <div class="card sales" onclick="openSection('sales')">
+      <i class="fas fa-shopping-cart icon"></i>
+      <p>Sales</p>
+    </div>
+    <div class="card performance" onclick="openSection('performance')">
+      <i class="fas fa-tachometer-alt icon"></i>
+      <p>Performance</p>
+    </div>
+  </div>
+</div>
+
+<!-- INVENTORY SECTION -->
+<div id="inventory" class="section-page">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Inventory Management</h2>
+      <button class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+    </div>
+    <div class="button-container">
+      <button class="nav-button active" onclick="showSection('productList', this)">Product List</button>
+      <button class="nav-button" onclick="showSection('inventoryTab', this)">Inventory</button>
+      <button class="nav-button" onclick="showSection('orderedStock', this)">Ordered Stock</button>
+    </div>
+    <div id="productList" class="tab-content active">
+      <h3>Product List</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-chart-bar"></i>
+        <p>Product List Chart/Table will be displayed here</p>
+      </div>
+    </div>
+    <div id="inventoryTab" class="tab-content">
+      <h3>Inventory</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-box"></i>
+        <p>Inventory Chart/Table will be displayed here</p>
+      </div>
+    </div>
+    <div id="orderedStock" class="tab-content">
+      <h3>Ordered Stock</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-truck"></i>
+        <p>Ordered Stock Chart/Table will be displayed here</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CLIENT SECTION -->
+<div id="client" class="section-page">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Client Management</h2>
+      <button class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+    </div>
+    <div class="button-container">
+      <button class="nav-button active" onclick="showSection('clientSummary', this)">Client Summary</button>
+      <button class="nav-button" onclick="showSection('clientList', this)">Client List</button>
+      <button class="nav-button" onclick="showSection('membership', this)">Membership</button>
+    </div>
+    <div id="clientSummary" class="tab-content active">
+      <h3>Client Summary</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-chart-pie"></i>
+        <p>Client Summary Chart will be displayed here</p>
+      </div>
+    </div>
+    <div id="clientList" class="tab-content">
+      <h3>Client List</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-users"></i>
+        <p>Client List will be displayed here</p>
+      </div>
+    </div>
+    <div id="membership" class="tab-content">
+      <h3>Membership</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-id-card"></i>
+        <p>Membership details will be displayed here</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STAFF SECTION -->
+<div id="staff" class="section-page">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Staff Management</h2>
+      <button class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+    </div>
+    <div class="button-container">
+      <button class="nav-button active" onclick="showSection('staffList', this)">Staff List</button>
+      <button class="nav-button" onclick="showSection('workingHours', this)">Working Hours</button>
+      <button class="nav-button" onclick="showSection('staffSalary', this)">Staff Salary</button>
+      <button class="nav-button" onclick="showSection('commissionActivities', this)">Commission Activities</button>
+    </div>
+    <div id="staffList" class="tab-content active">
+      <h3>Staff List</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-users"></i>
+        <p>Staff List will be displayed here</p>
+      </div>
+    </div>
+    <div id="workingHours" class="tab-content">
+      <h3>Working Hours</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-clock"></i>
+        <p>Working Hours Chart will be displayed here</p>
+      </div>
+    </div>
+    <div id="staffSalary" class="tab-content">
+      <h3>Staff Salary</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-dollar-sign"></i>
+        <p>Staff Salary details will be displayed here</p>
+      </div>
+    </div>
+    <div id="commissionActivities" class="tab-content">
+      <h3>Commission Activities</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-percentage"></i>
+        <p>Commission Activities will be displayed here</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- APPOINTMENT SECTION -->
+<div id="appointment" class="section-page">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Appointment Management</h2>
+      <button class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+    </div>
+    <div class="button-container">
+      <button class="nav-button active" onclick="showSection('cancellation', this)">Cancellation</button>
+      <button class="nav-button" onclick="showSection('refunds', this)">Refunds</button>
+      <button class="nav-button" onclick="showSection('appointmentList', this)">Appointment List</button>
+      <button class="nav-button" onclick="showSection('feedbackReview', this)">Feedback and Review</button>
+    </div>
+    <div id="cancellation" class="tab-content active">
+      <h3>Cancellation</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-ban"></i>
+        <p>Cancellation data will be displayed here</p>
+      </div>
+    </div>
+    <div id="refunds" class="tab-content">
+      <h3>Refunds</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-undo"></i>
+        <p>Refunds data will be displayed here</p>
+      </div>
+    </div>
+    <div id="appointmentList" class="tab-content">
+      <h3>Appointment List</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-list"></i>
+        <p>Appointment List will be displayed here</p>
+      </div>
+    </div>
+    <div id="feedbackReview" class="tab-content">
+      <h3>Feedback and Review</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-star"></i>
+        <p>Feedback and Review data will be displayed here</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REVENUE SECTION -->
+<div id="revenue" class="section-page">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Revenue Management</h2>
+      <button class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+    </div>
+    <div class="button-container">
+      <button class="nav-button active" onclick="showSection('coupons', this)">Coupons/Discounts</button>
+      <button class="nav-button" onclick="showSection('revenueProfit', this)">Revenue and Profit</button>
+      <button class="nav-button" onclick="showSection('paymentTransaction', this)">Payment and Transaction</button>
+      <button class="nav-button" onclick="showSection('expenses', this)">Expenses</button>
+    </div>
+    <div id="coupons" class="tab-content active">
+      <h3>Coupons/Discounts</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-tags"></i>
+        <p>Coupons/Discounts data will be displayed here</p>
+      </div>
+    </div>
+    <div id="revenueProfit" class="tab-content">
+      <h3>Revenue and Profit</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-chart-line"></i>
+        <p>Revenue and Profit charts will be displayed here</p>
+      </div>
+    </div>
+    <div id="paymentTransaction" class="tab-content">
+      <h3>Payment and Transaction</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-credit-card"></i>
+        <p>Payment and Transaction data will be displayed here</p>
+      </div>
+    </div>
+    <div id="expenses" class="tab-content">
+      <h3>Expenses</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-receipt"></i>
+        <p>Expenses data will be displayed here</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SALES SECTION -->
+<div id="sales" class="section-page">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Sales Management</h2>
+      <button class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+    </div>
+    <div class="button-container">
+      <button class="nav-button active" onclick="showSection('dailySales', this)">Daily Sales</button>
+      <button class="nav-button" onclick="showSection('monthlySales', this)">Monthly/Yearly Sales</button>
+      <button class="nav-button" onclick="showSection('serviceSales', this)">Service Sales</button>
+      <button class="nav-button" onclick="showSection('productSales', this)">Product Sales</button>
+    </div>
+    <div id="dailySales" class="tab-content active">
+      <h3>Daily Sales</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-chart-bar"></i>
+        <p>Daily Sales chart will be displayed here</p>
+      </div>
+    </div>
+    <div id="monthlySales" class="tab-content">
+      <h3>Monthly/Yearly Sales</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-chart-line"></i>
+        <p>Monthly/Yearly Sales chart will be displayed here</p>
+      </div>
+    </div>
+    <div id="serviceSales" class="tab-content">
+      <h3>Service Sales</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-handshake"></i>
+        <p>Service Sales data will be displayed here</p>
+      </div>
+    </div>
+    <div id="productSales" class="tab-content">
+      <h3>Product Sales</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-shopping-cart"></i>
+        <p>Product Sales data will be displayed here</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PERFORMANCE SECTION -->
+<div id="performance" class="section-page">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Performance Analytics</h2>
+      <button class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+    </div>
+    <div class="button-container">
+      <button class="nav-button active" onclick="showSection('businessPerformance', this)">Business Performance</button>
+      <button class="nav-button" onclick="showSection('staffPerformance', this)">Staff Performance</button>
+      <button class="nav-button" onclick="showSection('productPerformance', this)">Product Performance</button>
+    </div>
+    <div id="businessPerformance" class="tab-content active">
+      <h3>Business Performance</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-chart-line"></i>
+        <p>Business Performance metrics will be displayed here</p>
+      </div>
+    </div>
+    <div id="staffPerformance" class="tab-content">
+      <h3>Staff Performance</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-user-check"></i>
+        <p>Staff Performance metrics will be displayed here</p>
+      </div>
+    </div>
+    <div id="productPerformance" class="tab-content">
+      <h3>Product Performance</h3>
+      <div class="chart-placeholder">
+        <i class="fas fa-chart-pie"></i>
+        <p>Product Performance metrics will be displayed here</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openSection(sectionId) {
+    // Hide the main header
+    document.getElementById("main-header").style.display = "none";
+    
+    // Hide the dashboard
+    document.getElementById("dashboard").style.display = "none";
+    
+    // Hide all section pages
+    const pages = document.querySelectorAll('.section-page');
+    pages.forEach(page => page.style.display = "none");
+    
+    // Show the selected section
+    document.getElementById(sectionId).style.display = "block";
+  }
+
+  function goBack() {
+    // Show the main header
+    document.getElementById("main-header").style.display = "block";
+    
+    // Show the dashboard
+    document.getElementById("dashboard").style.display = "grid";
+    
+    // Hide all section pages
+    const pages = document.querySelectorAll('.section-page');
+    pages.forEach(page => page.style.display = "none");
+  }
+
+  function showSection(sectionId, buttonElement) {
+    // Get the parent container of the clicked button
+    const parentContainer = buttonElement.closest('.container');
+    
+    // Hide all tab content within this container
+    const tabContents = parentContainer.querySelectorAll('.tab-content');
+    tabContents.forEach(content => content.classList.remove('active'));
+    
+    // Remove active class from all buttons within this container
+    const buttons = parentContainer.querySelectorAll('.nav-button');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    
+    // Show the selected tab content
+    document.getElementById(sectionId).classList.add('active');
+    
+    // Add active class to the clicked button
+    buttonElement.classList.add('active');
+  }
+</script>
+
+</body>
+</html>

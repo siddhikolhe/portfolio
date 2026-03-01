@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Reports Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .report-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e1e8ed;
+        }
+
+        .report-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .report-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .inventory-icon { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .client-icon { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .staff-icon { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .appointment-icon { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .revenue-icon { background: linear-gradient(135deg, #fa709a, #fee140); }
+        .sales-icon { background: linear-gradient(135deg, #a8edea, #fed6e3); }
+        .performance-icon { background: linear-gradient(135deg, #ffecd2, #fcb69f); }
+
+        .report-card h3 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .report-card p {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .view-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+            min-width: 120px;
+        }
+
+        .view-btn:hover {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .back-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .back-btn:hover {
+            background: #5a6268;
+        }
+
+        .report-detail {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .report-detail h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .fields-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .field-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .field-card:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .field-card h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .field-card p {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .placeholder-chart {
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            height: 300px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .nav-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .reports-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .fields-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Reports Page -->
+    <div id="main-page" class="page active">
+        <div class="container">
+            <div class="header">
+                <h1>Business Reports</h1>
+                <p>Comprehensive reporting dashboard for your business insights</p>
+            </div>
+
+            <div class="reports-grid">
+                <!-- Inventory Report -->
+                <div class="report-card">
+                    <div class="report-icon inventory-icon">📊</div>
+                    <h3>Inventory</h3>
+                    <p>Inventory Graph Display Here</p>
+                    <button class="view-btn" onclick="showPage('inventory')">View Report</button>
+                </div>
+
+                <!-- Client Report -->
+                <div class="report-card">
+                    <div class="report-icon client-icon">👥</div>
+                    <h3>Client</h3>
+                    <p>Client Graph Display Here</p>
+                    <button class="view-btn" onclick="showPage('client')">View Report</button>
+                </div>
+
+                <!-- Staff Report -->
+                <div class="report-card">
+                    <div class="report-icon staff-icon">👨‍💼</div>
+                    <h3>Staff</h3>
+                    <p>Staff Graph Display Here</p>
+                    <button class="view-btn" onclick="showPage('staff')">View Report</button>
+                </div>
+
+                <!-- Appointment Report -->
+                <div class="report-card">
+                    <div class="report-icon appointment-icon">📅</div>
+                    <h3>Appointment</h3>
+                    <p>Appointment Graph Display Here</p>
+                    <button class="view-btn" onclick="showPage('appointment')">View Report</button>
+                </div>
+
+                <!-- Revenue Report -->
+                <div class="report-card">
+                    <div class="report-icon revenue-icon">💰</div>
+                    <h3>Revenue</h3>
+                    <p>Revenue Graph Display Here</p>
+                    <button class="view-btn" onclick="showPage('revenue')">View Report</button>
+                </div>
+
+                <!-- Sales Report -->
+                <div class="report-card">
+                    <div class="report-icon sales-icon">📈</div>
+                    <h3>Sales</h3>
+                    <p>Sales Graph Display Here</p>
+                    <button class="view-btn" onclick="showPage('sales')">View Report</button>
+                </div>
+
+                <!-- Performance Report -->
+                <div class="report-card">
+                    <div class="report-icon performance-icon">⚡</div>
+                    <h3>Performance</h3>
+                    <p>Performance Graph Display Here</p>
+                    <button class="view-btn" onclick="showPage('performance')">View Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inventory Report Page -->
+    <div id="inventory-page" class="page">
+        <div class="container">
+            <button class="back-btn" onclick="showPage('main')">← Back to Reports</button>
+            <div class="report-detail">
+                <h2>Inventory Report</h2>
+                <div class="fields-grid">
+                    <div class="field-card">
+                        <h4>Product List</h4>
+                        <p>Complete list of all products in inventory</p>
+                    </div>
+                    <div class="field-card">
+                        <h4>Inventory Levels</h4>
+                        <p>Current stock levels and availability</p>
+                    </div>
+                    <div class="field-card">
+                        <h4>Ordered Stock</h4>
+                        <p>Items currently on order and pending delivery</p>
+                    </div>
+                </div>
+                <div class="placeholder-chart">Inventory Analytics Chart Will Display Here</div>
+                <div class="navigation">
+                    <button class="nav-btn" onclick="viewInventoryDetail('product-list')">View Product List</button>
+                    <button class="nav-btn" onclick="viewInventoryDetail('inventory')">View Inventory</button>
+                    <button class="nav-btn" onclick="viewInventoryDetail('ordered-stock')">View Ordered Stock</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Client Report Page -->
+   <div id="client-page" class="page">
+        <div class="container">
+            <button class="back-btn" onclick="showPage('main')">← Back to Reports</button>
+            <div class="report-detail">
+                <h2>Client Report</h2>
+                <div class="fields-grid">
+                    <div class="field-card">
+                        <h4>Client Summary</h4>
+                        <p>Overview of client statistics and metrics</p>
+                    </div>
+                    <div class="field-card">
+                        <h4>Client List</h4>
+                        <p>Complete database of all registered clients</p>
+                    </div>
+                    <div class="field-card">
+                        <h4>Membership</h4>
+                        <p>Active memberships and subscription details</p>
+                    </div>
+                </div>
+                <div class="placeholder-chart">Client Analytics Chart Will Display Here</div>
+                <div class="navigation">
+                    <button class="nav-btn" onclick="viewClientDetail('summary')">View Client Summary</button>
+                    <button class="nav-btn" onclick="viewClientDetail('list')">View Client List</button>
+                    <button class="nav-btn" onclick="viewClientDetail('membership')">View Membership</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Staff Report Page -->
+    <div id="staff-page" class="page">
+        <div class="container">
+            <button class="back-btn" onclick="showPage('main')">← Back to Reports</button>
+            <div class="report-detail">
+                <h2>Staff Report</h2>
+                <div class="fields-grid">
+                    <div class="field-card">
+                        <h4>Staff List</h4>
+                        <p>Complete employee directory and information</p>
+                    </div>
+                    <div class="field-card">
+                        <h4>Working Hours</h4>
+                        <p>Employee schedules and time tracking</p>
+                    </div>
+                    <div class="field-card">
+                        <h4>Staff Salary</h4>
+                        <p>Payroll information and compensation details</p>
+                    </div>
+                    <div class="field-card">
+                        <h4>Commission Activities</h4>
+                        <p>Commission-based earnings and performance</p>
+                    </div>
+                </div>
+                <div class="placeholder-chart">Staff Analytics Chart Will Display Here</div>
+                <div class="navigation">
+                    <button class="nav-btn" onclick="viewStaffDetail('list')">View Staff List</button>
+                    <button class="nav-btn" onclick="viewStaffDetail('hours')">View Working Hours</button>
+                    <button class="nav-btn" onclick="viewStaffDetail('salary')">View Staff Salary</button>
+                    <button class="nav-btn" onclick="viewStaffDetail('commission')">View Commission</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Appointment Report Page -->
+    <div id="appointment-page" class="page">
+        <div class="container">
+            <button class="back-btn" onclick="showPage('main')">← Back to Reports</button>
+            <div class="report-detail">
+                <h2>Appointment Report</h2>
+                <div class="fields-grid">
+                    <div class="field-card">
+                        <h4>Cancellation</h4>
+                        <p>Cancelled appointments and reasons</p>
+                    </div>
+                    <div class="field-card">
+                        <h4>Refunds</h4>
+                        <p>Refund requests and processed payments</p>
+                    </div>
+                    <div class="field-card">
+                        <h4>Appointment List</h4>
+                        <p>Complete schedule of all appointments</p>
+                    </div>
+                    <div class="field-card">
+                        <h4>Feedback and Review</h4>
+                        <p>Customer feedback and service reviews</p>
+                    </div>
+                </div>
+                <div class="placeholder-chart">Appointment Analytics Chart Will Display Here</div>
+                <div class="navigation">
+                    <button class="nav-btn" onclick="viewAppointmentDetail('cancellation')">View Cancellations</button>
+                    <button class="nav-btn" onclick="viewAppointmentDetail('refunds')">View Refunds</button>
+                    <button class="nav-btn" onclick="viewAppointmentDetail('list')">View Appointment List</button>
+                    <button class="nav-btn" onclick="viewAppointmentDetail('feedback')">View Feedback</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Revenue Report Page -->
+    <div id="revenue-page" class="page">
+        <div class="container">
+            <button class="back-btn" onclick="showPage('main')">← Back to Reports</button>
+            <div class="report-detail">
+                <h2>Revenue Report</h2>
+                <div class="fields-grid">
+                    <div class="field-card">
+                        <h4>Coupons and Discounts</h4>
+                        <p>Gift cards, promotional codes, and discount analysis</p>
+                    </div>
+                    <div class="field-card">
+                        <h4>Revenue and Profit</h4>
+                        <p>Total revenue, profit margins, and financial performance</p>
+                    </div>
+                    <div class="field-card">
+                        <h4>Payment and Transaction</h4>
+                        <p>Payment methods, transaction history, and processing</p>
+                    </div>
+                    <div class="field-card">
+                        <h4>Expenses</h4>
+                        <p>Business expenses and cost analysis</p>
+                    </div>
+                </div>
+                <div class="placeholder-chart">Revenue Analytics Chart Will Display Here</div>
+                <div class="navigation">
+                    <button class="nav-btn" onclick="viewRevenueDetail('coupons')">View Coupons</button>
+                    <button class="nav-btn" onclick="viewRevenueDetail('profit')">View Revenue & Profit</button>
+                    <button class="nav-btn" onclick="viewRevenueDetail('payments')">View Payments</button>
+                    <button class="nav-btn" onclick="viewRevenueDetail('expenses')">View Expenses</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sales Report Page -->
+    <div id="sales-page" class="page">
+        <div class="container">
+            <button class="back-btn" onclick="showPage('main')">← Back to Reports</button>
+            <div class="report-detail">
+                <h2>Sales Report</h2>
+                <div class="fields-grid">
+                    <div class="field-card">
+                        <h4>Daily Sales</h4>
+                        <p>Daily sales performance and trends</p>
+                    </div>
+                    <div class="field-card">
+                        <h4>Monthly and Yearly Sales</h4>
+                        <p>Long-term sales analysis and comparisons</p>
+                    </div>
+                    <div class="field-card">
+                        <h4>Services Sales</h4>
+                        <p>Service-based sales and performance metrics</p>
+                    </div>
+                    <div class="field-card">
+                        <h4>Product Sales</h4>
+                        <p>Product-specific sales data and inventory turnover</p>
+                    </div>
+                </div>
+                <div class="placeholder-chart">Sales Analytics Chart Will Display Here</div>
+                <div class="navigation">
+                    <button class="nav-btn" onclick="viewSalesDetail('daily')">View Daily Sales</button>
+                    <button class="nav-btn" onclick="viewSalesDetail('monthly')">View Monthly Sales</button>
+                    <button class="nav-btn" onclick="viewSalesDetail('services')">View Services Sales</button>
+                    <button class="nav-btn" onclick="viewSalesDetail('products')">View Product Sales</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Performance Report Page -->
+    <div id="performance-page" class="page">
+        <div class="container">
+            <button class="back-btn" onclick="showPage('main')">← Back to Reports</button>
+            <div class="report-detail">
+                <h2>Performance Report</h2>
+                <div class="fields-grid">
+                    <div class="field-card">
+                        <h4>Business Performance</h4>
+                        <p>Overall business metrics and KPIs</p>
+                    </div>
+                    <div class="field-card">
+                        <h4>Staff Performance</h4>
+                        <p>Individual employee performance and productivity</p>
+                    </div>
+                </div>
+                <div class="placeholder-chart">Performance Analytics Chart Will Display Here</div>
+                <div class="navigation">
+                    <button class="nav-btn" onclick="viewPerformanceDetail('business')">View Business Performance</button>
+                    <button class="nav-btn" onclick="viewPerformanceDetail('staff')">View Staff Performance</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            const targetPage = document.getElementById(pageId + '-page');
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+        }
+
+        // Detailed view functions
+        function viewInventoryDetail(type) {
+            alert(`Viewing ${type} details. This would navigate to the specific ${type} report.`);
+        }
+
+        function viewClientDetail(type) {
+            alert(`Viewing client ${type} details. This would navigate to the specific client ${type} report.`);
+        }
+
+        function viewStaffDetail(type) {
+            alert(`Viewing staff ${type} details. This would navigate to the specific staff ${type} report.`);
+        }
+
+        function viewAppointmentDetail(type) {
+            alert(`Viewing appointment ${type} details. This would navigate to the specific appointment ${type} report.`);
+        }
+
+        function viewRevenueDetail(type) {
+            alert(`Viewing revenue ${type} details. This would navigate to the specific revenue ${type} report.`);
+        }
+
+        function viewSalesDetail(type) {
+            alert(`Viewing sales ${type} details. This would navigate to the specific sales ${type} report.`);
+        }
+
+        function viewPerformanceDetail(type) {
+            alert(`Viewing performance ${type} details. This would navigate to the specific performance ${type} report.`);
+        }
+
+        // Add smooth scrolling
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

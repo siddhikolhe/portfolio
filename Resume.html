@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Siddhi Kolhe – Resume</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #1A56DB;
+    --blue-light: #EEF3FF;
+    --dark: #1E1E2E;
+    --mid: #4B5563;
+    --light: #9CA3AF;
+    --border: #E5E7EB;
+    --bg: #FFFFFF;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #F3F4F6;
+    color: var(--dark);
+    padding: 16px;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .page {
+    background: var(--bg);
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 24px 40px;
+    box-shadow: 0 4px 40px rgba(0,0,0,0.10);
+  }
+
+  /* ── HEADER ── */
+  .header { text-align: center; margin-bottom: 10px; }
+  .name {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--dark);
+  }
+  .tagline {
+    font-size: 12.5px;
+    color: var(--mid);
+    margin-top: 3px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── CONTACT BAR ── */
+  .contact-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0;
+    padding: 4px 0 10px;
+    margin: 0;
+  }
+  .contact-bar a, .contact-bar span {
+    font-size: 12.5px;
+    color: var(--mid);
+    text-decoration: none;
+    padding: 0 12px;
+    border-right: 1px solid var(--border);
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .contact-bar a:last-child, .contact-bar span:last-child { border-right: none; }
+  .contact-bar a { color: var(--blue); font-weight: 500; }
+  .contact-bar a:hover { text-decoration: underline; }
+
+  /* ── SECTIONS ── */
+  .section { margin-bottom: 8px; }
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blue);
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--blue);
+    margin-bottom: 8px;
+  }
+
+  /* ── SUMMARY ── */
+  .summary {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--dark);
+    text-align: justify;
+  }
+
+  /* ── SKILLS TABLE ── */
+  .skills-grid { display: grid; grid-template-columns: 140px 1fr; gap: 4px 10px; }
+  .skill-cat {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--blue);
+    background: var(--blue-light);
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+  }
+  .skill-val {
+    font-size: 12.5px;
+    color: var(--dark);
+    padding: 3px 0;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── EXPERIENCE / PROJECTS ── */
+  .entry { margin-bottom: 10px; }
+  .entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+  .entry-title { font-size: 14px; font-weight: 700; color: var(--dark); }
+  .entry-sub { font-size: 12.5px; color: var(--mid); margin-left: 6px; }
+  .entry-date { font-size: 12px; color: var(--mid); font-style: italic; white-space: nowrap; }
+
+  ul.bullets { list-style: none; padding: 0; margin: 4px 0 0; }
+  ul.bullets li {
+    font-size: 12.5px;
+    color: var(--dark);
+    line-height: 1.5;
+    padding: 1px 0 1px 16px;
+    position: relative;
+  }
+  ul.bullets li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--blue);
+    font-size: 11px;
+    top: 3px;
+  }
+
+  .tech-stack {
+    font-size: 11.5px;
+    color: var(--mid);
+    margin-top: 3px;
+  }
+  .tech-stack span { font-weight: 600; color: var(--blue); }
+
+  .portfolio-link {
+    font-size: 12px;
+    margin-top: 2px;
+  }
+  .portfolio-link a { color: var(--blue); font-weight: 500; }
+
+  /* ── EDUCATION ── */
+  .edu-entry { margin-bottom: 8px; }
+  .edu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .edu-degree { font-size: 13.5px; font-weight: 700; color: var(--dark); }
+  .edu-year { font-size: 12px; color: var(--mid); font-style: italic; }
+  .edu-details { font-size: 12.5px; color: var(--mid); margin-top: 2px; }
+  .edu-details strong { color: var(--blue); }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; padding: 20px 30px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="name">Kolhe Siddhi Rajaram</div>
+    <div class="tagline">Frontend-Focused Full Stack Developer &nbsp;•&nbsp; React &nbsp;•&nbsp; UI/UX Design &nbsp;•&nbsp; ASP.NET Web API</div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-bar">
+    <span>📍 Nashik, Maharashtra</span>
+    <span>📞 +91-9373784925</span>
+    <a href="/cdn-cgi/l/email-protection#1f6c767b7b777676762c2f275f78727e7673317c7072">✉ <span class="__cf_email__" data-cfemail="d0a3b9b4b4b8b9b9b9e3e0e890b7bdb1b9bcfeb3bfbd">[email&#160;protected]</span></a>
+    <a href="https://linkedin.com/in/siddhi-kolhe" target="_blank">🔗 LinkedIn</a>
+    <a href="https://siddhikolhe.dev" target="_blank">🌐 siddhikolhe.dev</a>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="section">
+    <div class="section-title">Professional Summary</div>
+    <p class="summary">
+      Results-driven Full Stack Developer with 14+ months of hands-on experience building scalable web applications.
+      Specializes in React-based frontend development with backend expertise in C# (ASP.NET Core Web API).
+      Key contributor to <strong>GLAMORAA</strong> — a multi-tenant Salon ERP platform — owning end-to-end frontend development
+      from UI/UX design to REST API integration. Currently building a full-featured Node.js E-Commerce platform with JWT
+      authentication, product management, cart, and order workflows. Experienced in Agile workflows, code reviews, and
+      mentoring interns. Seeking a <strong>React / Node.js Full Stack role</strong> with growth opportunities.
+    </p>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section">
+    <div class="section-title">Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skill-cat">Frontend</div>
+      <div class="skill-val">HTML5, CSS3, TailwindCSS, JavaScript (ES6+), React.js, Bootstrap, Responsive UI, Figma (UI/UX)</div>
+      <div class="skill-cat">Backend</div>
+      <div class="skill-val">C#, ASP.NET Core Web API, REST API Design &amp; Integration, Node.js (learning)</div>
+      <div class="skill-cat">Database &amp; Tools</div>
+      <div class="skill-val">SQL Server, Git, GitHub, Visual Studio, VS Code</div>
+      <div class="skill-cat">Practices</div>
+      <div class="skill-val">Agile/Scrum, Sprint Planning, Code Review, Intern Mentoring</div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="section">
+    <div class="section-title">Experience</div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <div>
+          <span class="entry-title">Full Stack Web Developer</span>
+          <span class="entry-sub">Infinity Techno Solutions, Nashik</span>
+        </div>
+        <div class="entry-date">Jun 2024 – Jan 2026</div>
+      </div>
+      <ul class="bullets">
+        <li>Led frontend development of <strong>GLAMORAA</strong>, a multi-tenant Salon ERP handling bookings, billing, staff management, attendance, and inventory.</li>
+        <li>Built and integrated RESTful APIs using ASP.NET Core Web API, enabling seamless full-stack feature delivery.</li>
+        <li>Implemented role-based access control (RBAC) and authentication flows to support multi-tenant architecture.</li>
+        <li>Improved application performance through React component optimization and efficient state management.</li>
+        <li>Participated in Agile sprint cycles, conducted code reviews, and mentored junior interns on frontend best practices.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <div>
+          <span class="entry-title">Web Development Intern</span>
+          <span class="entry-sub">Infinity Techno Solutions, Nashik</span>
+        </div>
+        <div class="entry-date">Dec 2023 – May 2024</div>
+      </div>
+      <ul class="bullets">
+        <li>Developed responsive web interfaces using HTML, CSS, Bootstrap, and JavaScript for the Salon Management System.</li>
+        <li>Contributed to backend CRUD operations using ASP.NET Web API and SQL Server.</li>
+        <li>Collaborated with the development team on feature modules and participated in sprint reviews.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="section">
+    <div class="section-title">Projects</div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <div>
+          <span class="entry-title">GLAMORAA – Salon ERP System</span>
+          <span class="entry-sub">Full Stack Developer (Frontend Focus)</span>
+        </div>
+      </div>
+      <ul class="bullets">
+        <li>Architected and developed UI/UX for core ERP modules: bookings, staff profiles, attendance tracking, billing, and inventory management.</li>
+        <li>Designed a role-based access system with Admin, Staff, and Manager roles — each with scoped CRUD permissions.</li>
+        <li>Integrated React frontend with ASP.NET REST APIs; coordinated version control and deployments via GitHub.</li>
+        <li>Contributed to multi-tenant architecture enabling the platform to serve multiple salon businesses independently.</li>
+      </ul>
+      <div class="tech-stack"><span>Tech Stack:</span> React.js, JavaScript (ES6+), HTML5, CSS3, Bootstrap, C#, ASP.NET Core Web API, SQL Server, Git/GitHub, Figma</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <div>
+          <span class="entry-title">Personal Portfolio Website</span>
+          <span class="entry-sub">Frontend Developer</span>
+        </div>
+      </div>
+      <ul class="bullets">
+        <li>Designed and developed a personal portfolio website to showcase projects, skills, and professional profile to potential employers.</li>
+        <li>Built with React.js featuring smooth navigation, fully responsive layout across all screen sizes, and a clean modern UI.</li>
+        <li>Includes dedicated sections for projects, tech stack, work experience, and a working contact form — demonstrating complete frontend ownership from design to deployment.</li>
+      </ul>
+      <div class="portfolio-link">🌐 Live at: <a href="https://siddhikolhe.dev" target="_blank">siddhikolhe.dev</a></div>
+      <div class="tech-stack"><span>Tech Stack:</span> React.js, HTML5, CSS3, JavaScript, Bootstrap, Figma</div>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section">
+    <div class="section-title">Education</div>
+
+    <div class="edu-entry">
+      <div class="edu-header">
+        <div class="edu-degree">Master of Computer Science (MCS)</div>
+        <div class="edu-year">2023 – 2025</div>
+      </div>
+      <div class="edu-details">K.K. Wagh College, Nashik &nbsp;|&nbsp; CGPA: <strong>8.27</strong></div>
+    </div>
+
+    <div class="edu-entry">
+      <div class="edu-header">
+        <div class="edu-degree">Bachelor of Computer Science (BCS)</div>
+        <div class="edu-year">2020 – 2023</div>
+      </div>
+      <div>
+
+      </div>
+      </div>
+      </div>
+      </div>
+      </body>
+      </html>

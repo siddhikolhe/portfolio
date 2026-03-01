@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporting and Analytics</title>
+    <link rel="stylesheet" href="CSS/demo.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Reporting </h1>
+        </div>
+
+        <div class="search-section">
+            <div class="search-container">
+                <div class="search-icon">🔍</div>
+                <input type="text" class="search-input" placeholder="Search by report name or description" id="searchInput">
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab" onclick="switchTab('sales')">Inventory</button>
+            <button class="tab active" onclick="switchTab('finance')">Client</button>
+            <button class="tab" onclick="switchTab('appointments')">Staff</button>
+            <button class="tab" onclick="switchTab('team')">Appointment</button>
+            <button class="tab" onclick="switchTab('team')">Revenue</button>
+            <button class="tab" onclick="switchTab('clients')">Sales</button>
+            <button class="tab" onclick="switchTab('inventory')">performance</button>
+        </div>
+
+        <div class="reports-grid" id="reportsGrid">
+            <div class="report-card" data-category="finance">
+                <div class="report-icon">💰</div>
+                <div class="report-content">
+                    <div class="report-title">Finance summary</div>
+                    <div class="report-description">High-level summary of sales, payments and liabilities</div>
+                </div>
+                <div class="star-icon" onclick="toggleStar(this)">☆</div>
+            </div>
+
+            <div class="report-card" data-category="finance">
+                <div class="report-icon">💳</div>
+                <div class="report-content">
+                    <div class="report-title">Payments summary</div>
+                    <div class="report-description">Payments split by payment methods.</div>
+                </div>
+                <div class="star-icon" onclick="toggleStar(this)">☆</div>
+            </div>
+
+            <div class="report-card" data-category="finance">
+                <div class="report-icon">📋</div>
+                <div class="report-content">
+                    <div class="report-title">Payment transactions</div>
+                    <div class="report-description">Detailed list of all payment transactions</div>
+                </div>
+                <div class="star-icon" onclick="toggleStar(this)">☆</div>
+            </div>
+
+            <div class="report-card" data-category="sales">
+                <div class="report-icon">📊</div>
+                <div class="report-content">
+                    <div class="report-title">Sales overview</div>
+                    <div class="report-description">Complete overview of sales performance and trends</div>
+                </div>
+                <div class="star-icon" onclick="toggleStar(this)">☆</div>
+            </div>
+
+            <div class="report-card" data-category="appointments">
+                <div class="report-icon">📅</div>
+                <div class="report-content">
+                    <div class="report-title">Appointment analytics</div>
+                    <div class="report-description">Insights into booking patterns and appointment metrics</div>
+                </div>
+                <div class="star-icon" onclick="toggleStar(this)">☆</div>
+            </div>
+
+            <div class="report-card" data-category="team">
+                <div class="report-icon">👥</div>
+                <div class="report-content">
+                    <div class="report-title">Team performance</div>
+                    <div class="report-description">Track team productivity and performance metrics</div>
+                </div>
+                <div class="star-icon" onclick="toggleStar(this)">☆</div>
+            </div>
+
+            <div class="report-card" data-category="clients">
+                <div class="report-icon">👤</div>
+                <div class="report-content">
+                    <div class="report-title">Client insights</div>
+                    <div class="report-description">Analysis of client behavior and retention patterns</div>
+                </div>
+                <div class="star-icon" onclick="toggleStar(this)">☆</div>
+            </div>
+
+            <div class="report-card" data-category="inventory">
+                <div class="report-icon">📦</div>
+                <div class="report-content">
+                    <div class="report-title">Inventory tracking</div>
+                    <div class="report-description">Monitor stock levels and inventory movement</div>
+                </div>
+                <div class="star-icon" onclick="toggleStar(this)">☆</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let activeTab = 'finance';
+        let searchTerm = '';
+
+        function switchTab(category) {
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+            
+            activeTab = category;
+            filterReports();
+        }
+
+        function filterReports() {
+            const reportCards = document.querySelectorAll('.report-card');
+            
+            reportCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                const title = card.querySelector('.report-title').textContent.toLowerCase();
+                const description = card.querySelector('.report-description').textContent.toLowerCase();
+                
+                const matchesCategory = activeTab === 'all' || category === activeTab;
+                const matchesSearch = searchTerm === '' || 
+                    title.includes(searchTerm) || 
+                    description.includes(searchTerm);
+                
+                if (matchesCategory && matchesSearch) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function toggleStar(element) {
+            if (element.classList.contains('starred')) {
+                element.classList.remove('starred');
+                element.textContent = '☆';
+            } else {
+                element.classList.add('starred');
+                element.textContent = '★';
+            }
+        }
+
+        function showLearnMore() {
+            alert('Learn more about Fresha reports and analytics features.');
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            searchTerm = e.target.value.toLowerCase();
+            filterReports();
+        });
+
+        // Initialize with finance tab active
+        filterReports();
+    </script>
+</body>
+</html>

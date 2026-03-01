@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-2.0">
+    <title>Staff Schedule Management</title>
+    <link rel="stylesheet" href="CSS/Attendence.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Staff Schedule Management</h1>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="switchTab('attendance')">Attendance</button>
+            <button class="nav-tab" onclick="switchTab('schedule')">Schedule</button>
+        </div>
+
+         <!-- Attendance Management Tab -->
+         <div id="attendance" class="tab-content active">
+            <div class="controls">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="staffName">Staff Name</label>
+                        <input type="text" id="staffName" placeholder="Enter staff name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="todayDate">Today's Date</label>
+                        <input type="date" id="todayDate" readonly>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="inTime">In Time</label>
+                        <input type="time" id="inTime" required>
+                    </div>
+               
+                    <div class="form-group">
+                       <label for="outTime">Out Time</label>
+                        <input type="time" id="outTime" required>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="addAttendance()">Add Attendance Record</button>
+            </div>
+
+            <div class="attendance-table">
+                <div class="table-header">
+                    <h2>Attendance Records</h2>
+                </div>
+
+                <table id="attendanceTable">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Staff Name</th>
+                            <th>In Time</th>
+                            <th>Out Time</th>
+                            <th>Total Hours</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendanceBody">
+                        <tr>
+                            <td colspan="6" class="no-records">No attendance records found. Add your first record above.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Schedule Tab -->
+        <div id="schedule" class="tab-content">
+            <div class="controls">
+                <div class="schedule-controls">
+                    <div class="search-group">
+                        <input type="text" id="staffSearch" class="search-input" placeholder="🔍 Search staff by name..." onkeyup="filterSchedule()">
+                    </div>
+                    <div class="date-group">
+                        <input type="date" id="startDate" class="date-input" onchange="updateSchedule()">
+                        <span>to</span>
+                        <input type="date" id="endDate" class="date-input" onchange="updateSchedule()">
+                    </div>
+                    <button class="btn btn-primary" onclick="resetFilters()">Reset Filters</button>
+                </div>
+            </div>
+
+            <div class="date-range" id="dateRange">
+                <strong>Current Week: March 31, 2025 - April 6, 2025</strong>
+            </div>
+
+            <div class="schedule-table">
+                <table id="scheduleTable">
+                    <thead>
+                        <tr>
+                            <th>Staff</th>
+                            <th>Monday<br>Mar 31</th>
+                            <th>Tuesday<br>Apr 1</th>
+                            <th>Wednesday<br>Apr 2</th>
+                            <th>Thursday<br>Apr 3</th>
+                            <th>Friday<br>Apr 4</th>
+                            <th>Saturday<br>Apr 5</th>
+                            <th>Sunday<br>Apr 6</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scheduleBody">
+                        <!-- Schedule data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let attendanceData = [];
+        let serialNumber = 1;
+        let currentWeekStart = new Date('2025-03-31');
+        let filteredStaffData = [];
+        let filteredLeaveRequests = [];
+
+       
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            filteredStaffData = [...staffData];
+            filteredLeaveRequests = [...leaveRequests];
+            initializeDates();
+            setCurrentTime();
+            setTodaysDate();
+        });
+
+        // Tab switching function
+        function switchTab(tabName) {
+            // Remove active class from all tabs and contents
+            document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // Add active class to selected tab and content
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+            
+            // Initialize schedule when switching to it
+            if (tabName === 'schedule') {
+                renderSchedule();
+            }
+        }
+
+        // Attendance functions
+        function addAttendance() {
+            const staffName = document.getElementById('staffName').value.trim();
+            const inTime = document.getElementById('inTime').value;
+            const outTime = document.getElementById('outTime').value;
+
+            if (!staffName || !inTime || !outTime) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            const totalHours = calculateTotalHours(inTime, outTime);
+            
+            const attendance = {
+                id: serialNumber,
+                staffName: staffName,
+                inTime: inTime,
+                outTime: outTime,
+                totalHours: totalHours
+            };
+
+            attendanceData.push(attendance);
+            serialNumber++;
+            
+            updateTable();
+            clearForm();
+        }
+
+        function calculateTotalHours(inTime, outTime) {
+            const inDate = new Date('2000-01-01 ' + inTime);
+            const outDate = new Date('2000-01-01 ' + outTime);
+            
+            if (outDate < inDate) {
+                outDate.setDate(outDate.getDate() + 1);
+            }
+            
+            const diffMs = outDate - inDate;
+            const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+            const diffMins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+            
+            return `${diffHours}h ${diffMins}m`;
+        }
+
+        function updateTable() {
+            const tbody = document.getElementById('attendanceBody');
+            
+            if (attendanceData.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="no-records">No attendance records found. Add your first record above.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = attendanceData.map(record => `
+                <tr>
+                    <td>${record.id}</td>
+                    <td>${record.staffName}</td>
+                    <td>${record.inTime}</td>
+                    <td>${record.outTime}</td>
+                    <td>${record.totalHowe}</td>
+                </tr>
+            `).join('');
+        }
+
+        function clearForm() {
+            document.getElementById('staffName').value = '';
+            document.getElementById('inTime').value = '';
+            document.getElementById('outTime').value = '';
+            setCurrentTime();
+        }
+
+        function setCurrentTime() {
+            const now = new Date();
+            const currentTime = now.toTimeString().slice(0, 5);
+            document.getElementById('inTime').value = currentTime;
+        }
+
+        function setTodaysDate() {
+            const today = new Date();
+            const todayFormatted = today.toISOString().split('T')[0];
+            document.getElementById('todayDate').value = todayFormatted;
+        }
+
+        // Schedule functions
+        function initializeDates() {
+            const today = new Date();
+            const startDate = document.getElementById('startDate');
+            const endDate = document.getElementById('endDate');
+            
+            if (startDate && endDate) {
+                startDate.value = formatDateForInput(currentWeekStart);
+                
+                const weekEnd = new Date(currentWeekStart);
+                weekEnd.setDate(weekEnd.getDate() + 6);
+                endDate.value = formatDateForInput(weekEnd);
+            }
+        }
+
+        function formatDateForInput(date) {
+            return date.toISOString().split('T')[0];
+        }
+
+        function formatDateDisplay(date) {
+            return date.toLocaleDateString('en-US', { 
+                month: 'short', 
+                day: 'numeric',
+                year: 'numeric'
+            });
+        }
+
+        function renderSchedule() {
+            const tbody = document.getElementById('scheduleBody');
+            if (!tbody) return;
+            
+            tbody.innerHTML = '';
+
+            filteredStaffData.forEach(staff => {
+                const row = document.createElement('tr');
+                row.classList.add('fade-in');
+                
+                row.innerHTML = `
+                    <td class="staff-name">${staff.name}</td>
+                    <td class="time-slot ${getTimeSlotClass(staff, 'monday')}">${getTimeSlotContent(staff, 'monday')}</td>
+                    <td class="time-slot ${getTimeSlotClass(staff, 'tuesday')}">${getTimeSlotContent(staff, 'tuesday')}</td>
+                    <td class="time-slot ${getTimeSlotClass(staff, 'wednesday')}">${getTimeSlotContent(staff, 'wednesday')}</td>
+                    <td class="time-slot ${getTimeSlotClass(staff, 'thursday')}">${getTimeSlotContent(staff, 'thursday')}</td>
+                    <td class="time-slot ${getTimeSlotClass(staff, 'friday')}">${getTimeSlotContent(staff, 'friday')}</td>
+                    <td class="time-slot ${getTimeSlotClass(staff, 'saturday')}">${getTimeSlotContent(staff, 'saturday')}</td>
+                    <td class="time-slot ${getTimeSlotClass(staff, 'sunday')}">${getTimeSlotContent(staff, 'sunday')}</td>
+                `;
+                
+                tbody.appendChild(row);
+            });
+        }
+
+        function getTimeSlotClass(staff, day) {
+            if (staff.schedule[day].status === 'on-leave') return 'on-leave';
+            if (staff.schedule[day].status === 'off') return 'off';
+            return 'working';
+        }
+
+        function getTimeSlotContent(staff, day) {
+            const schedule = staff.schedule[day];
+            if (schedule.status === 'on-leave') {
+                return 'ON LEAVE';
+            }
+            if (schedule.status === 'off') {
+                return 'OFF';
+            }
+            return `${schedule.start}<br>-<br>${schedule.end}`;
+        }
+
+        function filterSchedule() {
+            const searchTerm = document.getElementById('staffSearch').value.toLowerCase();
+            
+            filteredStaffData = staffData.filter(staff => 
+                staff.name.toLowerCase().includes(searchTerm)
+            );
+            
+            renderSchedule();
+        }
+
+        function updateSchedule() {
+            const startDate = new Date(document.getElementById('startDate').value);
+            const endDate = new Date(document.getElementById('endDate').value);
+            
+            if (startDate && endDate) {
+                updateDateRange(startDate, endDate);
+                updateTableHeaders(startDate);
+                applyLeaveToSchedule();
+                renderSchedule();
+            }
+        }
+
+        function updateDateRange(startDate, endDate) {
+            const dateRangeElement = document.getElementById('dateRange');
+            if (dateRangeElement) {
+                dateRangeElement.innerHTML = `<strong>Current Week: ${formatDateDisplay(startDate)} - ${formatDateDisplay(endDate)}</strong>`;
+            }
+        }
+
+        function updateTableHeaders(startDate) {
+            const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+            const headers = document.querySelectorAll('#scheduleTable th');
+            
+            for (let i = 1; i < headers.length; i++) {
+                const currentDate = new Date(startDate);
+                currentDate.setDate(startDate.getDate() + (i - 1));
+                headers[i].innerHTML = `${days[i-1]}<br>${formatDateDisplay(currentDate).replace(', ', '<br>')}`;
+            }
+        }
+
+        function resetFilters() {
+            document.getElementById('staffSearch').value = '';
+            initializeDates();
+            filteredStaffData = [...staffData];
+            updateSchedule();
+        }
+
+        function applyLeaveToSchedule() {
+            // Reset all schedules to working first
+            staffData.forEach(staff => {
+                Object.keys(staff.schedule).forEach(day => {
+                    if (staff.schedule[day].status === 'on-leave') {
+                        staff.schedule[day].status = 'working';
+                    }
+                });
+            });
+
+            // Apply approved leaves
+            const approvedLeaves = leaveRequests.filter(leave => leave.status === 'approved');
+            
+            approvedLeaves.forEach(leave => {
+                const staff = staffData.find(s => s.name === leave.staff);
+                if (staff) {
+                    const startDate = new Date(leave.startDate);
+                    const endDate = new Date(leave.endDate);
+                    
+                    // Mark days as on leave
+                    const currentWeekStartDate = new Date(document.getElementById('startDate').value);
+                    const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+                    
+                    days.forEach((day, index) => {
+                        const dayDate = new Date(currentWeekStartDate);
+                        dayDate.setDate(currentWeekStartDate.getDate() + index);
+                        
+                        if (dayDate >= startDate && dayDate <= endDate) {
+                            staff.schedule[day].status = 'on-leave';
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>

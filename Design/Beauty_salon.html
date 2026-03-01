@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumière Beauty — Salon & Spa</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pink: #e8a0b4;
+  --pink-deep: #c9607a;
+  --pink-light: #fdf0f4;
+  --cream: #faf6f1;
+  --blue: #e8f4f8;
+  --blue-mid: #a8d4e6;
+  --dark: #1c1118;
+  --text: #2d1e26;
+  --muted: #8a6878;
+  --white: #fff;
+  --grad-btn: linear-gradient(135deg, #c9607a, #a8d4e6);
+  --grad-hero: linear-gradient(135deg, #fdf0f4 0%, #e8f4f8 100%);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+
+/* CURSOR */
+.cursor { width: 10px; height: 10px; background: var(--pink-deep); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .25s, height .25s; }
+.cursor-ring { width: 36px; height: 36px; border: 1.5px solid var(--pink-deep); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); opacity: .5; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--pink-light); }
+::-webkit-scrollbar-thumb { background: var(--pink-deep); border-radius: 10px; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.1rem 3.5rem; display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(201,96,122,.12); transition: all .4s; }
+nav.scrolled { padding: .75rem 3.5rem; box-shadow: 0 4px 30px rgba(201,96,122,.1); }
+.logo { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 600; color: var(--dark); letter-spacing: -.5px; }
+.logo em { font-style: italic; color: var(--pink-deep); }
+.nav-links { display: flex; gap: 2.2rem; list-style: none; align-items: center; }
+.nav-links a { text-decoration: none; color: var(--text); font-size: .875rem; font-weight: 500; position: relative; transition: color .25s; }
+.nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1.5px; background: var(--pink-deep); transition: width .3s; }
+.nav-links a:hover::after { width: 100%; }
+.nav-links a:hover { color: var(--pink-deep); }
+.nav-cta { background: var(--dark) !important; color: #fff !important; padding: .5rem 1.4rem; border-radius: 50px; font-size: .85rem !important; }
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: var(--pink-deep) !important; transform: translateY(-2px) !important; }
+.menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+.menu-toggle span { width: 22px; height: 1.5px; background: var(--text); transition: .3s; }
+
+/* ═══ HERO — compact, like reference images ═══ */
+.hero {
+  height: 75vh;
+  min-height: 520px;
+  max-height: 720px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  position: relative;
+  margin-top: 64px; /* nav height */
+}
+.hero-left {
+  background: var(--grad-hero);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 4rem 0 3.5rem;
+  position: relative;
+  z-index: 2;
+}
+.hero-eyebrow { display: inline-flex; align-items: center; gap: .6rem; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: var(--pink-deep); margin-bottom: 1.2rem; animation: fadeUp .6s ease both; }
+.hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--pink-deep); }
+.hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 4vw, 4rem); font-weight: 300; line-height: 1.1; color: var(--dark); margin-bottom: 1.1rem; animation: fadeUp .6s .1s ease both; }
+.hero-title em { font-style: italic; color: var(--pink-deep); font-weight: 400; }
+.hero-title strong { font-weight: 600; }
+.hero-sub { font-size: .9rem; color: var(--muted); line-height: 1.7; max-width: 360px; margin-bottom: 2rem; animation: fadeUp .6s .2s ease both; }
+.hero-actions { display: flex; gap: .8rem; flex-wrap: wrap; animation: fadeUp .6s .3s ease both; }
+.btn-dark { background: var(--dark); color: #fff; padding: .75rem 1.8rem; border-radius: 50px; font-size: .875rem; font-weight: 600; text-decoration: none; transition: background .25s, transform .2s; display: inline-flex; align-items: center; gap: .5rem; }
+.btn-dark:hover { background: var(--pink-deep); transform: translateY(-2px); }
+.btn-ghost { background: transparent; color: var(--text); padding: .75rem 1.8rem; border-radius: 50px; font-size: .875rem; font-weight: 500; text-decoration: none; border: 1.5px solid rgba(44,30,38,.18); transition: all .25s; }
+.btn-ghost:hover { border-color: var(--pink-deep); color: var(--pink-deep); transform: translateY(-2px); }
+.hero-badges { display: flex; gap: 1.6rem; margin-top: 2.4rem; animation: fadeUp .6s .4s ease both; }
+.hero-badge-item { display: flex; flex-direction: column; }
+.hb-num { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; color: var(--dark); line-height: 1; }
+.hb-label { font-size: .68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: .1rem; }
+.hb-sep { width: 1px; background: rgba(201,96,122,.2); align-self: stretch; }
+
+/* Hero Right — image slider */
+.hero-right { position: relative; overflow: hidden; }
+.hero-img-slider { display: flex; height: 100%; transition: transform .9s cubic-bezier(.77,0,.175,1); }
+.hero-slide { min-width: 100%; height: 100%; position: relative; overflow: hidden; }
+.hero-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-slide-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(253,240,244,.35) 0%, transparent 50%); }
+/* floating discount badge */
+.hero-float-badge {
+  position: absolute; top: 1.5rem; left: 1.5rem; z-index: 10;
+  background: rgba(255,255,255,.92); backdrop-filter: blur(8px);
+  border-radius: 14px; padding: .7rem 1.1rem;
+  border: 1px solid rgba(201,96,122,.2);
+  animation: fadeUp .6s .5s ease both;
+}
+.hfb-top { font-size: .62rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); }
+.hfb-val { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; color: var(--pink-deep); line-height: 1; }
+.hfb-sub { font-size: .68rem; color: var(--muted); }
+.hero-dots { position: absolute; bottom: 1.4rem; left: 50%; transform: translateX(-50%); display: flex; gap: .45rem; z-index: 10; }
+.hero-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.5); cursor: pointer; transition: all .3s; }
+.hero-dot.active { background: #fff; width: 18px; border-radius: 3px; }
+.hero-arrows { position: absolute; bottom: 1.2rem; right: 1.2rem; display: flex; gap: .4rem; z-index: 10; }
+.hero-arr { width: 34px; height: 34px; background: rgba(255,255,255,.85); border: none; border-radius: 50%; cursor: pointer; font-size: .9rem; display: flex; align-items: center; justify-content: center; transition: background .2s, transform .2s; backdrop-filter: blur(6px); }
+.hero-arr:hover { background: #fff; transform: scale(1.08); }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+/* ═══ PROMO STRIP (replaces scrollbar/marquee) ═══ */
+.promo-strip {
+  background: var(--dark);
+  padding: 1rem 3.5rem;
+  display: flex; align-items: center; justify-content: center;
+  gap: 2.5rem; flex-wrap: wrap;
+}
+.ps-item { display: flex; align-items: center; gap: .55rem; color: rgba(255,255,255,.75); font-size: .8rem; white-space: nowrap; }
+.ps-item strong { color: #fff; }
+.ps-dot { color: var(--pink); font-size: .6rem; }
+
+/* ═══ CATEGORY ICONS STRIP (NEW — replaces marquee) ═══ */
+.categories-section { background: var(--white); padding: 2.8rem 3.5rem; border-bottom: 1px solid rgba(201,96,122,.08); }
+.cats-title { text-align: center; font-size: .68rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 1.8rem; }
+.cats-row { display: flex; align-items: flex-start; justify-content: center; gap: 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.cats-row::-webkit-scrollbar { display: none; }
+.cat-item {
+  display: flex; flex-direction: column; align-items: center; gap: .55rem;
+  min-width: 90px; cursor: pointer;
+  padding: .5rem .6rem;
+  border-radius: 16px;
+  transition: background .25s, transform .25s;
+}
+.cat-item:hover { background: var(--pink-light); transform: translateY(-4px); }
+.cat-img-wrap {
+  width: 68px; height: 68px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2.5px solid var(--pink-light);
+  transition: border-color .25s;
+  flex-shrink: 0;
+}
+.cat-item:hover .cat-img-wrap { border-color: var(--pink-deep); }
+.cat-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cat-label { font-size: .72rem; font-weight: 500; color: var(--muted); text-align: center; white-space: nowrap; transition: color .25s; }
+.cat-item:hover .cat-label { color: var(--pink-deep); }
+
+/* SECTION COMMON */
+section { padding: 5.5rem 3.5rem; }
+.sec-label { display: inline-flex; align-items: center; gap: .5rem; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: var(--pink-deep); margin-bottom: .9rem; }
+.sec-label::before { content: ''; width: 20px; height: 1.5px; background: var(--pink-deep); }
+.sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3.5vw, 2.9rem); font-weight: 400; line-height: 1.2; color: var(--dark); }
+.sec-title em { font-style: italic; color: var(--pink-deep); }
+
+/* ═══ SERVICES ═══ */
+.services-section { background: #fff; padding: 4.5rem 0 4.5rem 3.5rem; }
+.services-top { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.2rem; padding-right: 3.5rem; }
+.services-top-right { display: flex; gap: .6rem; }
+.scroll-btn { width: 40px; height: 40px; background: var(--dark); border: none; border-radius: 50%; cursor: pointer; color: #fff; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: background .2s, transform .2s; }
+.scroll-btn:hover { background: var(--pink-deep); transform: scale(1.08); }
+.services-scroll-wrap { display: flex; gap: 1.2rem; overflow-x: auto; padding-right: 3.5rem; padding-bottom: .5rem; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.services-scroll-wrap::-webkit-scrollbar { display: none; }
+.svc-card { min-width: 230px; max-width: 230px; border-radius: 20px; overflow: hidden; background: var(--white); border: 1px solid rgba(201,96,122,.1); scroll-snap-align: start; cursor: pointer; transition: transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s; flex-shrink: 0; }
+.svc-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(201,96,122,.15); }
+.svc-img { width: 100%; height: 240px; object-fit: cover; display: block; transition: transform .5s; }
+.svc-card:hover .svc-img { transform: scale(1.05); }
+.svc-body { padding: 1.1rem 1.2rem 1.3rem; }
+.svc-body h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--dark); margin-bottom: .25rem; }
+.svc-body p { font-size: .77rem; color: var(--muted); line-height: 1.5; margin-bottom: .75rem; }
+.svc-foot { display: flex; align-items: center; justify-content: space-between; }
+.svc-price { font-size: .8rem; font-weight: 700; color: var(--pink-deep); }
+.svc-book { background: var(--dark); color: #fff; border: none; padding: .28rem .85rem; border-radius: 50px; font-size: .73rem; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background .2s; }
+.svc-book:hover { background: var(--pink-deep); }
+
+/* ═══ PROMO SLIDER (full-width image banner like reference) ═══ */
+.promo-slider-section { background: var(--cream); overflow: hidden; position: relative; }
+.promo-slides { display: flex; transition: transform .7s cubic-bezier(.77,0,.175,1); }
+.promo-slide { min-width: 100%; height: 360px; display: flex; align-items: center; position: relative; overflow: hidden; }
+.ps-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.ps-overlay { position: absolute; inset: 0; }
+.ps-content { position: relative; z-index: 2; padding: 0 5rem; max-width: 580px; }
+.ps-tag { display: inline-block; background: rgba(255,255,255,.15); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.3); color: #fff; font-size: .66rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: .28rem .85rem; border-radius: 50px; margin-bottom: .9rem; }
+.ps-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem,4vw,3.2rem); font-weight: 300; color: #fff; line-height: 1.1; margin-bottom: .5rem; }
+.ps-title strong { font-weight: 600; }
+.ps-sub { color: rgba(255,255,255,.82); font-size: .87rem; margin-bottom: 1.5rem; }
+.ps-btn { display: inline-flex; align-items: center; gap: .5rem; background: #fff; color: var(--dark); padding: .6rem 1.5rem; border-radius: 50px; font-size: .83rem; font-weight: 700; text-decoration: none; transition: transform .2s; }
+.ps-btn:hover { transform: translateY(-2px); }
+.promo-nav { position: absolute; bottom: 1.4rem; left: 50%; transform: translateX(-50%); display: flex; gap: .4rem; z-index: 10; }
+.promo-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.4); cursor: pointer; transition: all .3s; }
+.promo-dot.active { background: #fff; width: 18px; border-radius: 3px; }
+
+/* ═══ BRIDAL — warm rose-gold, NOT dark ═══ */
+.bridal-section {
+  background: linear-gradient(135deg, #2b1427 0%, #4a1e30 50%, #2b1427 100%);
+  padding: 5.5rem 3.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.bridal-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 80%, rgba(201,96,122,.25) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 20%, rgba(168,212,230,.15) 0%, transparent 55%);
+}
+.bridal-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; position: relative; z-index: 2; }
+.bridal-left .sec-label { color: #e8a0b4; }
+.bridal-left .sec-label::before { background: #e8a0b4; }
+.bridal-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; line-height: 1.2; color: #fff; margin-bottom: 1.2rem; }
+.bridal-title em { font-style: italic; color: #f4b8cc; font-weight: 400; }
+.bridal-desc { color: rgba(255,255,255,.65); line-height: 1.8; margin-bottom: 2rem; font-size: .9rem; }
+.bridal-list { list-style: none; display: flex; flex-direction: column; gap: .6rem; margin-bottom: .8rem; }
+.bridal-list li { display: flex; align-items: center; gap: .8rem; color: rgba(255,255,255,.82); font-size: .86rem; }
+.bridal-list li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #f4b8cc; flex-shrink: 0; }
+.bridal-price-note { color: rgba(255,255,255,.38); font-size: .78rem; margin-bottom: 2rem; }
+.btn-rose {
+  background: linear-gradient(135deg, #c9607a, #e8a0b4);
+  color: #fff; padding: .8rem 2rem; border-radius: 50px;
+  font-size: .9rem; font-weight: 600; text-decoration: none;
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 8px 25px rgba(201,96,122,.4);
+  display: inline-flex; align-items: center; gap: .5rem;
+}
+.btn-rose:hover { transform: translateY(-3px); box-shadow: 0 14px 35px rgba(201,96,122,.5); }
+.bridal-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+.bi { border-radius: 16px; overflow: hidden; }
+.bi img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s; }
+.bi:hover img { transform: scale(1.05); }
+.bi.tall { grid-row: span 2; border-radius: 20px; }
+.bi.tall img { height: 380px; }
+.bi.short img { height: 178px; }
+
+/* PRODUCTS */
+.products-section { background: var(--cream); padding: 5.5rem 3.5rem; }
+.products-top { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem; }
+.price-filters { display: flex; gap: .5rem; flex-wrap: wrap; }
+.pf-btn { background: #fff; border: 1.5px solid rgba(201,96,122,.2); padding: .38rem 1rem; border-radius: 50px; font-size: .78rem; font-weight: 600; color: var(--muted); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all .2s; }
+.pf-btn.active, .pf-btn:hover { background: var(--dark); color: #fff; border-color: var(--dark); }
+.products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 1.2rem; }
+.prod-card { background: #fff; border-radius: 18px; overflow: hidden; border: 1px solid rgba(201,96,122,.08); cursor: pointer; transition: transform .3s, box-shadow .3s; }
+.prod-card:hover { transform: translateY(-6px); box-shadow: 0 18px 45px rgba(201,96,122,.12); }
+.prod-img { width: 100%; height: 185px; object-fit: cover; display: block; transition: transform .5s; }
+.prod-card:hover .prod-img { transform: scale(1.04); }
+.prod-body { padding: 1.1rem; }
+.prod-badge { display: inline-block; background: var(--pink-light); color: var(--pink-deep); font-size: .66rem; font-weight: 700; padding: .18rem .6rem; border-radius: 50px; margin-bottom: .5rem; }
+.prod-body h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.02rem; font-weight: 600; color: var(--dark); margin-bottom: .22rem; }
+.prod-body p { font-size: .74rem; color: var(--muted); margin-bottom: .75rem; }
+.prod-foot { display: flex; align-items: center; justify-content: space-between; }
+.prod-price { font-weight: 700; font-size: .88rem; color: var(--dark); }
+.prod-og { font-size: .72rem; color: var(--muted); text-decoration: line-through; margin-left: .25rem; }
+.prod-add { width: 30px; height: 30px; background: var(--dark); border: none; border-radius: 50%; color: #fff; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s, transform .2s; }
+.prod-add:hover { background: var(--pink-deep); transform: scale(1.1); }
+
+/* ═══ GALLERY — real image masonry ═══ */
+.gallery-section { background: #fff; padding: 5.5rem 3.5rem; }
+.gallery-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 220px 220px;
+  gap: .8rem;
+}
+.gi {
+  border-radius: 16px; overflow: hidden;
+  position: relative; cursor: pointer;
+}
+.gi img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .55s cubic-bezier(.25,.46,.45,.94); }
+.gi:hover img { transform: scale(1.07); }
+.gi.tall { grid-row: span 2; }
+.gi.wide { grid-column: span 2; }
+.gi-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(28,17,24,.65) 0%, transparent 55%);
+  opacity: 0; transition: opacity .35s;
+  display: flex; align-items: flex-end; padding: 1.1rem;
+}
+.gi:hover .gi-overlay { opacity: 1; }
+.gi-label { color: #fff; font-size: .82rem; font-weight: 600; transform: translateY(6px); transition: transform .35s; }
+.gi:hover .gi-label { transform: translateY(0); }
+
+/* TESTIMONIALS */
+.testi-section { background: var(--cream); padding: 5.5rem 3.5rem; }
+.testi-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; }
+.testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px,1fr)); gap: 1.2rem; }
+.tcard { background: #fff; border-radius: 20px; padding: 1.8rem; border: 1px solid rgba(201,96,122,.08); transition: transform .3s; position: relative; }
+.tcard:hover { transform: translateY(-5px); }
+.tc-quote { font-family: 'Cormorant Garamond', serif; font-size: 4rem; color: var(--pink-light); line-height: 1; position: absolute; top: .8rem; right: 1.5rem; }
+.tc-stars { color: #e8a050; font-size: .85rem; letter-spacing: 1px; margin-bottom: .9rem; }
+.tc-text { font-size: .86rem; color: var(--text); line-height: 1.7; margin-bottom: 1.4rem; }
+.tc-author { display: flex; align-items: center; gap: .8rem; }
+.tc-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; }
+.tc-name { font-weight: 600; font-size: .84rem; color: var(--dark); }
+.tc-loc { font-size: .72rem; color: var(--muted); }
+
+/* BOOKING */
+.booking-section { background: var(--grad-hero); padding: 5.5rem 3.5rem; }
+.booking-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.booking-left .sec-title { margin-bottom: 1rem; }
+.booking-left p { color: var(--muted); line-height: 1.8; margin-bottom: 2rem; font-size: .92rem; }
+.booking-perks { display: flex; flex-direction: column; gap: .75rem; }
+.perk { display: flex; align-items: center; gap: .9rem; background: rgba(255,255,255,.6); backdrop-filter: blur(10px); border-radius: 12px; padding: .7rem 1.1rem; border: 1px solid rgba(201,96,122,.1); }
+.perk-ico { font-size: 1.1rem; flex-shrink: 0; }
+.perk-t h4 { font-size: .84rem; font-weight: 600; color: var(--dark); }
+.perk-t p { font-size: .74rem; color: var(--muted); }
+.bform { background: rgba(255,255,255,.92); backdrop-filter: blur(20px); border-radius: 24px; padding: 2.4rem; border: 1px solid rgba(201,96,122,.15); box-shadow: 0 20px 60px rgba(201,96,122,.08); }
+.bform h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; color: var(--dark); margin-bottom: 1.8rem; }
+.fg { margin-bottom: 1.1rem; }
+.fg label { display: block; font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); margin-bottom: .4rem; }
+.fg input, .fg select { width: 100%; padding: .7rem 1rem; border: 1.5px solid rgba(201,96,122,.18); border-radius: 10px; background: #fff; font-family: 'DM Sans', sans-serif; font-size: .87rem; color: var(--text); outline: none; transition: border-color .2s, box-shadow .2s; }
+.fg input:focus, .fg select:focus { border-color: var(--pink-deep); box-shadow: 0 0 0 3px rgba(201,96,122,.1); }
+.frow { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.btn-book { width: 100%; background: var(--dark); color: #fff; border: none; padding: .9rem; border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: .95rem; font-weight: 700; cursor: pointer; transition: background .25s, transform .2s; margin-top: .4rem; }
+.btn-book:hover { background: var(--pink-deep); transform: translateY(-2px); }
+
+/* FOOTER */
+footer { background: var(--dark); color: rgba(255,255,255,.6); padding: 4.5rem 3.5rem 2rem; }
+.fg-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3.5rem; }
+.fb-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--pink); font-style: italic; margin-bottom: .8rem; }
+.fb-desc { font-size: .82rem; line-height: 1.7; margin-bottom: 1.4rem; }
+.socials { display: flex; gap: .6rem; }
+.soc { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; font-size: .85rem; cursor: pointer; text-decoration: none; color: #fff; transition: all .2s; }
+.soc:hover { background: var(--pink-deep); border-color: transparent; transform: translateY(-2px); }
+.fc h4 { font-size: .76rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #fff; margin-bottom: 1.3rem; }
+.fc ul { list-style: none; display: flex; flex-direction: column; gap: .65rem; }
+.fc a { color: rgba(255,255,255,.55); text-decoration: none; font-size: .82rem; transition: color .2s; }
+.fc a:hover { color: var(--pink); }
+.f-bottom { border-top: 1px solid rgba(255,255,255,.07); padding-top: 1.8rem; display: flex; justify-content: space-between; align-items: center; font-size: .77rem; flex-wrap: wrap; gap: .8rem; }
+.f-links { display: flex; gap: 1.8rem; }
+.f-links a { color: rgba(255,255,255,.35); text-decoration: none; transition: color .2s; }
+.f-links a:hover { color: var(--pink); }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-l { opacity: 0; transform: translateX(-30px); transition: opacity .7s ease, transform .7s ease; }
+.reveal-l.visible { opacity: 1; transform: none; }
+.reveal-r { opacity: 0; transform: translateX(30px); transition: opacity .7s ease, transform .7s ease; }
+.reveal-r.visible { opacity: 1; transform: none; }
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  nav,nav.scrolled { padding:1.1rem 2rem; }
+  section { padding:4.5rem 2rem; }
+  .hero { grid-template-columns:1fr; height:auto; max-height:none; margin-top:60px; }
+  .hero-left { padding:4rem 2rem 3rem; }
+  .hero-right { height:320px; }
+  .bridal-inner,.booking-inner { grid-template-columns:1fr; gap:3rem; }
+  .fg-grid { grid-template-columns:1fr 1fr; gap:2rem; }
+  .services-section { padding:4rem 0 4rem 2rem; }
+  .gallery-grid { grid-template-columns:repeat(2,1fr); grid-template-rows:repeat(4,180px); }
+  .gi.tall { grid-row:span 1; }
+  .gi.wide { grid-column:span 1; }
+  .categories-section { padding:2.5rem 2rem; }
+  .promo-strip { padding:1rem 2rem; }
+}
+@media(max-width:768px){
+  nav { padding:1rem 1.5rem; }
+  .nav-links { display:none; position:fixed; top:0; right:-100%; width:72%; height:100vh; background:rgba(255,255,255,.97); backdrop-filter:blur(20px); flex-direction:column; align-items:center; justify-content:center; gap:2rem; transition:right .4s; z-index:999; }
+  .nav-links.open { right:0; }
+  .menu-toggle { display:flex; }
+  section { padding:4rem 1.5rem; }
+  .services-section { padding:4rem 0 4rem 1.5rem; }
+  .gallery-section { padding:4rem 1.5rem; }
+  .fg-grid { grid-template-columns:1fr; }
+  .frow { grid-template-columns:1fr; }
+  .promo-slide { height:260px; }
+  .ps-content { padding:0 2rem; }
+  .f-bottom { flex-direction:column; text-align:center; }
+  .cats-row { justify-content:flex-start; padding-bottom:.5rem; }
+  .hero-badges { gap:1rem; }
+  .promo-strip { gap:1.2rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="cring"></div>
+
+<!-- NAV -->
+<nav id="nb">
+  <div class="logo">Lumi<em>ère</em></div>
+  <ul class="nav-links" id="nl">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#bridal">Bridal</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#booking" class="nav-cta">Book Now</a></li>
+  </ul>
+  <div class="menu-toggle" id="mt"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- ═══ HERO — compact split layout ═══ -->
+<div class="hero" id="home">
+  <!-- Left text -->
+  <div class="hero-left">
+    <div class="hero-eyebrow">Premium Beauty Studio</div>
+    <h1 class="hero-title">
+      Your Dream<br>
+      <em>Look</em> <strong>Awaits</strong><br>
+      You Here
+    </h1>
+    <p class="hero-sub">Expert stylists, luxurious treatments &amp; an experience crafted entirely around you — in the heart of the city.</p>
+    <div class="hero-actions">
+      <a href="#booking" class="btn-dark">Book Now →</a>
+      <a href="#services" class="btn-ghost">Our Services</a>
+    </div>
+    <div class="hero-badges">
+      <div class="hero-badge-item">
+        <span class="hb-num">12K+</span>
+        <span class="hb-label">Happy Clients</span>
+      </div>
+      <div class="hb-sep"></div>
+      <div class="hero-badge-item">
+        <span class="hb-num">4.9★</span>
+        <span class="hb-label">Rating</span>
+      </div>
+      <div class="hb-sep"></div>
+      <div class="hero-badge-item">
+        <span class="hb-num">8 Yrs</span>
+        <span class="hb-label">Excellence</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right — auto-sliding images -->
+  <div class="hero-right">
+    <div class="hero-img-slider" id="heroSlider">
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1560869713-da86a9ec0744?w=900&q=80" alt="Bridal makeup">
+        <div class="hero-slide-overlay"></div>
+      </div>
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=900&q=80" alt="Hair styling">
+        <div class="hero-slide-overlay"></div>
+      </div>
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=900&q=80" alt="Spa treatment">
+        <div class="hero-slide-overlay"></div>
+      </div>
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=900&q=80" alt="Nail art">
+        <div class="hero-slide-overlay"></div>
+      </div>
+    </div>
+    <!-- Floating badge on image -->
+    <div class="hero-float-badge">
+      <div class="hfb-top">First Visit</div>
+      <div class="hfb-val">20% OFF</div>
+      <div class="hfb-sub">Use code: GLOW20</div>
+    </div>
+    <div class="hero-dots" id="heroDots">
+      <div class="hero-dot active" onclick="goSlide(0)"></div>
+      <div class="hero-dot" onclick="goSlide(1)"></div>
+      <div class="hero-dot" onclick="goSlide(2)"></div>
+      <div class="hero-dot" onclick="goSlide(3)"></div>
+    </div>
+    <div class="hero-arrows">
+      <button class="hero-arr" onclick="changeSlide(-1)">←</button>
+      <button class="hero-arr" onclick="changeSlide(1)">→</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PROMO STRIP ═══ -->
+<div class="promo-strip">
+  <div class="ps-item"><span class="ps-dot">✦</span><span><strong>Flat 20% OFF</strong> on first visit — Use GLOW20</span></div>
+  <div class="ps-item"><span class="ps-dot">✦</span><span><strong>Bridal Packages</strong> from ₹15,999</span></div>
+  <div class="ps-item"><span class="ps-dot">✦</span><span><strong>Loyalty Points</strong> on every service</span></div>
+  <div class="ps-item"><span class="ps-dot">✦</span><span>Open <strong>Mon–Sat 9AM–8PM</strong></span></div>
+</div>
+
+<!-- ═══ CATEGORIES ICON STRIP (like reference image 2) ═══ -->
+<div class="categories-section" id="categories">
+  <div class="cats-title">Browse by Category</div>
+  <div class="cats-row">
+    <div class="cat-item" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+      <div class="cat-img-wrap"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=200&q=80" alt="Hair"></div>
+      <span class="cat-label">Hair</span>
+    </div>
+    <div class="cat-item" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+      <div class="cat-img-wrap"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=200&q=80" alt="Face"></div>
+      <span class="cat-label">Face</span>
+    </div>
+    <div class="cat-item" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+      <div class="cat-img-wrap"><img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=200&q=80" alt="Nails"></div>
+      <span class="cat-label">Nails</span>
+    </div>
+    <div class="cat-item" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+      <div class="cat-img-wrap"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=200&q=80" alt="Spa"></div>
+      <span class="cat-label">Spa</span>
+    </div>
+    <div class="cat-item" onclick="document.getElementById('bridal').scrollIntoView({behavior:'smooth'})">
+      <div class="cat-img-wrap"><img src="https://images.unsplash.com/photo-1560869713-da86a9ec0744?w=200&q=80" alt="Makeup"></div>
+      <span class="cat-label">Makeup</span>
+    </div>
+    <div class="cat-item" onclick="document.getElementById('bridal').scrollIntoView({behavior:'smooth'})">
+      <div class="cat-img-wrap"><img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=200&q=80" alt="Bridal"></div>
+      <span class="cat-label">Bridal</span>
+    </div>
+    <div class="cat-item" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+      <div class="cat-img-wrap"><img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=200&q=80" alt="Body"></div>
+      <span class="cat-label">Body</span>
+    </div>
+    <div class="cat-item" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+      <div class="cat-img-wrap"><img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=200&q=80" alt="Waxing"></div>
+      <span class="cat-label">Waxing</span>
+    </div>
+    <div class="cat-item" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+      <div class="cat-img-wrap"><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=200&q=80" alt="Keratin"></div>
+      <span class="cat-label">Keratin</span>
+    </div>
+    <div class="cat-item" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+      <div class="cat-img-wrap"><img src="https://images.unsplash.com/photo-1586495777744-4e6232bf83af?w=200&q=80" alt="Products"></div>
+      <span class="cat-label">Products</span>
+    </div>
+    <div class="cat-item" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+      <div class="cat-img-wrap"><img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=200&q=80" alt="Skin Care"></div>
+      <span class="cat-label">Skin Care</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SERVICES ═══ -->
+<div class="services-section" id="services">
+  <div class="services-top">
+    <div>
+      <div class="sec-label">What We Offer</div>
+      <h2 class="sec-title">Our <em>Services</em></h2>
+    </div>
+    <div class="services-top-right">
+      <button class="scroll-btn" onclick="scrollSvc(-1)">←</button>
+      <button class="scroll-btn" onclick="scrollSvc(1)">→</button>
+    </div>
+  </div>
+  <div class="services-scroll-wrap" id="svcWrap">
+    <div class="svc-card reveal">
+      <img class="svc-img" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80" alt="Hair styling">
+      <div class="svc-body">
+        <h3>Hair Cut & Style</h3>
+        <p>Precision cuts by master stylists using the latest techniques and trends.</p>
+        <div class="svc-foot"><span class="svc-price">From ₹299</span><button class="svc-book">Book</button></div>
+      </div>
+    </div>
+    <div class="svc-card reveal" style="transition-delay:.06s">
+      <img class="svc-img" src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=500&q=80" alt="Manicure pedicure">
+      <div class="svc-body">
+        <h3>Manicure & Pedicure</h3>
+        <p>Luxury nail care with premium gel polishes and designer nail art.</p>
+        <div class="svc-foot"><span class="svc-price">From ₹399</span><button class="svc-book">Book</button></div>
+      </div>
+    </div>
+    <div class="svc-card reveal" style="transition-delay:.12s">
+      <img class="svc-img" src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=500&q=80" alt="Facial">
+      <div class="svc-body">
+        <h3>Facial & Skin Care</h3>
+        <p>Custom facials, peels and advanced skincare rituals for glowing skin.</p>
+        <div class="svc-foot"><span class="svc-price">From ₹599</span><button class="svc-book">Book</button></div>
+      </div>
+    </div>
+    <div class="svc-card reveal" style="transition-delay:.18s">
+      <img class="svc-img" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=500&q=80" alt="Massage spa">
+      <div class="svc-body">
+        <h3>Spa & Body Massage</h3>
+        <p>Swedish, deep tissue and aromatherapy packages for total relaxation.</p>
+        <div class="svc-foot"><span class="svc-price">From ₹799</span><button class="svc-book">Book</button></div>
+      </div>
+    </div>
+    <div class="svc-card reveal" style="transition-delay:.24s">
+      <img class="svc-img" src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=500&q=80" alt="Hair color">
+      <div class="svc-body">
+        <h3>Hair Coloring</h3>
+        <p>Balayage, highlights &amp; vivid color transformations by expert colorists.</p>
+        <div class="svc-foot"><span class="svc-price">From ₹999</span><button class="svc-book">Book</button></div>
+      </div>
+    </div>
+    <div class="svc-card reveal" style="transition-delay:.3s">
+      <img class="svc-img" src="https://images.unsplash.com/photo-1560869713-da86a9ec0744?w=500&q=80" alt="Makeup">
+      <div class="svc-body">
+        <h3>Party Makeup</h3>
+        <p>Professional makeup artists using premium luxury brand products.</p>
+        <div class="svc-foot"><span class="svc-price">From ₹1,499</span><button class="svc-book">Book</button></div>
+      </div>
+    </div>
+    <div class="svc-card reveal" style="transition-delay:.36s">
+      <img class="svc-img" src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=500&q=80" alt="Keratin">
+      <div class="svc-body">
+        <h3>Keratin Treatment</h3>
+        <p>Transform frizzy hair into silky smooth perfection that lasts months.</p>
+        <div class="svc-foot"><span class="svc-price">From ₹2,499</span><button class="svc-book">Book</button></div>
+      </div>
+    </div>
+    <div class="svc-card reveal" style="transition-delay:.42s">
+      <img class="svc-img" src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=500&q=80" alt="Waxing">
+      <div class="svc-body">
+        <h3>Threading & Waxing</h3>
+        <p>Precise hair removal for face and body using gentle, skin-safe methods.</p>
+        <div class="svc-foot"><span class="svc-price">From ₹99</span><button class="svc-book">Book</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PROMO IMAGE SLIDER ═══ -->
+<div class="promo-slider-section">
+  <div class="promo-slides" id="promoSlides">
+    <div class="promo-slide">
+      <div class="ps-bg" style="background-image:url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1400&q=80')"></div>
+      <div class="ps-overlay" style="background:linear-gradient(90deg,rgba(28,17,24,.82) 0%,rgba(28,17,24,.2) 100%)"></div>
+      <div class="ps-content">
+        <span class="ps-tag">Limited Time</span>
+        <h2 class="ps-title">Get <strong>20% Points</strong><br>Back on All Products</h2>
+        <p class="ps-sub">Earn loyalty points on every purchase and redeem for free services.</p>
+        <a href="#products" class="ps-btn">Shop Now →</a>
+      </div>
+    </div>
+    <div class="promo-slide">
+      <div class="ps-bg" style="background-image:url('https://images.unsplash.com/photo-1560869713-da86a9ec0744?w=1400&q=80')"></div>
+      <div class="ps-overlay" style="background:linear-gradient(90deg,rgba(140,50,80,.85) 0%,rgba(140,50,80,.2) 100%)"></div>
+      <div class="ps-content">
+        <span class="ps-tag">Bridal Special</span>
+        <h2 class="ps-title"><strong>Dream Bridal</strong><br>Packages from ₹15,999</h2>
+        <p class="ps-sub">Complete packages — makeup, hair, nails and pre-bridal skincare rituals.</p>
+        <a href="#bridal" class="ps-btn">Explore Package →</a>
+      </div>
+    </div>
+    <div class="promo-slide">
+      <div class="ps-bg" style="background-image:url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1400&q=80')"></div>
+      <div class="ps-overlay" style="background:linear-gradient(90deg,rgba(28,17,24,.82) 0%,rgba(28,17,24,.2) 100%)"></div>
+      <div class="ps-content">
+        <span class="ps-tag">Weekend Offer</span>
+        <h2 class="ps-title"><strong>Up to 50%</strong><br>Cashback on Spa Services</h2>
+        <p class="ps-sub">Relax, rejuvenate and save big this weekend with our spa cashback deal.</p>
+        <a href="#booking" class="ps-btn">Book Spa →</a>
+      </div>
+    </div>
+  </div>
+  <div class="promo-nav">
+    <div class="promo-dot active" onclick="goPromo(0)"></div>
+    <div class="promo-dot" onclick="goPromo(1)"></div>
+    <div class="promo-dot" onclick="goPromo(2)"></div>
+  </div>
+</div>
+
+<!-- ═══ BRIDAL — warm plum, NOT black ═══ -->
+<div class="bridal-section" id="bridal">
+  <div class="bridal-inner">
+    <div class="reveal-l">
+      <div class="sec-label">Most Loved Package</div>
+      <h2 class="bridal-title">Your Dream <em>Bridal</em><br>Look Awaits</h2>
+      <p class="bridal-desc">Every bride deserves to feel extraordinary. Our complete bridal packages include everything from pre-bridal skin rituals to the big day glam — crafted with love by our expert artists.</p>
+      <ul class="bridal-list">
+        <li>Full Bridal Makeup with Airbrush Finish</li>
+        <li>Pre-Bridal Skin Glow Package — 6 Sessions</li>
+        <li>Bridal Hair Styling &amp; Accessories</li>
+        <li>Mehendi &amp; Designer Nail Art</li>
+        <li>Saree / Lehenga Draping Assistance</li>
+        <li>Touch-up Kit for the Special Day</li>
+      </ul>
+      <p class="bridal-price-note">Packages starting from ₹15,999 · All services inclusive</p>
+      <a href="#booking" class="btn-rose">Book Bridal Consultation →</a>
+    </div>
+    <div class="reveal-r">
+      <div class="bridal-imgs">
+        <div class="bi tall">
+          <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80" alt="Bridal">
+        </div>
+        <div class="bi short">
+          <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=400&q=80" alt="Bridal detail">
+        </div>
+        <div class="bi short">
+          <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&q=80" alt="Nails">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PRODUCTS BY PRICE ═══ -->
+<div class="products-section" id="products">
+  <div class="products-top reveal">
+    <div>
+      <div class="sec-label">Shop With Us</div>
+      <h2 class="sec-title">Products <em>by Price</em></h2>
+    </div>
+    <div class="price-filters">
+      <button class="pf-btn active" onclick="fProd('all',this)">All</button>
+      <button class="pf-btn" onclick="fProd('u500',this)">Under ₹500</button>
+      <button class="pf-btn" onclick="fProd('m',this)">₹500–₹1000</button>
+      <button class="pf-btn" onclick="fProd('a',this)">₹1000+</button>
+    </div>
+  </div>
+  <div class="products-grid" id="pgrid">
+    <div class="prod-card" data-r="u500">
+      <img class="prod-img" src="https://images.unsplash.com/photo-1586495777744-4e6232bf83af?w=400&q=80" alt="Lipstick">
+      <div class="prod-body">
+        <span class="prod-badge">20% OFF</span>
+        <h4>Velvet Matte Lipstick</h4>
+        <p>Long-lasting 12hr formula, 20 shades</p>
+        <div class="prod-foot"><div><span class="prod-price">₹299</span><span class="prod-og">₹399</span></div><button class="prod-add">+</button></div>
+      </div>
+    </div>
+    <div class="prod-card" data-r="u500">
+      <img class="prod-img" src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400&q=80" alt="Serum">
+      <div class="prod-body">
+        <span class="prod-badge">New</span>
+        <h4>Glow Serum SPF 30</h4>
+        <p>Vitamin C brightening with UV protection</p>
+        <div class="prod-foot"><div><span class="prod-price">₹449</span><span class="prod-og">₹599</span></div><button class="prod-add">+</button></div>
+      </div>
+    </div>
+    <div class="prod-card" data-r="u500">
+      <img class="prod-img" src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&q=80" alt="Nail polish">
+      <div class="prod-body">
+        <h4>Gel Nail Polish Set</h4>
+        <p>12 trendy shades, chip-resistant formula</p>
+        <div class="prod-foot"><div><span class="prod-price">₹399</span><span class="prod-og">₹499</span></div><button class="prod-add">+</button></div>
+      </div>
+    </div>
+    <div class="prod-card" data-r="m">
+      <img class="prod-img" src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80" alt="Face mask">
+      <div class="prod-body">
+        <span class="prod-badge">Bestseller</span>
+        <h4>Gold Collagen Face Mask</h4>
+        <p>Anti-aging luxury treatment mask</p>
+        <div class="prod-foot"><div><span class="prod-price">₹799</span><span class="prod-og">₹999</span></div><button class="prod-add">+</button></div>
+      </div>
+    </div>
+    <div class="prod-card" data-r="m">
+      <img class="prod-img" src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&q=80" alt="Cleanser">
+      <div class="prod-body">
+        <span class="prod-badge">Organic</span>
+        <h4>Charcoal Deep Cleanser</h4>
+        <p>Detox and purify with activated charcoal</p>
+        <div class="prod-foot"><div><span class="prod-price">₹699</span></div><button class="prod-add">+</button></div>
+      </div>
+    </div>
+    <div class="prod-card" data-r="a">
+      <img class="prod-img" src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&q=80" alt="Foundation">
+      <div class="prod-body">
+        <span class="prod-badge">Premium</span>
+        <h4>HD Foundation Pro</h4>
+        <p>24hr ultra-definition long wear formula</p>
+        <div class="prod-foot"><div><span class="prod-price">₹1,299</span><span class="prod-og">₹1,599</span></div><button class="prod-add">+</button></div>
+      </div>
+    </div>
+    <div class="prod-card" data-r="a">
+      <img class="prod-img" src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&q=80" alt="Hair oil">
+      <div class="prod-body">
+        <span class="prod-badge">Luxury</span>
+        <h4>Argan Oil Hair Therapy</h4>
+        <p>Moroccan oil for silky smooth results</p>
+        <div class="prod-foot"><div><span class="prod-price">₹1,799</span><span class="prod-og">₹2,199</span></div><button class="prod-add">+</button></div>
+      </div>
+    </div>
+    <div class="prod-card" data-r="m">
+      <img class="prod-img" src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=400&q=80" alt="Eye palette">
+      <div class="prod-body">
+        <h4>Smokey Eye Palette</h4>
+        <p>12 richly pigmented shades for bold looks</p>
+        <div class="prod-foot"><div><span class="prod-price">₹849</span><span class="prod-og">₹1,099</span></div><button class="prod-add">+</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ GALLERY — real photos, masonry ═══ -->
+<div class="gallery-section" id="gallery">
+  <div class="gallery-header reveal">
+    <div>
+      <div class="sec-label">Our Work</div>
+      <h2 class="sec-title">Beauty <em>Gallery</em></h2>
+    </div>
+    <a href="#booking" class="btn-dark" style="font-size:.82rem;padding:.6rem 1.4rem">Book Your Look →</a>
+  </div>
+  <div class="gallery-grid reveal">
+    <!-- Tall — col 1, both rows -->
+    <div class="gi tall">
+      <img src="https://images.unsplash.com/photo-1560869713-da86a9ec0744?w=700&q=80" alt="Bridal makeup">
+      <div class="gi-overlay"><span class="gi-label">Bridal Makeup</span></div>
+    </div>
+    <!-- Row 1, col 2 -->
+    <div class="gi">
+      <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80" alt="Hair styling">
+      <div class="gi-overlay"><span class="gi-label">Hair Styling</span></div>
+    </div>
+    <!-- Row 1, col 3 -->
+    <div class="gi">
+      <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=500&q=80" alt="Nail art">
+      <div class="gi-overlay"><span class="gi-label">Nail Art</span></div>
+    </div>
+    <!-- Row 1, col 4 -->
+    <div class="gi">
+      <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=500&q=80" alt="Facial">
+      <div class="gi-overlay"><span class="gi-label">Glow Facial</span></div>
+    </div>
+    <!-- Row 2, col 2–3 wide -->
+    <div class="gi wide">
+      <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80" alt="Spa">
+      <div class="gi-overlay"><span class="gi-label">Spa & Massage</span></div>
+    </div>
+    <!-- Row 2, col 4 -->
+    <div class="gi">
+      <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=500&q=80" alt="Hair color">
+      <div class="gi-overlay"><span class="gi-label">Hair Color</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<div class="testi-section" id="testimonials">
+  <div class="testi-header reveal">
+    <div>
+      <div class="sec-label">Client Love</div>
+      <h2 class="sec-title">What Our Clients <em>Say</em></h2>
+    </div>
+  </div>
+  <div class="testi-grid">
+    <div class="tcard reveal" style="transition-delay:.05s">
+      <div class="tc-quote">"</div>
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-text">"My bridal makeup was absolutely stunning! The team understood exactly what I wanted and made me feel like a princess on my big day. Got compliments all day long."</p>
+      <div class="tc-author">
+        <img class="tc-avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&q=80" alt="Priya">
+        <div><div class="tc-name">Priya Sharma</div><div class="tc-loc">Mumbai · Bridal Package</div></div>
+      </div>
+    </div>
+    <div class="tcard reveal" style="transition-delay:.1s">
+      <div class="tc-quote">"</div>
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-text">"The spa experience was out of this world! The ambiance, the staff, the products — everything was top-notch. I feel rejuvenated and will definitely come back every month."</p>
+      <div class="tc-author">
+        <img class="tc-avatar" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100&q=80" alt="Anjali">
+        <div><div class="tc-name">Anjali Mehta</div><div class="tc-loc">Delhi · Spa Package</div></div>
+      </div>
+    </div>
+    <div class="tcard reveal" style="transition-delay:.15s">
+      <div class="tc-quote">"</div>
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-text">"My hair color turned out exactly as I imagined — the balayage looks so natural and gorgeous! The stylist was super professional. Best salon experience I've ever had!"</p>
+      <div class="tc-author">
+        <img class="tc-avatar" src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?w=100&q=80" alt="Riya">
+        <div><div class="tc-name">Riya Patel</div><div class="tc-loc">Bangalore · Hair Color</div></div>
+      </div>
+    </div>
+    <div class="tcard reveal" style="transition-delay:.2s">
+      <div class="tc-quote">"</div>
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-text">"The facial treatment worked wonders on my skin! I had dull, tired skin before — now it's literally glowing. The products are so gentle yet effective. Coming back monthly!"</p>
+      <div class="tc-author">
+        <img class="tc-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80" alt="Sneha">
+        <div><div class="tc-name">Sneha Gupta</div><div class="tc-loc">Pune · Facial</div></div>
+      </div>
+    </div>
+    <div class="tcard reveal" style="transition-delay:.25s">
+      <div class="tc-quote">"</div>
+      <div class="tc-stars">★★★★☆</div>
+      <p class="tc-text">"The manicure was so relaxing! My nail art is unique and long-lasting. Friends keep asking where I got it done. Already booked my next appointment — love this place!"</p>
+      <div class="tc-author">
+        <img class="tc-avatar" src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=100&q=80" alt="Neha">
+        <div><div class="tc-name">Neha Singh</div><div class="tc-loc">Hyderabad · Nail Art</div></div>
+      </div>
+    </div>
+    <div class="tcard reveal" style="transition-delay:.3s">
+      <div class="tc-quote">"</div>
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-text">"Keratin treatment changed my life! My frizzy hair is now silky smooth and I wake up looking styled. Worth every penny. Highly recommend to anyone struggling with frizz!"</p>
+      <div class="tc-author">
+        <img class="tc-avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&q=80" alt="Karan">
+        <div><div class="tc-name">Karan Verma</div><div class="tc-loc">Chennai · Keratin</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ BOOKING ═══ -->
+<div class="booking-section" id="booking">
+  <div class="booking-inner">
+    <div class="booking-left reveal-l">
+      <div class="sec-label">Easy Booking</div>
+      <h2 class="sec-title">Reserve Your <em>Glow</em><br>Session Today</h2>
+      <p>Booking is quick and easy. Choose your service, pick a time that works for you, and let us take care of the rest.</p>
+      <div class="booking-perks">
+        <div class="perk"><div class="perk-ico">⚡</div><div class="perk-t"><h4>Instant Confirmation</h4><p>Confirmed booking in under 60 seconds</p></div></div>
+        <div class="perk"><div class="perk-ico">🎁</div><div class="perk-t"><h4>First Visit 20% OFF</h4><p>Special discount for new clients — code GLOW20</p></div></div>
+        <div class="perk"><div class="perk-ico">🔄</div><div class="perk-t"><h4>Free Rescheduling</h4><p>Change plans up to 24 hours before your appointment</p></div></div>
+        <div class="perk"><div class="perk-ico">⭐</div><div class="perk-t"><h4>Loyalty Points</h4><p>Earn and redeem points on every visit</p></div></div>
+      </div>
+    </div>
+    <div class="reveal-r">
+      <div class="bform">
+        <h3>Book an Appointment</h3>
+        <div class="fg"><label>Full Name</label><input type="text" placeholder="Your name"></div>
+        <div class="frow">
+          <div class="fg"><label>Phone</label><input type="tel" placeholder="+91 00000 00000"></div>
+          <div class="fg"><label>Email</label><input type="email" placeholder="you@email.com"></div>
+        </div>
+        <div class="fg">
+          <label>Service</label>
+          <select>
+            <option>Select a service...</option>
+            <option>Hair Cut &amp; Style</option>
+            <option>Manicure &amp; Pedicure</option>
+            <option>Facial &amp; Skin Care</option>
+            <option>Spa &amp; Body Massage</option>
+            <option>Hair Coloring</option>
+            <option>Party Makeup</option>
+            <option>Bridal Package</option>
+            <option>Keratin Treatment</option>
+            <option>Threading &amp; Waxing</option>
+            <option>Men's Grooming</option>
+          </select>
+        </div>
+        <div class="frow">
+          <div class="fg"><label>Date</label><input type="date"></div>
+          <div class="fg"><label>Time</label>
+            <select>
+              <option>10:00 AM</option><option>11:00 AM</option><option>12:00 PM</option>
+              <option>1:00 PM</option><option>2:00 PM</option><option>3:00 PM</option>
+              <option>4:00 PM</option><option>5:00 PM</option><option>6:00 PM</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn-book" id="bookBtn" onclick="doBook()">Confirm Appointment →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fg-grid">
+    <div>
+      <div class="fb-logo">Lumière</div>
+      <p class="fb-desc">Your premium beauty destination. Expert stylists, luxurious treatments, and an experience that makes you feel truly beautiful.</p>
+      <div class="socials">
+        <a class="soc" href="#" aria-label="Instagram">📸</a>
+        <a class="soc" href="#" aria-label="Facebook">👥</a>
+        <a class="soc" href="#" aria-label="YouTube">▶️</a>
+        <a class="soc" href="#" aria-label="WhatsApp">💬</a>
+      </div>
+    </div>
+    <div class="fc">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Hair Styling</a></li>
+        <li><a href="#">Manicure &amp; Pedicure</a></li>
+        <li><a href="#">Facials</a></li>
+        <li><a href="#">Spa &amp; Massage</a></li>
+        <li><a href="#">Bridal Package</a></li>
+        <li><a href="#">Hair Coloring</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Team</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">📍 123 Beauty Lane, Mumbai</a></li>
+        <li><a href="#">📞 +91 98765 43210</a></li>
+        <li><a href="#">✉️ hello@lumiere.com</a></li>
+        <li><a href="#">🕐 Mon–Sat: 9AM–8PM</a></li>
+        <li><a href="#">🕐 Sunday: 10AM–6PM</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="f-bottom">
+    <div>© 2025 Lumière Beauty Salon. All rights reserved.</div>
+    <div class="f-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms</a>
+      <a href="#">Refunds</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Cursor
+const cur=document.getElementById('cur'),cring=document.getElementById('cring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;cring.style.left=rx+'px';cring.style.top=ry+'px';requestAnimationFrame(animRing);})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='20px';cur.style.height='20px';cring.style.width='52px';cring.style.height='52px';});
+  el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';cring.style.width='36px';cring.style.height='36px';});
+});
+
+// Nav scroll
+window.addEventListener('scroll',()=>document.getElementById('nb').classList.toggle('scrolled',window.scrollY>50));
+
+// Mobile menu
+document.getElementById('mt').addEventListener('click',()=>document.getElementById('nl').classList.toggle('open'));
+document.querySelectorAll('#nl a').forEach(a=>a.addEventListener('click',()=>document.getElementById('nl').classList.remove('open')));
+
+// Hero slider
+let hIdx=0;
+function goSlide(i){
+  hIdx=i;
+  document.getElementById('heroSlider').style.transform=`translateX(-${i*100}%)`;
+  document.querySelectorAll('.hero-dot').forEach((d,j)=>d.classList.toggle('active',j===i));
+}
+function changeSlide(dir){goSlide((hIdx+dir+4)%4);}
+setInterval(()=>changeSlide(1),4500);
+
+// Promo slider
+let pIdx=0;
+function goPromo(i){
+  pIdx=i;
+  document.getElementById('promoSlides').style.transform=`translateX(-${i*100}%)`;
+  document.querySelectorAll('.promo-dot').forEach((d,j)=>d.classList.toggle('active',j===i));
+}
+setInterval(()=>goPromo((pIdx+1)%3),5500);
+
+// Services scroll
+function scrollSvc(dir){document.getElementById('svcWrap').scrollBy({left:dir*260,behavior:'smooth'});}
+
+// Product filter
+function fProd(r,btn){
+  document.querySelectorAll('.pf-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.prod-card').forEach(c=>{
+    const show=r==='all'||c.dataset.r===r;
+    c.style.transition='opacity .3s,transform .3s';
+    if(show){c.style.display='';requestAnimationFrame(()=>{c.style.opacity=1;c.style.transform='none';});}
+    else{c.style.opacity=0;c.style.transform='scale(.9)';setTimeout(()=>{if(c.style.opacity==='0')c.style.display='none';},320);}
+  });
+}
+
+// Booking confirm
+function doBook(){
+  const b=document.getElementById('bookBtn');
+  b.textContent='✓ Appointment Confirmed!';b.style.background='#16a34a';
+  setTimeout(()=>{b.textContent='Confirm Appointment →';b.style.background='';},3000);
+}
+
+// Button feedback
+document.querySelectorAll('.svc-book,.prod-add').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    const o=this.textContent,ob=this.style.background;
+    this.textContent='✓';this.style.background='#16a34a';
+    setTimeout(()=>{this.textContent=o;this.style.background=ob;},1500);
+  });
+});
+
+// Scroll reveal
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.1});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>ro.observe(el));
+</script>
+</body>
+</html>

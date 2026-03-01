@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Cash Transaction Tracker</title>
+    <link rel="stylesheet" href="CSS/transaction.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Daily Cash Tracker</h1>
+            <div class="date" id="currentDate"></div>
+        </div>
+
+        <div class="dashboard">
+            <div class="card">
+                <h3>Opening Balance</h3>
+                <div class="balance-amount opening" id="openingBalance">₹0.00</div>
+                <div class="input-group">
+                    <label>Set Opening Balance</label>
+                    <input type="number" id="openingInput" placeholder="Enter amount">
+                    <button class="btn" onclick="setOpeningBalance()">Set Opening</button>
+                </div>
+            </div>
+
+            <div class="card">                 
+                                 
+                <h3>Morning Amount</h3>  
+                <div class="balance-amount admin-morning" id="adminMorning">₹0.00</div>               
+                <label>Person Name</label>                     
+                <div class="input-group">                     
+                    <label>Morning Cash Added</label>                     
+                    <input type="text" id="personName" placeholder="Enter person name"> 
+                    <input type="number" id="morningInput" placeholder="Enter amount" step="0.01">
+                    <button class="btn" onclick="setMorningAmount()">Add Morning Cash</button>                     
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Evening Amount</h3>
+                <div class="balance-amount admin-evening" id="adminEvening">₹0.00</div>
+                <div class="input-group">
+                    <label>Evening Cash Added</label>
+                    <input type="number" id="eveningInput" placeholder="Enter amount">
+                    <button class="btn" onclick="setEveningAmount()">Add Evening Cash</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Closing Balance</h3>
+                <div class="balance-amount closing" id="closingBalance">₹0.00</div>
+                <small>Auto-calculated based on transactions</small>
+            </div>
+        </div>
+
+        <div class="transactions-section">
+            <div class="transactions-header">
+                <h2>Today's Transactions</h2>
+            </div>
+
+            <div class="transaction-form">
+                <div class="input-group">
+                    <label>Transaction Type</label>
+                    <select id="transactionType">
+                        <option value="in">Cash In</option>
+                        <option value="out">Cash Out</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Amount</label>
+                    <input type="number" id="transactionAmount" placeholder="Enter amount" step="0.01">
+                </div>
+                <div class="input-group">
+                    <label>Description</label>
+                    <input type="text" id="transactionDescription" placeholder="Enter description">
+                </div>
+                <div class="input-group">
+                    <label>Category</label>
+                    <select id="transactionCategory">
+                        <option value="sales">Sales</option>
+                        <option value="purchase">Purchase</option>
+                        <option value="expense">Expense</option>
+                        <option value="refund">Refund</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <button class="btn" onclick="addTransaction()">Add Transaction</button>
+                </div>
+            </div>
+
+            <table class="transactions-table">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Running Balance</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="transactionsTableBody">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="summary-section">
+            <h2>Daily Summary</h2>
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <h4>Total Cash In</h4>
+                    <div class="amount" id="totalCashIn">₹0.00</div>
+                </div>
+                <div class="summary-card">
+                    <h4>Total Cash Out</h4>
+                    <div class="amount" id="totalCashOut">₹0.00</div>
+                </div>
+                <div class="summary-card">
+                    <h4>Net Cash Flow</h4>
+                    <div class="amount" id="netCashFlow">₹0.00</div>
+                </div>
+                <div class="summary-card">
+                    <h4>Total Transactions</h4>
+                    <div class="amount" id="totalTransactions">0</div>
+                </div>
+                <div class="summary-card">
+                    <h4>End of Day Total Cash</h4>
+                    <div class="amount" id="endOfDayTotal">₹0.00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize data
+        let cashData = {
+            openingBalance: 0,
+            adminMorning: 0,
+            adminEvening: 0,
+            transactions: []
+        };
+
+        // Set current date
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        function formatCurrency(amount) {
+            return `₹${parseFloat(amount).toFixed(2)}`;
+        }
+
+        function setOpeningBalance() {
+            const amount = parseFloat(document.getElementById('openingInput').value) || 0;
+            cashData.openingBalance = amount;
+            document.getElementById('openingBalance').textContent = formatCurrency(amount);
+            document.getElementById('openingInput').value = '';
+            updateClosingBalance();
+            updateSummary();
+        }
+
+        function setMorningAmount() {
+            const amount = parseFloat(document.getElementById('morningInput').value) || 0;
+            cashData.adminMorning = amount;
+            document.getElementById('adminMorning').textContent = formatCurrency(amount);
+            document.getElementById('morningInput').value = '';
+            updateClosingBalance();
+            updateSummary();
+        }
+
+        function setEveningAmount() {
+            const amount = parseFloat(document.getElementById('eveningInput').value) || 0;
+            cashData.adminEvening = amount;
+            document.getElementById('adminEvening').textContent = formatCurrency(amount);
+            document.getElementById('eveningInput').value = '';
+            updateClosingBalance();
+            updateSummary();
+        }
+
+        function addTransaction() {
+            const type = document.getElementById('transactionType').value;
+            const amount = parseFloat(document.getElementById('transactionAmount').value);
+            const description = document.getElementById('transactionDescription').value;
+            const category = document.getElementById('transactionCategory').value;
+
+            if (!amount || !description) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            const transaction = {
+                id: Date.now(),
+                time: new Date().toLocaleTimeString(),
+                type: type,
+                amount: amount,
+                description: description,
+                category: category
+            };
+
+            cashData.transactions.push(transaction);
+            
+            // Clear form
+            document.getElementById('transactionAmount').value = '';
+            document.getElementById('transactionDescription').value = '';
+            
+            updateTransactionsTable();
+            updateClosingBalance();
+            updateSummary();
+        }
+
+        function deleteTransaction(id) {
+            cashData.transactions = cashData.transactions.filter(t => t.id !== id);
+            updateTransactionsTable();
+            updateClosingBalance();
+            updateSummary();
+        }
+
+        function updateTransactionsTable() {
+            const tbody = document.getElementById('transactionsTableBody');
+            tbody.innerHTML = '';
+
+            let runningBalance = cashData.openingBalance + cashData.adminMorning + cashData.adminEvening;
+
+            cashData.transactions.forEach(transaction => {
+                if (transaction.type === 'in') {
+                    runningBalance += transaction.amount;
+                } else {
+                    runningBalance -= transaction.amount;
+                }
+
+                const row = tbody.insertRow();
+                row.innerHTML = `
+                    <td>${transaction.time}</td>
+                    <td><span class="transaction-${transaction.type}">${transaction.type.toUpperCase()}</span></td>
+                    <td class="transaction-${transaction.type}">${formatCurrency(transaction.amount)}</td>
+                    <td>${transaction.description}</td>
+                    <td>${transaction.category}</td>
+                    <td>${formatCurrency(runningBalance)}</td>
+                    <td><button class="delete-btn" onclick="deleteTransaction(${transaction.id})">Delete</button></td>
+                `;
+            });
+        }
+
+        function updateClosingBalance() {
+            let balance = cashData.openingBalance + cashData.adminMorning + cashData.adminEvening;
+            
+            cashData.transactions.forEach(transaction => {
+                if (transaction.type === 'in') {
+                    balance += transaction.amount;
+                } else {
+                    balance -= transaction.amount;
+                }
+            });
+
+            document.getElementById('closingBalance').textContent = formatCurrency(balance);
+        }
+
+        function updateSummary() {
+            const totalIn = cashData.transactions
+                .filter(t => t.type === 'in')
+                .reduce((sum, t) => sum + t.amount, 0);
+
+            const totalOut = cashData.transactions
+                .filter(t => t.type === 'out')
+                .reduce((sum, t) => sum + t.amount, 0);
+
+            const netFlow = totalIn - totalOut;
+            
+            // Calculate end of day total cash
+            const endOfDayTotal = cashData.openingBalance + cashData.adminMorning + cashData.adminEvening + totalIn - totalOut;
+
+            document.getElementById('totalCashIn').textContent = formatCurrency(totalIn);
+            document.getElementById('totalCashOut').textContent = formatCurrency(totalOut);
+            document.getElementById('netCashFlow').textContent = formatCurrency(netFlow);
+            document.getElementById('totalTransactions').textContent = cashData.transactions.length;
+            document.getElementById('endOfDayTotal').textContent = formatCurrency(endOfDayTotal);
+        }
+
+        // Initialize display
+        updateClosingBalance();
+        updateSummary();
+    </script>
+</body>
+</html>

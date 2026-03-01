@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Glamoraa Salon Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <link href="CSS/style.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo">
+                <span class="logo-text">GLAMORAA</span>
+            </div>
+        </div>
+
+        <div class="header-center">
+            <select>
+                <option>International Beauty Academy - IBT</option>
+                <option>International Beauty Academy-Nashik Road</option>
+            </select>
+        </div>
+
+        <div class="header-right">
+            <div class="phone-info">
+                <i class="fas fa-phone"></i>
+                <span>7218095749</span>
+            </div>
+
+            <div class="user-menu">
+                <!-- CHANGED: Updated to show dynamic welcome message with user name -->
+                <span id="userName">Welcome Guest</span>
+                <div class="dropdown-toggle" id="userDropdownToggle">
+                    <i class="fas fa-chevron-down"></i>
+                    <div class="dropdown" id="userDropdown">
+                        <a href="#" id="logoutBtn">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <ul class="nav-menu">
+            <li class="nav-item" data-tooltip="Calendar">
+                <a href="#" class="nav-link active" data-page="calendar">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <span class="nav-text">Calendar</span>
+                </a>
+            </li>
+
+            <li class="nav-item" data-tooltip="Clients">
+                <a href="#" class="nav-link" data-page="clients">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <span class="nav-text">Clients</span>
+                </a>
+            </li>
+
+            <li class="nav-item" data-tooltip="staff">
+                <a href="#" class="nav-link" data-page="staff">
+                    <circle cx="12" cy="10" r="3"></circle>
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"></path>
+                        <circle cx="12" cy="12" r="10"></circle>
+                    </svg>
+                    <span class="nav-text">Staff</span>
+                </a>
+            </li>
+
+            <li class="nav-item" data-tooltip="Inventory">
+                <a href="#" class="nav-link" data-page="inventory">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        <polyline points="3.29,7 12,12 20.71,7"></polyline>
+                        <line x1="12" y1="22" x2="12" y2="12"></line>
+                    </svg>
+                    <span class="nav-text">Inventory</span>
+                </a>
+            </li>
+
+            <li class="nav-item" data-tooltip="Services">
+                <a href="#" class="nav-link" data-page="service">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="6" cy="18" r="3"></circle>
+                        <circle cx="6" cy="6" r="3"></circle>
+                        <line x1="14.47" y1="14.48" x2="20" y2="20"></line>
+                        <line x1="20" y1="4" x2="8.12" y2="15.88"></line>
+                    </svg>
+                    <line x1="8.12" y1="8.12" x2="12" y2="12"></line>
+                    <span class="nav-text">Services</span>
+                </a>
+            </li>
+
+
+            <li class="nav-item" data-tooltip="Invoice">
+                <a href="#" class="nav-link" data-page="invoice">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect>
+                        <line x1="7" y1="10" x2="17" y2="10"></line>
+                        <line x1="7" y1="14" x2="17" y2="14"></line>
+                        <line x1="7" y1="18" x2="13" y2="18"></line>
+                    </svg>
+                    <span class="nav-text">Invoice</span>
+                </a>
+            </li>
+
+            <li class="nav-item" data-tooltip="Attendance">
+                <a href="#" class="nav-link" data-page="Attendence">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12,6 12,12 16,14"></polyline>
+                    </svg>
+                    <span class="nav-text">Attendance</span>
+                </a>
+            </li>
+
+
+            <li class="nav-item" data-tooltip="Marketing">
+                <a href="#" class="nav-link" data-page="marketing">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 11v3a1 1 0 0 0 1 1h5l4 4v-16l-4 4H4a1 1 0 0 0-1 1z"></path>
+                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                    </svg>
+                    <span class="nav-text">Marketing</span>
+                </a>
+            </li>
+
+            <!-- <li class="nav-item" data-tooltip="User">
+                <a href="#" class="nav-link" data-page="user">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span class="nav-text">User</span>
+                </a>
+            </li> -->
+
+            <li class="nav-item" data-tooltip="Transaction">
+                <a href="#" class="nav-link" data-page="Transaction">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                    <span class="nav-text">Transaction</span>
+                </a>
+            </li>
+
+            <li class="nav-item" data-tooltip="Notification">
+                <a href="#" class="nav-link" data-page="Notification">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <span class="nav-text">Notification</span>
+                </a>
+            </li>
+
+            <li class="nav-item" data-tooltip="Reports">
+                <a href="#" class="nav-link" data-page="reports">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="20" x2="12" y2="10"></line>
+                        <line x1="18" y1="20" x2="18" y2="4"></line>
+                        <line x1="6" y1="20" x2="6" y2="16"></line>
+                    </svg>
+                    <span class="nav-text">Reports</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <section id="calendar" class="page-section active">
+            <iframe src="calender.html"></iframe>
+        </section>
+        <section id="clients" class="page-section">
+            <iframe src="client.html"></iframe>
+        </section>
+        <section id="staff" class="page-section">
+            <iframe src="staff.html"></iframe>
+        </section>
+        <section id="inventory" class="page-section">
+            <iframe src="inventory.html"></iframe>
+        </section>
+        <section id="service" class="page-section">
+            <iframe src="service.html"></iframe>
+        </section>
+        <section id="invoice" class="page-section">
+            <iframe src="invoice.html"></iframe>
+        </section>
+        <section id="Attendence" class="page-section">
+            <iframe src="Attendence.html"></iframe>
+        </section>
+        <section id="marketing" class="page-section">
+            <iframe src="marketing.html"></iframe>
+        </section>
+        <section id="user" class="page-section">
+            <iframe src="user.html"></iframe>
+        </section>
+        <section id="Transaction" class="page-section">
+            <iframe src="Transaction.html"></iframe>
+        </section>
+        <section id="Notification" class="page-section">
+            <iframe src="Notification.html"></iframe>
+        </section>
+        <section id="Reports" class="page-section">
+            <iframe src="Reports.html"></iframe>
+        </section>
+    </main>
+    <!-- JavaScript -->
+
+    <script>
+        //Header Logout ->Dropdown
+        document.addEventListener("DOMContentLoaded", function () {
+            const dropdownToggle = document.getElementById("userDropdownToggle");
+            const dropdown = document.getElementById("userDropdown");
+
+            dropdownToggle.addEventListener("click", function (e) {
+                e.stopPropagation();
+                dropdown.classList.toggle("show");
+            });
+
+            document.addEventListener("click", function () {
+                dropdown.classList.remove("show");
+            });
+
+            // CHANGED: Added function to load and display user name from localStorage
+            // This retrieves the name stored during login and displays it in the header
+            loadUserName();
+        });
+
+        // CHANGED: New function to load user name from localStorage
+        // This function checks if a user name is stored and displays it with "Welcome" prefix
+        function loadUserName() {
+            const userName = localStorage.getItem("name");
+            const userNameElement = document.getElementById("userName");
+            
+            if (userName && userNameElement) {
+                // Display "Welcome [UserName]" instead of hardcoded "Abhishek"
+                userNameElement.textContent = `Welcome ${userName}`;
+            } else {
+                // Fallback text if no name is found in localStorage
+                userNameElement.textContent = "Welcome Guest";
+            }
+        }
+
+        //header
+        document.getElementById('menuToggle').addEventListener('click', function () {
+            console.log('Menu toggle clicked');
+            // Add your menu toggle functionality here
+        });
+
+        class SidebarManager {
+            constructor() {
+                this.sidebar = document.getElementById('sidebar');
+                this.headerMenuButton = document.getElementById('menuToggle');
+                this.mainContent = document.getElementById('mainContent');
+                this.navLinks = document.querySelectorAll('.nav-link');
+                this.pages = document.querySelectorAll('.page-section');
+
+                this.init();
+            }
+
+            init() {
+                // Header menu button click - toggles sidebar collapse
+                this.headerMenuButton.addEventListener('click', () => {
+                    this.toggleSidebar();
+                });
+
+                // Navigation links click
+                this.navLinks.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+
+                        const page = link.getAttribute('data-page');
+                        this.setActiveNav(link);
+                        this.showPage(page);
+                    });
+                });
+            }
+
+            toggleSidebar() {
+                this.sidebar.classList.toggle('collapsed');
+
+                // Adjust main content margin
+                if (this.sidebar.classList.contains('collapsed')) {
+                    this.mainContent.style.marginLeft = '60px';
+                } else {
+                    this.mainContent.style.marginLeft = '220px';
+                }
+            }
+
+            setActiveNav(activeLink) {
+                // Remove active class from all links
+                this.navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                // Add active class to clicked link
+                activeLink.classList.add('active');
+            }
+
+            showPage(pageId) {
+                // Hide all pages
+                this.pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+
+                // Show selected page
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                }
+            }
+
+            // Public methods for external use
+            collapse() {
+                this.sidebar.classList.add('collapsed');
+                this.mainContent.style.marginLeft = '60px';
+            }
+
+            expand() {
+                this.sidebar.classList.remove('collapsed');
+                this.mainContent.style.marginLeft = '220px';
+            }
+
+            setActivePage(page) {
+                const link = document.querySelector(`[data-page="${page}"]`);
+                if (link) {
+                    this.setActiveNav(link);
+                    this.showPage(page);
+                }
+            }
+        }
+
+        // Initialize sidebar when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidebarManager = new SidebarManager();
+
+            // Global functions for external use
+            window.toggleSidebar = () => sidebarManager.toggleSidebar();
+            window.setSidebarActive = (page) => sidebarManager.setActivePage(page);
+            window.collapseSidebar = () => sidebarManager.collapse();
+            window.expandSidebar = () => sidebarManager.expand();
+        });
+
+        // Handle responsive behavior
+        window.addEventListener('resize', function () {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+
+            if (window.innerWidth <= 768) {
+                mainContent.style.marginLeft = '0';
+            } else {
+                if (sidebar.classList.contains('collapsed')) {
+                    mainContent.style.marginLeft = '60px';
+                } else {
+                    mainContent.style.marginLeft = '220px';
+                }
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const logoutBtn = document.getElementById("logoutBtn");
+
+            if (logoutBtn) {
+                logoutBtn.addEventListener("click", async function () {
+                    const token = localStorage.getItem("token");
+
+                    // If no token, alert and redirect to login
+                    if (!token) {
+                        alert("Are You Sure You Want To Logout");
+                        window.location.href = "../../Glamora_website/login.html"; // Adjust path if needed
+                        return;
+                    }
+
+                    try {
+                        const res = await fetch("https://localhost:44353/api/login/logout", {
+                            method: "POST",
+                            headers: {
+                                "Authorization": "Bearer " + token,
+                            },
+                        });
+
+                        const result = await res.json();
+
+                        if (res.ok) {
+                            alert(result.message || "Logged out successfully.");
+                        } else {
+                            alert("Logout failed: " + (result.message || "Unknown error."));
+                        }
+
+                    } catch (error) {
+                        alert("Network error during logout: " + error.message);
+                    }
+
+                    // Always clear localStorage and redirect regardless of success/failure
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("role");
+                    localStorage.removeItem("name");
+                    localStorage.removeItem("customerId");
+
+                    window.location.href = "../../Glamora_website/login.html"; // Adjust path if needed
+                });
+            }
+        });
+    </script>
+</body>
+</html>

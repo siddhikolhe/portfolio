@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salon Client Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/client.css">
+</head>
+<body>
+     
+    <div class="page" id="clients-page">
+<div class="page-header">
+    <h2>Client Management</h2>
+    <div class="actions">
+        
+        <input type="text" class="search-input" placeholder="🔍Search by name/mobile..." id="clientSearch">
+        <button class="btn btn-primary" id="addButton">+ Add Client</button>
+        <button class="btn btn-secondary filter-button" id="filterButton">
+            
+            Filter
+        </button>
+    </div>
+</div>
+
+<!-- Filter Section -->
+        <div class="filter-section" id="filterSection">
+            <h3>Filter Clients</h3>
+            <div class="filter-grid">
+                <div class="form-group">
+                    <label for="filterPhone">Phone Number:</label>
+                    <input type="text" id="filterPhone" placeholder="Enter phone number">
+                </div>
+                <div class="form-group">
+                    <label for="filterAmount">Amount:</label>
+                    <input type="number" id="filterAmount" placeholder="Enter amount">
+                </div>
+                <div class="form-group">
+                    <label for="filterMembership">Membership:</label>
+                    <select id="filterMembership">
+                        <option value="">All</option>
+                        <option value="Regular">Regular</option>
+                        <option value="Premium">Premium</option>
+                    </select>
+                </div>
+            </div>
+            <div class="filter-actions">
+                <button class="btn btn-primary" id="applyFilter">Apply Filter</button>
+                <button class="btn btn-secondary" id="clearFilter">Clear</button>
+                <button class="btn btn-danger" id="hideFilter">Hide</button>
+            </div>
+        </div>
+
+        <div class="client-stats">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" style="color: #4a90e2;" id="totalClients">125</div>
+                    <div class="stat-label">Total Clients</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" style="color: #10b981;" id="maleClients">45</div>
+                    <div class="stat-label">Male</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" style="color: #ec4899;" id="femaleClients">80</div>
+                    <div class="stat-label">Female</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" style="color: #964c85;" id="premiumMembers">15</div>
+                    <div class="stat-label">Premium Members</div>
+                </div>
+            </div>
+
+
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>Mobile no</th>
+                            <th>Email</th>
+                            <th>Last Visit</th>
+                            <th>Amount</th>
+                            <th>Membership</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clientsTableBody">
+                        <tr>
+                            <td><strong>John Doe</strong></td>
+                            <td>123-456-7890</td>
+                            <td>johndoe@example.com</td>
+                            <td>2021-06-15</td>
+                            <td>2,213</td>
+                            <td><span class="membership regular">Regular</span></td>
+                            <td>
+                                <div class="actions-cell">
+                                    <button class="action-btn btn-view" onclick="viewCustomerDetails(this)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn btn-edit" onclick="editCustomerDetails(this)">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn btn-delete" onclick="deleteCustomer(this)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Maria Garcia</strong></td>
+                            <td>987-654-3210</td>
+                            <td>maria@example.com</td>
+                            <td>2021-05-20</td>
+                            <td>3,150</td>
+                            <td><span class="membership premium">Premium</span></td>
+                            <td>
+                                <div class="actions-cell">
+                                    <button class="action-btn btn-view" onclick="viewCustomerDetails(this)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn btn-edit" onclick="editCustomerDetails(this)">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn btn-delete" onclick="deleteCustomer(this)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Emily Davis</strong></td>
+                            <td>555-123-4567</td>
+                            <td>emily@example.com</td>
+                            <td>2021-06-10</td>
+                            <td>1,800</td>
+                            <td><span class="membership regular">Regular</span></td>
+                            <td>
+                                <div class="actions-cell">
+                                    <button class="action-btn btn-view" onclick="viewCustomerDetails(this)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn btn-edit" onclick="editCustomerDetails(this)">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn btn-delete" onclick="deleteCustomer(this)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Amanda Brown</strong></td>
+                            <td>444-555-6666</td>
+                            <td>amanda@example.com</td>
+                            <td>2021-04-25</td>
+                            <td>2,750</td>
+                            <td><span class="membership premium">Premium</span></td>
+                            <td>
+                                <div class="actions-cell">
+                                    <button class="action-btn btn-view" onclick="viewCustomerDetails(this)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn btn-edit" onclick="editCustomerDetails(this)">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn btn-delete" onclick="deleteCustomer(this)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Jessica Wilson</strong></td>
+                            <td>777-888-9999</td>
+                            <td>jessica@example.com</td>
+                            <td>2021-06-01</td>
+                            <td>1,950</td>
+                            <td><span class="membership regular">Regular</span></td>
+                            <td>
+                                <div class="actions-cell">
+                                    <button class="action-btn btn-view" onclick="viewCustomerDetails(this)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn btn-edit" onclick="editCustomerDetails(this)">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn btn-delete" onclick="deleteCustomer(this)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Add Customer Modal -->
+        <div id="addCustomerModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Add New Customer</h2>
+                    <span class="close" id="closeAddModal">&times;</span>
+                </div>
+                <form id="addCustomerForm">
+                    <div class="form-group">
+                        <label for="customerName">Name *</label>
+                        <input type="text" id="customerName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerEmail">Email *</label>
+                        <input type="email" id="customerEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerPhone">Phone Number *</label>
+                        <input type="tel" id="customerPhone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerMembership">Membership *</label>
+                        <select id="customerMembership" name="membership" required>
+                            <option value="">Select Membership</option>
+                            <option value="Regular">Regular</option>
+                            <option value="Premium">Premium</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="cancelAdd">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Add Customer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Customer Details Modal -->
+        <div id="customerDetailsForm" class="customer-details-form" style="display: none;">
+            <h2>Customer Details</h2>
+            <div class="form-section">
+                <label><strong>Name:</strong></label>
+                <span id="detailCustomerName"></span>
+            </div>
+            <div class="form-section">
+                <label><strong>Phone:</strong></label>
+                <span id="detailCustomerPhone"></span>
+            </div>
+            <div class="form-section">
+                <label><strong>Email:</strong></label>
+                <span id="detailCustomerEmail"></span>
+            </div>
+            <div class="form-section">
+                <label><strong>Last Visit:</strong></label>
+                <span id="detailCustomerLastVisit"></span>
+            </div>
+            <div class="form-section">
+                <label><strong>Total Spent:</strong></label>
+                <span id="detailCustomerTotalSpent"></span>
+            </div>
+            <div class="form-section">
+                <label><strong>Membership:</strong></label>
+                <span id="detailCustomerMembership"></span>
+            </div>
+            <div class="button-container">
+        <button class="btn-close" onclick="editCustomerDetails()">Edit</button>
+        <button class="btn-close" onclick="closeCustomerDetails()">Close</button>
+    </div>
+    </div>
+   </div>
+
+    <script src="loadComponents.js"></script>
+    <script>
+    // Get all table rows for filtering
+let allRows = [];
+let originalTableData = [];
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // Store original table data
+    const tbody = document.getElementById('clientsTableBody');
+    allRows = Array.from(tbody.querySelectorAll('tr'));
+    originalTableData = allRows.map(row => row.innerHTML);
+    
+    // Initialize event listeners
+    initializeEventListeners();
+});
+
+// Initialize all event listeners
+function initializeEventListeners() {
+    // Add Customer Modal functionality
+    const addButton = document.getElementById('addButton');
+    const addModal = document.getElementById('addCustomerModal');
+    const closeAddModal = document.getElementById('closeAddModal');
+    const cancelAdd = document.getElementById('cancelAdd');
+    const addForm = document.getElementById('addCustomerForm');
+
+    // Open Add Customer Modal
+    if (addButton) {
+        addButton.addEventListener('click', function() {
+            addModal.style.display = 'block';
+        });
+    }
+
+    // Close Add Customer Modal
+    if (closeAddModal) {
+        closeAddModal.addEventListener('click', function() {
+            addModal.style.display = 'none';
+            addForm.reset();
+        });
+    }
+
+    if (cancelAdd) {
+        cancelAdd.addEventListener('click', function() {
+            addModal.style.display = 'none';
+            addForm.reset();
+        });
+    }
+
+    // Close modal when clicking outside
+    window.addEventListener('click', function(event) {
+        if (event.target === addModal) {
+            addModal.style.display = 'none';
+            addForm.reset();
+        }
+    });
+
+    // Handle Add Customer Form Submission
+    if (addForm) {
+        addForm.addEventListener('submit', handleAddCustomer);
+    }
+
+    // Filter functionality
+    const filterButton = document.getElementById('filterButton');
+    const applyFilter = document.getElementById('applyFilter');
+    const clearFilter = document.getElementById('clearFilter');
+    const hideFilter = document.getElementById('hideFilter');
+
+    if (filterButton) {
+        filterButton.addEventListener('click', toggleFilterSection);
+    }
+
+    if (applyFilter) {
+        applyFilter.addEventListener('click', applyFilters);
+    }
+
+    if (clearFilter) {
+        clearFilter.addEventListener('click', clearFilters);
+    }
+
+    if (hideFilter) {
+        hideFilter.addEventListener('click', hideFilterSection);
+    }
+
+    // Search functionality
+    const searchInput = document.getElementById('clientSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', handleSearch);
+    }
+}
+
+// Handle Add Customer Form Submission
+function handleAddCustomer(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('customerName').value.trim();
+    const email = document.getElementById('customerEmail').value.trim();
+    const phone = document.getElementById('customerPhone').value.trim();
+    const membership = document.getElementById('customerMembership').value;
+    
+    // Validation
+    if (!name || !email || !phone || !membership) {
+        alert('Please fill in all required fields.');
+        return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+    }
+
+    // Phone validation (basic)
+    const phoneRegex = /^[\d\-\+\(\)\s]+$/;
+    if (!phoneRegex.test(phone)) {
+        alert('Please enter a valid phone number.');
+        return;
+    }
+
+    // Check if customer already exists
+    if (checkDuplicateCustomer(email, phone)) {
+        alert('A customer with this email or phone number already exists.');
+        return;
+    }
+    
+    // Create new row
+    const tbody = document.getElementById('clientsTableBody');
+    const newRow = document.createElement('tr');
+    
+    const today = new Date().toISOString().split('T')[0];
+    const amount = Math.floor(Math.random() * 3000) + 1000; // Random amount for demo
+    
+    newRow.innerHTML = `
+        <td><strong>${escapeHtml(name)}</strong></td>
+        <td>${escapeHtml(phone)}</td>
+        <td>${escapeHtml(email)}</td>
+        <td>${today}</td>
+        <td>${amount.toLocaleString()}</td>
+        <td><span class="membership ${membership.toLowerCase()}">${membership}</span></td>
+        <td>
+            <div class="actions-cell">
+                <button class="action-btn btn-view" onclick="viewCustomerDetails(this)">
+                    <i class="fas fa-eye"></i>
+                </button>
+                <button class="action-btn btn-delete" onclick="deleteCustomer(this)">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </td>
+    `;
+    
+    tbody.appendChild(newRow);
+    
+    // Update stats
+    updateStats();
+    
+    // Close modal and reset form
+    const addModal = document.getElementById('addCustomerModal');
+    const addForm = document.getElementById('addCustomerForm');
+    addModal.style.display = 'none';
+    addForm.reset();
+    
+    // Update allRows array
+    allRows = Array.from(tbody.querySelectorAll('tr'));
+    
+    alert('Customer added successfully!');
+}
+
+// Check for duplicate customers
+function checkDuplicateCustomer(email, phone) {
+    const tbody = document.getElementById('clientsTableBody');
+    const rows = tbody.querySelectorAll('tr');
+    
+    for (let row of rows) {
+        const existingEmail = row.cells[2].textContent.trim();
+        const existingPhone = row.cells[1].textContent.trim();
+        
+        if (existingEmail === email || existingPhone === phone) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// Escape HTML to prevent XSS
+function escapeHtml(text) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+
+// Filter functionality
+function toggleFilterSection() {
+    const filterSection = document.getElementById('filterSection');
+    filterSection.style.display = filterSection.style.display === 'none' || filterSection.style.display === '' ? 'block' : 'none';
+}
+
+function hideFilterSection() {
+    const filterSection = document.getElementById('filterSection');
+    filterSection.style.display = 'none';
+}
+
+// Apply filters
+function applyFilters() {
+    const phoneFilter = document.getElementById('filterPhone').value.toLowerCase().trim();
+    const amountFilter = document.getElementById('filterAmount').value.trim();
+    const membershipFilter = document.getElementById('filterMembership').value;
+    
+    const tbody = document.getElementById('clientsTableBody');
+    const rows = tbody.querySelectorAll('tr');
+    
+    let visibleCount = 0;
+    
+    rows.forEach(row => {
+        const phone = row.cells[1].textContent.toLowerCase();
+        const amountText = row.cells[4].textContent.replace(/,/g, '');
+        const amount = parseInt(amountText);
+        const membership = row.cells[5].textContent.trim();
+        
+        let showRow = true;
+        
+        // Phone filter (partial match)
+        if (phoneFilter && !phone.includes(phoneFilter)) {
+            showRow = false;
+        }
+        
+        // Amount filter (greater than or equal to)
+        if (amountFilter && (isNaN(amount) || amount < parseInt(amountFilter))) {
+            showRow = false;
+        }
+        
+        // Membership filter (exact match)
+        if (membershipFilter && membership !== membershipFilter) {
+            showRow = false;
+        }
+        
+        row.style.display = showRow ? '' : 'none';
+        if (showRow) visibleCount++;
+    });
+    
+    // Show message if no results
+    if (visibleCount === 0) {
+        showNoResultsMessage();
+    } else {
+        hideNoResultsMessage();
+    }
+    
+    console.log(`Filter applied. ${visibleCount} customers visible.`);
+}
+
+// Clear all filters
+function clearFilters() {
+    document.getElementById('filterPhone').value = '';
+    document.getElementById('filterAmount').value = '';
+    document.getElementById('filterMembership').value = '';
+    
+    const tbody = document.getElementById('clientsTableBody');
+    const rows = tbody.querySelectorAll('tr');
+    rows.forEach(row => {
+        row.style.display = '';
+    });
+    
+    hideNoResultsMessage();
+    console.log('Filters cleared. All customers visible.');
+}
+
+// Search functionality
+function handleSearch() {
+    const searchTerm = document.getElementById('clientSearch').value.toLowerCase().trim();
+    const tbody = document.getElementById('clientsTableBody');
+    const rows = tbody.querySelectorAll('tr');
+    
+    let visibleCount = 0;
+    
+    rows.forEach(row => {
+        const name = row.cells[0].textContent.toLowerCase();
+        const phone = row.cells[1].textContent.toLowerCase();
+        const email = row.cells[2].textContent.toLowerCase();
+        
+        if (!searchTerm || name.includes(searchTerm) || phone.includes(searchTerm) || email.includes(searchTerm)) {
+            row.style.display = '';
+            visibleCount++;
+        } else {
+            row.style.display = 'none';
+        }
+    });
+    
+    // Show/hide no results message
+    if (searchTerm && visibleCount === 0) {
+        showNoResultsMessage();
+    } else {
+        hideNoResultsMessage();
+    }
+}
+
+// Show no results message
+function showNoResultsMessage() {
+    let noResultsRow = document.getElementById('noResultsRow');
+    if (!noResultsRow) {
+        const tbody = document.getElementById('clientsTableBody');
+        noResultsRow = document.createElement('tr');
+        noResultsRow.id = 'noResultsRow';
+        noResultsRow.innerHTML = `
+            <td colspan="7" style="text-align: center; padding: 20px; color: #6b7280; font-style: italic;">
+                No customers found matching your criteria.
+            </td>
+        `;
+        tbody.appendChild(noResultsRow);
+    }
+    noResultsRow.style.display = '';
+}
+
+// Hide no results message
+function hideNoResultsMessage() {
+    const noResultsRow = document.getElementById('noResultsRow');
+    if (noResultsRow) {
+        noResultsRow.style.display = 'none';
+    }
+}
+
+// View Customer Details
+function viewCustomerDetails(button) {
+    const row = button.closest('tr');
+    const cells = row.cells;
+    
+    // Get customer data from the row
+    const name = cells[0].textContent.trim();
+    const phone = cells[1].textContent.trim();
+    const email = cells[2].textContent.trim();
+    const lastVisit = cells[3].textContent.trim();
+    const totalSpent = cells[4].textContent.trim();
+    const membership = cells[5].textContent.trim();
+    
+    // Update modal content
+    document.getElementById('detailCustomerName').textContent = name;
+    document.getElementById('detailCustomerPhone').textContent = phone;
+    document.getElementById('detailCustomerEmail').textContent = email;
+    document.getElementById('detailCustomerLastVisit').textContent = lastVisit;
+    document.getElementById('detailCustomerTotalSpent').textContent = '$' + totalSpent;
+    document.getElementById('detailCustomerMembership').textContent = membership;
+    
+    // Show modal
+    document.getElementById('customerDetailsForm').style.display = 'block';
+    
+    // Add event listener to close when clicking outside
+    setTimeout(() => {
+        document.addEventListener('click', closeDetailsOnOutsideClick);
+    }, 100);
+}
+
+// Close customer details when clicking outside
+function closeDetailsOnOutsideClick(event) {
+    const detailsForm = document.getElementById('customerDetailsForm');
+    if (!detailsForm.contains(event.target)) {
+        closeCustomerDetails();
+        document.removeEventListener('click', closeDetailsOnOutsideClick);
+    }
+}
+
+// Close Customer Details
+function closeCustomerDetails() {
+    document.getElementById('customerDetailsForm').style.display = 'none';
+    document.removeEventListener('click', closeDetailsOnOutsideClick);
+}
+
+// Delete Customer
+function deleteCustomer(button) {
+    const row = button.closest('tr');
+    const customerName = row.cells[0].textContent.trim();
+    
+    if (confirm(`Are you sure you want to delete customer "${customerName}"?`)) {
+        row.remove();
+        updateStats();
+        
+        // Update allRows array
+        const tbody = document.getElementById('clientsTableBody');
+        allRows = Array.from(tbody.querySelectorAll('tr'));
+        
+        // Check if table is empty after deletion
+        if (allRows.length === 0) {
+            showNoResultsMessage();
+        }
+        
+        console.log(`Customer "${customerName}" deleted successfully.`);
+    }
+}
+
+// Update statistics
+function updateStats() {
+    const tbody = document.getElementById('clientsTableBody');
+    const rows = tbody.querySelectorAll('tr:not(#noResultsRow)');
+    
+    let totalClients = 0;
+    let maleClients = 0;
+    let femaleClients = 0;
+    let premiumMembers = 0;
+    
+    // Common male and female names for demo purposes
+    const maleNames = ['john', 'mike', 'david', 'james', 'robert', 'william', 'richard', 'charles', 'joseph', 'thomas'];
+    const femaleNames = ['maria', 'emily', 'amanda', 'jessica', 'sarah', 'jennifer', 'lisa', 'nancy', 'karen', 'betty'];
+    
+    rows.forEach(row => {
+        if (row.style.display !== 'none') {
+            totalClients++;
+            
+            const membership = row.cells[5].textContent.trim();
+            if (membership.toLowerCase().includes('premium')) {
+                premiumMembers++;
+            }
+            
+            // Determine gender based on name (demo purposes)
+            const name = row.cells[0].textContent.toLowerCase();
+            const firstName = name.split(' ')[0];
+            
+            if (maleNames.some(maleName => firstName.includes(maleName))) {
+                maleClients++;
+            } else if (femaleNames.some(femaleName => firstName.includes(femaleName))) {
+                femaleClients++;
+            } else {
+                // If name doesn't match common names, randomly assign for demo
+                if (Math.random() > 0.5) {
+                    femaleClients++;
+                } else {
+                    maleClients++;
+                }
+            }
+        }
+    });
+    
+    // Update the statistics display
+    const totalClientsElement = document.getElementById('totalClients');
+    const maleClientsElement = document.getElementById('maleClients');
+    const femaleClientsElement = document.getElementById('femaleClients');
+    const premiumMembersElement = document.getElementById('premiumMembers');
+    
+    if (totalClientsElement) totalClientsElement.textContent = totalClients;
+    if (maleClientsElement) maleClientsElement.textContent = maleClients;
+    if (femaleClientsElement) femaleClientsElement.textContent = femaleClients;
+    if (premiumMembersElement) premiumMembersElement.textContent = premiumMembers;
+}
+
+// Utility function to format phone numbers
+function formatPhoneNumber(phone) {
+    // Remove all non-numeric characters
+    const cleaned = phone.replace(/\D/g, '');
+    
+    // Format as XXX-XXX-XXXX if 10 digits
+    if (cleaned.length === 10) {
+        return cleaned.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+    }
+    
+    // Return original if not 10 digits
+    return phone;
+}
+
+// Export data functionality (bonus feature)
+function exportToCSV() {
+    const tbody = document.getElementById('clientsTableBody');
+    const rows = tbody.querySelectorAll('tr:not(#noResultsRow)');
+    
+    let csv = 'Name,Phone,Email,Last Visit,Amount,Membership\n';
+    
+    rows.forEach(row => {
+        if (row.style.display !== 'none') {
+            const name = row.cells[0].textContent.trim().replace(/"/g, '""');
+            const phone = row.cells[1].textContent.trim();
+            const email = row.cells[2].textContent.trim();
+            const lastVisit = row.cells[3].textContent.trim();
+            const amount = row.cells[4].textContent.trim();
+            const membership = row.cells[5].textContent.trim();
+            
+            csv += `"${name}","${phone}","${email}","${lastVisit}","${amount}","${membership}"\n`;
+        }
+    });
+    
+    // Create and download file
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'clients_export.csv';
+    a.click();
+    window.URL.revokeObjectURL(url);
+}
+
+// Keyboard shortcuts
+document.addEventListener('keydown', function(e) {
+    // Ctrl+N or Cmd+N to add new customer
+    if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
+        e.preventDefault();
+        document.getElementById('addButton').click();
+    }
+    
+    // Escape to close modals
+    if (e.key === 'Escape') {
+        const addModal = document.getElementById('addCustomerModal');
+        const detailsForm = document.getElementById('customerDetailsForm');
+        
+        if (addModal.style.display === 'block') {
+            addModal.style.display = 'none';
+            document.getElementById('addCustomerForm').reset();
+        }
+        
+        if (detailsForm.style.display === 'block') {
+            closeCustomerDetails();
+        }
+    }
+});
+
+// Initialize stats on page load
+window.addEventListener('load', function() {
+    updateStats();
+});
+
+////Edit option
+function editCustomerDetails() {
+    const form = document.getElementById("customerForm");
+    const inputs = form.querySelectorAll("input");
+
+    inputs.forEach(input => {
+        input.disabled = false; // Enable input fields
+    });
+}
+
+function closeCustomerDetails() {
+    const form = document.getElementById("customerForm");
+    const inputs = form.querySelectorAll("input");
+
+    inputs.forEach(input => {
+        input.disabled = true; // Disable input fields
+    });
+}
+
+
+    </script>
+
+</body>
+</html>
+
