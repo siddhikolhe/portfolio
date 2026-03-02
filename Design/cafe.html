@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brews & Co — Specialty Coffee</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --brown-dark: #2c1a0e;
+  --brown: #5c3317;
+  --mocha: #8b5e3c;
+  --caramel: #c8924a;
+  --sand: #e8d5b7;
+  --cream: #fdf8f2;
+  --white: #ffffff;
+  --gray: #777;
+  --light-gray: #f5f0eb;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--brown-dark); overflow-x: hidden; }
+
+/* ============ NAV ============ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 60px;
+  background: rgba(253,248,242,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(200,146,74,0.15);
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 4px 30px rgba(44,26,14,0.08); }
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 700;
+  color: var(--brown-dark);
+  text-decoration: none;
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-logo span { color: var(--caramel); }
+.nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+.nav-links a {
+  font-size: 13px; font-weight: 500; letter-spacing: 0.5px;
+  color: var(--brown); text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--caramel); }
+.nav-cta {
+  background: var(--brown-dark); color: var(--white) !important;
+  padding: 10px 24px; border-radius: 50px;
+  transition: background 0.3s !important;
+}
+.nav-cta:hover { background: var(--caramel) !important; color: var(--white) !important; }
+.nav-info { font-size: 12px; color: var(--mocha); }
+
+/* ============ HERO ============ */
+.hero {
+  min-height: 100vh;
+  background: var(--brown-dark);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center;
+  padding-top: 80px;
+}
+
+/* Background coffee beans scattered */
+.hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 20% 50%, #3d2210 0%, #1a0d05 60%, #0d0603 100%);
+}
+
+.hero-beans {
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(ellipse 8px 12px at 15% 20%, #5c3317 100%, transparent 100%),
+    radial-gradient(ellipse 6px 10px at 22% 65%, #4a2810 100%, transparent 100%),
+    radial-gradient(ellipse 9px 14px at 72% 15%, #5c3317 100%, transparent 100%),
+    radial-gradient(ellipse 7px 11px at 80% 45%, #4a2810 100%, transparent 100%),
+    radial-gradient(ellipse 5px 8px at 60% 70%, #5c3317 100%, transparent 100%),
+    radial-gradient(ellipse 10px 15px at 88% 75%, #4a2810 100%, transparent 100%),
+    radial-gradient(ellipse 6px 9px at 35% 85%, #5c3317 100%, transparent 100%),
+    radial-gradient(ellipse 8px 12px at 5% 50%, #4a2810 100%, transparent 100%);
+  opacity: 0.6;
+}
+
+/* Splash/wave white shape at bottom like image 1 */
+.hero-wave {
+  position: absolute; bottom: -2px; left: 0; right: 0; height: 160px;
+  background: var(--cream);
+  clip-path: ellipse(60% 100% at 30% 100%);
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center;
+  max-width: 1200px; margin: 0 auto;
+  padding: 0 60px; width: 100%;
+  gap: 40px;
+}
+
+.hero-text { padding-bottom: 80px; }
+.hero-tag {
+  display: inline-block;
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--caramel); margin-bottom: 20px;
+  opacity: 0; animation: fadeUp 0.7s ease forwards 0.2s;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(44px, 5.5vw, 72px);
+  font-weight: 700; line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 24px;
+  opacity: 0; animation: fadeUp 0.8s ease forwards 0.4s;
+}
+.hero-title em { color: var(--caramel); font-style: italic; }
+.hero-desc {
+  font-size: 15px; line-height: 1.8;
+  color: rgba(255,255,255,0.65);
+  max-width: 400px; margin-bottom: 40px;
+  opacity: 0; animation: fadeUp 0.8s ease forwards 0.6s;
+}
+.hero-btns {
+  display: flex; gap: 16px; align-items: center;
+  opacity: 0; animation: fadeUp 0.8s ease forwards 0.8s;
+}
+.btn-primary {
+  background: var(--caramel); color: var(--white);
+  padding: 14px 32px; border-radius: 50px;
+  font-size: 13px; font-weight: 500; letter-spacing: 0.5px;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 8px 24px rgba(200,146,74,0.4);
+}
+.btn-primary:hover { background: #e0a855; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(200,146,74,0.5); }
+.btn-secondary {
+  color: rgba(255,255,255,0.8); font-size: 13px;
+  display: flex; align-items: center; gap: 8px;
+  text-decoration: none; transition: color 0.3s;
+}
+.btn-secondary:hover { color: var(--caramel); }
+.btn-arrow { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 14px; }
+
+.hero-visual {
+  display: flex; justify-content: center; align-items: flex-end;
+  padding-bottom: 80px;
+  opacity: 0; animation: fadeIn 1s ease forwards 0.5s;
+  position: relative;
+}
+
+/* Large coffee cup SVG */
+.cup-wrapper {
+  position: relative; z-index: 2;
+  filter: drop-shadow(0 40px 60px rgba(0,0,0,0.6));
+}
+
+/* ============ STATS BAR ============ */
+.stats-bar {
+  background: var(--white);
+  padding: 40px 60px;
+  display: flex; justify-content: center; gap: 80px;
+  box-shadow: 0 4px 20px rgba(44,26,14,0.06);
+}
+.stat { text-align: center; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px; font-weight: 700; color: var(--brown-dark);
+  line-height: 1;
+}
+.stat-num span { color: var(--caramel); }
+.stat-label { font-size: 12px; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+
+/* ============ SERVICES ============ */
+.services {
+  padding: 100px 60px;
+  background: var(--cream);
+  max-width: 1200px; margin: 0 auto;
+}
+.section-header { text-align: center; margin-bottom: 64px; }
+.section-tag {
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--caramel); margin-bottom: 12px; display: block;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 48px); font-weight: 600;
+  color: var(--brown-dark); line-height: 1.2;
+}
+.section-sub {
+  font-size: 14px; color: var(--gray);
+  max-width: 480px; margin: 16px auto 0;
+  line-height: 1.8;
+}
+
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+}
+.service-card {
+  background: var(--white);
+  border-radius: 20px; padding: 40px 32px;
+  border: 1px solid rgba(200,146,74,0.1);
+  transition: all 0.4s ease;
+  position: relative; overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--caramel), var(--mocha));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(44,26,14,0.12); }
+.service-card:hover::before { transform: scaleX(1); }
+.service-icon {
+  width: 72px; height: 72px;
+  border-radius: 16px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.service-icon img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.service-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 600; color: var(--brown-dark);
+  margin-bottom: 12px;
+}
+.service-desc { font-size: 13px; line-height: 1.8; color: var(--gray); margin-bottom: 20px; }
+.service-link {
+  font-size: 12px; font-weight: 500; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--caramel);
+  text-decoration: none; display: flex; align-items: center; gap: 6px;
+}
+.service-link::after { content: '→'; transition: transform 0.2s; }
+.service-card:hover .service-link::after { transform: translateX(4px); }
+
+/* ============ MENU SECTION ============ */
+.menu-section {
+  background: var(--light-gray);
+  padding: 100px 60px;
+}
+.menu-inner { max-width: 1200px; margin: 0 auto; }
+.menu-tabs {
+  display: flex; gap: 8px; justify-content: center;
+  margin-bottom: 56px; flex-wrap: wrap;
+}
+.tab {
+  padding: 10px 28px; border-radius: 50px;
+  font-size: 13px; font-weight: 500; cursor: pointer;
+  border: 1.5px solid rgba(200,146,74,0.3);
+  color: var(--mocha); background: transparent;
+  transition: all 0.3s;
+}
+.tab.active, .tab:hover {
+  background: var(--brown-dark); color: var(--white);
+  border-color: var(--brown-dark);
+}
+
+.menu-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.menu-card {
+  background: var(--white); border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 2px 12px rgba(44,26,14,0.06);
+}
+.menu-card:hover { transform: translateY(-6px); box-shadow: 0 20px 44px rgba(44,26,14,0.14); }
+.menu-img {
+  width: 100%; height: 200px;
+  background: var(--sand);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+/* Coffee drink SVG illustrations as placeholders */
+.coffee-art {
+  width: 120px; height: 120px;
+}
+.menu-img-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, #e8d5b7 0%, #d4b896 100%);
+}
+.menu-badge {
+  position: absolute; top: 12px; right: 12px;
+  background: var(--caramel); color: var(--white);
+  font-size: 10px; font-weight: 500; letter-spacing: 1px;
+  padding: 4px 10px; border-radius: 20px;
+  text-transform: uppercase;
+}
+.menu-body { padding: 24px; }
+.menu-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 600; color: var(--brown-dark);
+  margin-bottom: 6px;
+}
+.menu-desc { font-size: 12px; color: var(--gray); line-height: 1.7; margin-bottom: 16px; }
+.menu-footer { display: flex; align-items: center; justify-content: space-between; }
+.menu-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 700; color: var(--caramel);
+}
+.btn-add {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--brown-dark); color: var(--white);
+  border: none; cursor: pointer; font-size: 20px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s;
+}
+.btn-add:hover { background: var(--caramel); transform: scale(1.1); }
+
+/* ============ FEATURE SPLIT ============ */
+.feature {
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 500px;
+  max-width: 100%;
+}
+.feature-visual {
+  background: linear-gradient(135deg, #2c1a0e 0%, #5c3317 100%);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  padding: 60px;
+}
+.feature-visual-inner {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: center;
+}
+.feature-circles {
+  position: absolute; inset: 0;
+}
+.feature-circles::before, .feature-circles::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(200,146,74,0.2);
+}
+.feature-circles::before { width: 400px; height: 400px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.feature-circles::after { width: 280px; height: 280px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+
+.barista-circle {
+  width: 240px; height: 240px; border-radius: 50%;
+  background: linear-gradient(135deg, #8b5e3c, #c8924a);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 80px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.feature-content {
+  background: var(--cream);
+  padding: 80px 70px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.feature-content .section-tag { text-align: left; display: block; }
+.feature-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 600; line-height: 1.2;
+  color: var(--brown-dark); margin-bottom: 20px;
+}
+.feature-title em { color: var(--caramel); font-style: italic; }
+.feature-text { font-size: 14px; line-height: 1.9; color: var(--gray); margin-bottom: 32px; }
+.feature-phone { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--mocha); margin-bottom: 8px; }
+.feature-phone strong { color: var(--brown-dark); font-size: 16px; }
+.feature-btns { display: flex; gap: 12px; margin-top: 32px; }
+.btn-outline {
+  padding: 12px 28px; border-radius: 50px;
+  border: 1.5px solid var(--brown-dark);
+  font-size: 13px; font-weight: 500;
+  color: var(--brown-dark); background: transparent;
+  cursor: pointer; text-decoration: none;
+  transition: all 0.3s;
+}
+.btn-outline:hover { background: var(--brown-dark); color: var(--white); }
+
+/* ============ POPULAR MENU ============ */
+.popular {
+  padding: 100px 60px;
+  background: var(--white);
+}
+.popular-inner { max-width: 1200px; margin: 0 auto; }
+.popular-list { display: flex; flex-direction: column; gap: 0; }
+.popular-item {
+  display: flex; align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(200,146,74,0.15);
+  transition: background 0.2s;
+  cursor: pointer;
+  gap: 20px;
+}
+.popular-item:hover { background: var(--light-gray); padding-left: 16px; border-radius: 12px; }
+.popular-thumb {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--sand);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(44,26,14,0.1);
+}
+.popular-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 600; color: var(--brown-dark);
+  flex: 1;
+}
+.popular-desc { font-size: 12px; color: var(--gray); }
+.popular-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; color: var(--caramel);
+  margin-left: auto; flex-shrink: 0; padding-right: 8px;
+}
+.popular-grid-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+
+/* ============ TESTIMONIALS ============ */
+.testimonials {
+  background: var(--light-gray);
+  padding: 100px 60px;
+}
+.testimonials-inner { max-width: 1200px; margin: 0 auto; }
+.test-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+.test-left { }
+.quote-big {
+  font-family: 'Playfair Display', serif;
+  font-size: 120px; line-height: 0.8;
+  color: var(--caramel); opacity: 0.3;
+  font-style: italic; margin-bottom: -20px;
+}
+.test-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-style: italic;
+  line-height: 1.6; color: var(--brown-dark);
+  margin-bottom: 32px;
+}
+.test-author { display: flex; align-items: center; gap: 16px; }
+.author-avatar {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--caramel), var(--mocha));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.author-name { font-size: 14px; font-weight: 500; color: var(--brown-dark); }
+.author-role { font-size: 12px; color: var(--gray); }
+.stars { color: var(--caramel); font-size: 14px; letter-spacing: 2px; margin-bottom: 4px; }
+
+.test-right { display: flex; flex-direction: column; gap: 20px; }
+.test-mini {
+  background: var(--white); padding: 28px; border-radius: 16px;
+  border-left: 3px solid var(--caramel);
+  transition: transform 0.3s;
+}
+.test-mini:hover { transform: translateX(6px); }
+.test-mini-text { font-size: 13px; line-height: 1.8; color: var(--gray); margin-bottom: 16px; }
+.test-mini-author { display: flex; align-items: center; gap: 10px; }
+.mini-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--sand);
+  display: flex; align-items: center; justify-content: center; font-size: 16px;
+}
+.mini-name { font-size: 13px; font-weight: 500; color: var(--brown-dark); }
+
+/* ============ FOOTER ============ */
+footer {
+  background: var(--brown-dark);
+  padding: 60px 60px 30px;
+  color: rgba(255,255,255,0.6);
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-brand { }
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px; font-weight: 700; color: var(--white);
+  margin-bottom: 16px; display: block;
+}
+.footer-logo span { color: var(--caramel); }
+.footer-tagline { font-size: 13px; line-height: 1.8; max-width: 260px; }
+.footer-heading { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--sand); margin-bottom: 20px; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--caramel); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px; }
+.social-row { display: flex; gap: 12px; }
+.social-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none; color: rgba(255,255,255,0.6);
+}
+.social-btn:hover { background: var(--caramel); border-color: var(--caramel); color: var(--white); }
+
+/* ============ ANIMATIONS ============ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes steam1 {
+  0%, 100% { opacity: 0.5; transform: translateY(0) scaleX(1); }
+  50% { opacity: 0; transform: translateY(-16px) scaleX(1.4); }
+}
+@keyframes steam2 {
+  0%, 100% { opacity: 0.4; transform: translateY(0) scaleX(1); }
+  50% { opacity: 0; transform: translateY(-20px) scaleX(1.6); }
+}
+.float-anim { animation: float 4s ease-in-out infinite; }
+.steam-1 { animation: steam1 2.5s ease-in-out infinite; }
+.steam-2 { animation: steam2 2.5s ease-in-out infinite 0.5s; }
+.steam-3 { animation: steam1 2.5s ease-in-out infinite 1s; }
+
+.reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .nav-info, .nav-links li:not(:last-child) { display: none; }
+  .hero-content, .feature, .test-grid, .footer-grid { grid-template-columns: 1fr; }
+  .services-grid, .menu-grid, .popular-grid-wrap { grid-template-columns: 1fr 1fr; }
+  .hero-content, .services, .menu-section, .popular, .testimonials { padding-left: 24px; padding-right: 24px; }
+  .stats-bar { gap: 32px; flex-wrap: wrap; padding: 32px 24px; }
+  .feature-content { padding: 48px 24px; }
+  footer { padding: 40px 24px 20px; }
+}
+@media (max-width: 600px) {
+  .services-grid, .menu-grid, .popular-grid-wrap { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Brews <span>&</span> Co</a>
+  <div class="nav-info">Mon–Fri: 7am–9pm &nbsp;|&nbsp; Sat–Sun: 8am–10pm &nbsp;|&nbsp; +91 98765 43210</div>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu-section">Menu</a></li>
+    <li><a href="#review">Reviews</a></li>
+    <li><a href="#" class="nav-cta">Order Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-beans"></div>
+
+  <div class="hero-content">
+    <div class="hero-text">
+      <span class="hero-tag">Now you can feel the energy</span>
+      <h1 class="hero-title">Start your day<br>with a perfect<br><em>Coffee</em></h1>
+      <p class="hero-desc">Discover our hand-crafted specialty blends, roasted fresh daily. Every cup tells the story of the farm it came from.</p>
+      <div class="hero-btns">
+        <a href="#menu-section" class="btn-primary">Order Now</a>
+        <a href="#about" class="btn-secondary">
+          <span class="btn-arrow">▶</span>
+          Our Story
+        </a>
+      </div>
+    </div>
+
+    <!-- Large coffee cup illustration -->
+    <div class="hero-visual">
+      <div class="cup-wrapper float-anim" style="border-radius:50%;overflow:hidden;width:320px;height:320px;box-shadow:0 40px 80px rgba(0,0,0,0.6);">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=640&h=640&fit=crop&crop=center" alt="Coffee" style="width:100%;height:100%;object-fit:cover;"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-wave"></div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-num">120<span>+</span></div>
+    <div class="stat-label">Menu Items</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">25<span>k+</span></div>
+    <div class="stat-label">Happy Customers</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">12</div>
+    <div class="stat-label">Bean Origins</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">6<span>yrs</span></div>
+    <div class="stat-label">Est. Since</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section style="background: var(--cream);">
+<div class="services reveal" id="about">
+  <div class="section-header">
+    <span class="section-tag">What we offer</span>
+    <h2 class="section-title">Our Delicious Services</h2>
+    <p class="section-sub">We offer a carefully curated collection that showcases the distinct characteristics of beans sourced from specific regions.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=150&h=150&fit=crop&crop=center" alt="Coffee Types"/></div>
+      <div class="service-name">Coffee Types</div>
+      <div class="service-desc">We offer a wide variety of coffee options to satisfy your most common and most popular style preferences.</div>
+      <a href="#" class="service-link">Learn More</a>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon"><img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=150&h=150&fit=crop&crop=center" alt="Different Beans"/></div>
+      <div class="service-name">Different Beans</div>
+      <div class="service-desc">We pride ourselves on sourcing and providing the highest quality beans from around the world.</div>
+      <a href="#" class="service-link">Learn More</a>
+    </div>
+    <div class="service-card reveal reveal-delay-3">
+      <div class="service-icon"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=150&h=150&fit=crop&crop=center" alt="Cold Coffee"/></div>
+      <div class="service-name">Cold Coffee</div>
+      <div class="service-desc">We offer a variety of iced coffee options to satisfy your thirst and keep your day refreshing.</div>
+      <a href="#" class="service-link">Learn More</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu-section">
+  <div class="menu-inner">
+    <div class="section-header reveal">
+      <span class="section-tag">Our beverages</span>
+      <h2 class="section-title">Enjoy A New Blend of Coffee Style</h2>
+      <p class="section-sub">Explore all flavours of coffee with us. There is always a new cup worth experiencing.</p>
+    </div>
+
+    <div class="menu-tabs reveal">
+      <button class="tab active" onclick="setTab(this)">All</button>
+      <button class="tab" onclick="setTab(this)">Hot Coffee</button>
+      <button class="tab" onclick="setTab(this)">Cold Brew</button>
+      <button class="tab" onclick="setTab(this)">Pastry</button>
+      <button class="tab" onclick="setTab(this)">Specialty</button>
+    </div>
+
+    <div class="menu-grid" id="menuGrid">
+      <!-- Cards generated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE / ABOUT -->
+<section class="feature" id="feature">
+  <div class="feature-visual">
+    <div class="feature-circles"></div>
+    <div class="feature-visual-inner">
+      <div class="barista-circle" style="overflow:hidden;background:none;">
+        <img src="https://images.unsplash.com/photo-1559496417-e7f25cb247f3?w=400&h=400&fit=crop&crop=faces" alt="Barista" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
+      </div>
+    </div>
+  </div>
+  <div class="feature-content">
+    <span class="section-tag">Exclusive Blends</span>
+    <h2 class="feature-title"><em>Arabica & Robusta</em><br>New Exclusive Coffee</h2>
+    <p class="feature-text">Our master roasters work tirelessly to develop exclusive blends that highlight the finest characteristics of both Arabica and Robusta beans. Each batch is small, intentional, and unforgettable.</p>
+    <div class="feature-phone"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <strong>Download price list</strong></div>
+    <div class="feature-phone"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.37 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <strong>+91 98765 43210</strong></div>
+    <div class="feature-btns">
+      <a href="#" class="btn-outline">Read More</a>
+      <a href="#" class="btn-primary">Visit Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- POPULAR MENU -->
+<section class="popular">
+  <div class="popular-inner">
+    <div class="section-header reveal">
+      <span class="section-tag">Best sellers</span>
+      <h2 class="section-title">Our Popular Menu</h2>
+      <p class="section-sub">Find some of the most popular coffee items in our menu. If you want to visit, our team please check here.</p>
+    </div>
+
+    <div class="popular-grid-wrap reveal">
+      <div class="popular-list" id="popularLeft"></div>
+      <div class="popular-list" id="popularRight"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="review">
+  <div class="testimonials-inner">
+    <div class="section-header reveal">
+      <span class="section-tag">Happy customers</span>
+      <h2 class="section-title">What Customer Says</h2>
+    </div>
+    <div class="test-grid reveal">
+      <div class="test-left">
+        <div class="quote-big">"</div>
+        <p class="test-quote">I've tried coffee from various places, but Brews & Co stands out from the rest. The quality and consistency of their blends are unmatched. Each cup is a flavour journey that takes my taste buds to new heights.</p>
+        <div class="test-author">
+          <div class="author-avatar" style="overflow:hidden;background:none;">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces" alt="Priya" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
+          </div>
+          <div>
+            <div class="stars">★★★★★</div>
+            <div class="author-name">Priya Sharma</div>
+            <div class="author-role">Regular Customer</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-right">
+        <div class="test-mini">
+          <div class="stars">★★★★★</div>
+          <p class="test-mini-text">The atmosphere is so cozy and the baristas really know their craft. Every single visit feels like a treat. The cold brew is absolutely exceptional — nothing else like it in the city.</p>
+          <div class="test-mini-author">
+            <div class="mini-avatar" style="overflow:hidden;background:none;">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=faces" alt="Arjun" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
+            </div>
+            <div>
+              <div class="mini-name">Arjun Mehta</div>
+              <div style="font-size:11px;color:var(--gray)">Food Blogger</div>
+            </div>
+          </div>
+        </div>
+        <div class="test-mini">
+          <div class="stars">★★★★★</div>
+          <p class="test-mini-text">From the moment you walk in, the aroma is intoxicating. I come here every morning before work. Their filter coffee reminds me of home. Highly recommend the Oren special latte!</p>
+          <div class="test-mini-author">
+            <div class="mini-avatar" style="overflow:hidden;background:none;">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=faces" alt="Neha" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
+            </div>
+            <div>
+              <div class="mini-name">Neha Patil</div>
+              <div style="font-size:11px;color:var(--gray)">Coffee Enthusiast</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="footer-logo">Brews <span>&</span> Co</span>
+      <p class="footer-tagline">A specialty coffee house dedicated to bringing you the finest single-origin brews and handcrafted drinks made with love and precision.</p>
+    </div>
+    <div>
+      <p class="footer-heading">Quick Links</p>
+      <ul class="footer-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Menu</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-heading">Services</p>
+      <ul class="footer-links">
+        <li><a href="#">Coffee Types</a></li>
+        <li><a href="#">Bean Varieties</a></li>
+        <li><a href="#">Coffee Pastry</a></li>
+        <li><a href="#">Coffee to Go</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-heading">Contact</p>
+      <ul class="footer-links">
+        <li><a href="#">12 Quiet Lane, Nashik</a></li>
+        <li><a href="#">+91 98765 43210</a></li>
+        <li><a href="#">hello@brewsco.in</a></li>
+        <li><a href="#">Mon–Sun: 7am–10pm</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Brews & Co. All rights reserved.</span>
+    <div class="social-row">
+      <a href="#" class="social-btn" title="Instagram">IG</a>
+      <a href="#" class="social-btn" title="Twitter">TW</a>
+      <a href="#" class="social-btn" title="Facebook">FB</a>
+      <a href="#" class="social-btn" title="YouTube">YT</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Menu data
+const menuItems = [
+  { name: 'Cafe Latte', desc: 'Espresso with steamed milk and a light layer of foam', price: '₹ 280', img: 'https://images.unsplash.com/photo-1561882468-9110e03e0f78?w=400&h=300&fit=crop&crop=center', badge: 'Popular' },
+  { name: 'Cappuccino', desc: 'Equal parts espresso, steamed milk, and thick foam', price: '₹ 260', img: 'https://images.unsplash.com/photo-1534040385115-33dcb3acba5b?w=400&h=300&fit=crop&crop=center', badge: null },
+  { name: 'Mocha', desc: 'Rich chocolate espresso with whipped cream topping', price: '₹ 310', img: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=400&h=300&fit=crop&crop=center', badge: 'New' },
+  { name: 'Americano', desc: 'Bold espresso diluted with hot water, clean and strong', price: '₹ 200', img: 'https://images.unsplash.com/photo-1521302080334-4bebac2763a6?w=400&h=300&fit=crop&crop=center', badge: null },
+  { name: 'Cold Brew', desc: '18-hour slow-steeped, smooth and low-acid', price: '₹ 290', img: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=300&fit=crop&crop=center', badge: 'Best' },
+  { name: 'Matcha Latte', desc: 'Ceremonial matcha whisked with steamed oat milk', price: '₹ 320', img: 'https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?w=400&h=300&fit=crop&crop=center', badge: null },
+];
+
+const grid = document.getElementById('menuGrid');
+menuItems.forEach(item => {
+  grid.innerHTML += `
+    <div class="menu-card reveal">
+      <div class="menu-img" style="padding:0;background:#e8d5b7;">
+        <img src="${item.img}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+        ${item.badge ? `<div class="menu-badge">${item.badge}</div>` : ''}
+      </div>
+      <div class="menu-body">
+        <div class="menu-name">${item.name}</div>
+        <div class="menu-desc">${item.desc}</div>
+        <div class="menu-footer">
+          <div class="menu-price">${item.price}</div>
+          <button class="btn-add" onclick="this.textContent='✓';this.style.background='#5c3317';setTimeout(()=>{this.textContent='+';this.style.background=''},1500)">+</button>
+        </div>
+      </div>
+    </div>`;
+});
+
+// Popular menu data
+const popular = [
+  { name: 'Americano Coffee', price: '$25', img: 'https://images.unsplash.com/photo-1521302080334-4bebac2763a6?w=100&h=100&fit=crop&crop=center' },
+  { name: "Japan's Coffee Grand", price: '$42', img: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=100&h=100&fit=crop&crop=center' },
+  { name: 'Vigin Coffee Greed', price: '$22', img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=100&h=100&fit=crop&crop=center' },
+  { name: 'Brazilian Roasted Coffee', price: '$35', img: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=100&h=100&fit=crop&crop=center' },
+  { name: 'Italian Roasted Coffee', price: '$25', img: 'https://images.unsplash.com/photo-1534040385115-33dcb3acba5b?w=100&h=100&fit=crop&crop=center' },
+  { name: 'Best Latte Macchiato', price: '$35', img: 'https://images.unsplash.com/photo-1561882468-9110e03e0f78?w=100&h=100&fit=crop&crop=center' },
+];
+
+popular.forEach((item, i) => {
+  const el = `
+    <div class="popular-item">
+      <div class="popular-thumb" style="overflow:hidden;background:var(--sand);">
+        <img src="${item.img}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
+      </div>
+      <div>
+        <div class="popular-name">${item.name}</div>
+        <div class="popular-desc">Fresh roasted · Specialty grade</div>
+      </div>
+      <div class="popular-price">${item.price}</div>
+    </div>`;
+  document.getElementById(i < 3 ? 'popularLeft' : 'popularRight').innerHTML += el;
+});
+
+// Tab switching
+function setTab(el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// Scroll reveal
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 60);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
