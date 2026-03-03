@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Glamoraa - HomePage</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- AOS CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="CSS/Glamoraa.css">
+  <style>
+    
+  /* shape divider css */
+    .custom-shape-divider-bottom-1755683366 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+  }
+
+.custom-shape-divider-bottom-1755683366 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 63px;
+}
+
+.custom-shape-divider-bottom-1755683366 .shape-fill {
+    fill: #FFFFFF;
+}
+
+.pink-text {
+  color: pink; /* or you can use hex code */
+  /* color: #ff69b4; */
+}
+
+
+/*about us -top-shape divider*/
+.custom-shape-divider-top-1755684287 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1755684287 svg {
+    position: relative;
+    display: block;
+    width: calc(102% + 1.3px);
+    height: 98px;
+}
+
+.custom-shape-divider-top-1755684287 .shape-fill {
+    fill: #FFFFFF;
+}
+
+/* about us botom-shape divider css */
+.custom-shape-divider-bottom-1755683740 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1755683740 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 49px;
+}
+
+.custom-shape-divider-bottom-1755683740 .shape-fill {
+    fill: #FFFFFF;
+}
+
+/*shape divider css*/
+.custom-shape-divider-bottom-1755684439 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1755684439 svg {
+    position: relative;
+    display: block;
+    width: calc(102% + 1.3px);
+    height: 56px;
+}
+
+.custom-shape-divider-bottom-1755684439 .shape-fill {
+    fill: #FFFFFF;
+}
+
+/* Enhanced Testimonial Styles */
+  .enhanced-testimonials {
+  position: relative;
+  min-height: 80vh;
+  background: linear-gradient(135deg, #f1efef 0%, #f3ebec 50%);
+  overflow: hidden;
+  padding: 80px 20px;
+}
+
+.enhanced-testimonials::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(184, 134, 134, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(204, 174, 147, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 40% 60%, rgba(255, 223, 186, 0.05) 0%, transparent 50%);
+  z-index: 1;
+}
+
+.testimonial-container-enhanced {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  height: 70vh;
+  min-height: 600px;
+  z-index: 2;
+}
+
+.main-title-enhanced {
+  text-align: center;
+  font-size: 3rem;
+  color: #e1aa8a;
+  margin-bottom: 60px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  z-index: 10;
+  position: relative;
+}
+
+.testimonial-card-enhanced {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(15px);
+  border-radius: 25px;
+  padding: 50px 40px;
+  max-width: 650px;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 
+              0 0 0 1px rgba(212, 165, 116, 0.2);
+  z-index: 10;
+  transition: all 0.4s ease;
+  border: 1px solid rgba(211, 104, 65, 0.2);
+}
+
+/* .testimonial-card-enhanced:hover {
+  transform: translate(-50%, -50%) scale(1.02);
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.4);
+  background: rgba(232, 164, 179, 0.15);
+  color: #2c3e50;
+} */
+
+.stars-enhanced {
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  color: #d4a574;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.client-name-enhanced {
+  font-size: 1.6rem;
+  color: #fff;
+  margin-bottom: 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.testimonial-text-enhanced {
+  font-size: 1.1rem;
+  color: #e0e0e0;
+  line-height: 1.7;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.client-photo-enhanced {
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid rgba(212, 165, 116, 0.8);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  overflow: hidden;
+  background: #2d2d2d;
+}
+
+.client-photo-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(212, 165, 116, 0.2), transparent);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.client-photo-enhanced:hover::before {
+  opacity: 1;
+}
+
+.client-photo-enhanced:hover {
+  transform: scale(1.15);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  border-color: #d4a574;
+}
+
+.client-photo-enhanced img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+.client-photo-enhanced:hover img {
+  transform: scale(1.1);
+}
+
+.photo-1 {
+  top: 12%;
+  left: 8%;
+  width: 140px;
+  height: 140px;
+}
+
+.photo-2 {
+  top: 8%;
+  right: 15%;
+  width: 120px;
+  height: 120px;
+}
+
+.photo-3 {
+  top: 35%;
+  left: 3%;
+  width: 100px;
+  height: 100px;
+}
+
+.photo-4 {
+  top: 30%;
+  right: 5%;
+  width: 130px;
+  height: 130px;
+}
+
+.photo-5 {
+  bottom: 28%;
+  left: 12%;
+  width: 115px;
+  height: 115px;
+}
+
+.photo-6 {
+  bottom: 25%;
+  right: 10%;
+  width: 105px;
+  height: 105px;
+}
+
+.photo-7 {
+  bottom: 8%;
+  left: 28%;
+  width: 95px;
+  height: 95px;
+}
+
+.photo-8 {
+  bottom: 12%;
+  right: 32%;
+  width: 125px;
+  height: 125px;
+}
+
+.pagination-dots-enhanced {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+  z-index: 20;
+}
+
+.dot-enhanced {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(212, 165, 116, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.dot-enhanced.active {
+  background: #d4a574;
+  transform: scale(1.3);
+  box-shadow: 0 0 20px rgba(212, 165, 116, 0.6);
+}
+
+.dot-enhanced:hover {
+  background: rgba(212, 165, 116, 0.8);
+  transform: scale(1.2);
+}
+    
+    /* Enhanced About Cards Styles */
+    .about-cards {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 50px;
+    }
+
+    .enhanced-card {
+      position: relative;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px 30px;
+      width: 320px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 
+                  0 5px 15px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .enhanced-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(212, 165, 116, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .enhanced-card:hover::before {
+      left: 100%;
+    }
+
+    .enhanced-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 
+                  0 10px 30px rgba(212, 165, 116, 0.2);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8));
+    }
+
+    .card-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 25px;
+      background: linear-gradient(135deg, #d4a574, #b8925c);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(212, 165, 116, 0.3);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-icon::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transform: rotate(45deg);
+      transition: all 0.3s ease;
+      opacity: 0;
+    }
+
+    .enhanced-card:hover .card-icon::before {
+      opacity: 1;
+      animation: shimmer 0.8s ease-in-out;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+
+    .card-icon i {
+      font-size: 2.2rem;
+      color: #fff;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* .enhanced-card:hover .card-icon {
+      transform: scale(1.1) rotateY(360deg);
+      box-shadow: 0 15px 35px rgba(212, 165, 116, 0.4);
+    } */
+
+    .card-content {
+      position: relative;
+      z-index: 2;
+      color: rgb(10, 10, 10);
+    }
+
+    .enhanced-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      font-family: 'Playfair Display', serif;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    /* .enhanced-card h3::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #d4a574, #b8925c);
+      border-radius: 2px;
+      transition: width 0.4s ease;
+    }
+
+    .enhanced-card:hover h3::after {
+      width: 60px;
+    } */
+
+    /* .enhanced-card:hover h3 {
+      color: #d4a574;
+    } */
+
+  .enhanced-card .card-content h3,
+  .enhanced-card .card-content p {
+  color: #000; /* pure black */
+  }
+
+  .about-content p {
+  color: #fff; 
+  }
+
+
+    .enhanced-card p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.6;
+      margin: 0;
+      font-weight: 400;
+      transition: color 0.3s ease;
+    }
+
+    /* .enhanced-card:hover p {
+      color: #333;
+    } */
+
+    .card-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(212, 165, 116, 0.05), rgba(184, 146, 134, 0.05));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 20px;
+    }
+
+    /* .enhanced-card:hover .card-overlay {
+      opacity: 1;
+    } */
+
+    /* Responsive design for enhanced cards */
+    @media (max-width: 1024px) {
+      .about-cards {
+        gap: 20px;
+      }
+      
+      .enhanced-card {
+        width: 280px;
+        padding: 35px 25px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .about-cards {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+      }
+      
+      .enhanced-card {
+        width: 100%;
+        max-width: 300px;
+        padding: 30px 20px;
+      }
+
+      .card-icon {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 20px;
+      }
+
+      .card-icon i {
+        font-size: 1.8rem;
+      }
+
+      .enhanced-card h3 {
+        font-size: 1.3rem;
+      }
+
+      .enhanced-card p {
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Responsive design for enhanced testimonials */
+    @media (max-width: 1024px) {
+      .main-title-enhanced {
+        font-size: 2.5rem;
+      }
+
+      .testimonial-card-enhanced {
+        max-width: 380px;
+        padding: 40px 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .main-title-enhanced {
+        font-size: 2rem;
+        margin-bottom: 60px;
+      }
+
+      .testimonial-card-enhanced {
+        max-width: 320px;
+        padding: 35px 25px;
+      }
+
+      .client-photo-enhanced {
+        width: 80px !important;
+        height: 80px !important;
+      }
+    }
+
+    /**shape divider css*/
+    .custom-shape-divider-bottom-1755686470 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1755686470 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 49px;
+}
+
+.custom-shape-divider-bottom-1755686470 .shape-fill {
+    fill: #FFFFFF;
+}
+  </style>
+ <link rel="stylesheet" href="../../assets/css/index.css"/>
+</head>
+
+<body> 
+  <!-- Navigation Bar -->
+  <header data-aos="fade-down">
+    <nav class="navbar">
+      <ul class="nav-links">
+        <li><a href="#">HOME</a></li>
+        <li><a href="#explore">SALON</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="javascript:void(0)" onclick="openLoginModal()">LOGIN</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="overlay"></div>
+    
+    <div class="hero-content" data-aos="fade-right">
+      <h1 style="text-shadow: 4px 4px 6px #3b312e;">GLAMORAA</h1>
+      <p style="font-family: playfair; font-size: 20px; text-shadow: 4px 4px 6px #3b312e;">
+        Experience premium salon services with expert stylists.
+        GLAMORAA is your all-in-one salon ERP system — manage bookings,
+        updates, and multiple salons with ease. Simple. Smart. Seamless beauty
+        management.
+      </p>
+      <a href="javascript:void(0)" onclick="openRegisterModal()" class="btn">GET STARTED</a>
+    </div>
+
+    <!--shape divider code-->
+    <div class="custom-shape-divider-bottom-1755683366">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+    </svg>
+</div>
+  </section>
+  <br id="explore">
+  <!-- Explore Section -->
+  <section class="explore" id="explore">
+      <h2 style="color: rgb(213, 139, 113);">EXPLORE SERVICES FROM SALONS ASSOCIATED WITH US</h2>
+        <div class="swiper mySwiper">
+
+            <div class="swiper-wrapper">
+  <!-- IBT Salon -->
+  <div class="swiper-slide">
+    <a href="ibt.html" class="salon-link">
+      <div class="salon-card-container">
+        <div class="salon-card">
+          <img src="image/IBT.jpg" alt="IBT Beauty Studio">
+        </div>
+        <h3 class="salon-name">IBT International Beauty Academy</h3>
+        <p class="salon-description">Premium Beauty Services</p>
+      </div>
+    </a>
+  </div>
+
+  <!-- Pratik Harish Salon -->
+  <div class="swiper-slide">
+    <a href="#" class="salon-link">
+      <div class="salon-card-container">
+        <div class="salon-card">
+          <img src="image/Pratik_Harish.jpg" alt="Pratik & Harish Studio">
+        </div>
+        <h3 class="salon-name">Pratik & Harish</h3>
+        <p class="salon-description">Professional Hair & Beauty</p>
+      </div>
+    </a>
+  </div>
+
+  <!-- Bhakti Salon -->
+  <div class="swiper-slide">
+    <a href="" class="salon-link">
+      <div class="salon-card-container">
+        <div class="salon-card">
+          <img src="image/Bhaktisalon.jpeg" alt="Bhakti Makeup Studio">
+        </div>
+        <h3 class="salon-name">Bhakti Makeup Studio</h3>
+        <p class="salon-description">Makeup & Beauty Experts</p>
+      </div>
+    </a>
+  </div>
+
+  <!-- Swamini Beauty -->
+  <div class="swiper-slide">
+    <a href="#" class="salon-link">
+      <div class="salon-card-container">
+        <div class="salon-card">
+          <img src="image/swamini.jpg" alt="Swamini Beauty">
+        </div>
+        <h3 class="salon-name">Swamini Beauty</h3>
+        <p class="salon-description">Complete Beauty Solutions</p>
+      </div>
+    </a>
+  </div>
+</div>
+            
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- Shape divider bottom -->
+        <div class="custom-shape-divider-bottom">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </section>
+
+  <!-- About Us Section -->
+  <section class="about-us" id="about">
+
+    <div class="about-overlay"></div>
+    <div class="about-content">
+      <h2 data-aos="zoom-in" >ABOUT US</h2>
+      <p data-aos="fade-up">
+        Glamoraa is a smart and reliable platform that connects customers with trusted salons across the city.
+        Our goal is to make salon booking simple, fast, and stress-free for everyone.
+      </p>
+      <div class="about-cards">
+        <div class="enhanced-card" data-aos="flip-left">
+          <div class="card-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="card-content">
+            <h3>Book in Seconds</h3>
+            <p>Book your salon service in just a few taps—on mobile or desktop. It's fast, easy, and made for everyone.</p>
+          </div>
+          <div class="card-overlay"></div>
+        </div>
+        <div class="enhanced-card" data-aos="flip-left">
+          <div class="card-icon">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <div class="card-content">
+            <h3>No More Waiting</h3>
+            <p>Pick your service, date, and time before you go. Save time and skip the hassle at the salon.</p>
+          </div>
+          <div class="card-overlay"></div>
+        </div>
+        <div class="enhanced-card" data-aos="flip-left">
+          <div class="card-icon">
+            <i class="fas fa-spa"></i>
+          </div>
+          <div class="card-content">
+            <h3>All in One Place</h3>
+            <p>Hair, skin, grooming, and more — all from trusted salons. Glamoraa makes beauty booking simple and stress-free.</p>
+          </div>
+          <div class="card-overlay"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="custom-shape-divider-bottom-1755683740">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+    </svg>
+</div>
+  </section>
+
+  <!-- Enhanced Customer Feedback Section -->
+  <section class="enhanced-testimonials" data-aos="fade-up">
+    <div class="testimonial-container-enhanced">
+      <h2 class="main-title-enhanced">What Clients Say</h2>
+      
+      <!-- Client Photos positioned around the testimonial -->
+      <div class="client-photo-enhanced photo-1">
+        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face" alt="Client 1">
+      </div>
+      
+      <div class="client-photo-enhanced photo-2">
+        <img src="https://images.unsplash.com/photo-1494790108755-2616b2ad0d0b?w=150&h=150&fit=crop&crop=face" alt="Client 2">
+      </div>
+      
+      <div class="client-photo-enhanced photo-3">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="Client 3">
+      </div>
+      
+      <div class="client-photo-enhanced photo-4">
+        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face" alt="Client 4">
+      </div>
+      
+      <div class="client-photo-enhanced photo-5">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face" alt="Client 5">
+      </div>
+      
+      <div class="client-photo-enhanced photo-6">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face" alt="Client 6">
+      </div>
+      
+      <div class="client-photo-enhanced photo-7">
+        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" alt="Client 7">
+      </div>
+      
+      <div class="client-photo-enhanced photo-8">
+        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face" alt="Client 8">
+      </div>
+      
+      <!-- Central Testimonial Card -->
+      <div class="testimonial-card-enhanced" id="testimonialCard">
+        <div class="stars-enhanced">★ ★ ★ ★ ★</div>
+        <div class="client-name-enhanced" id="clientName">Priya Sharma</div>
+        <div class="testimonial-text-enhanced" id="testimonialText">
+          "User-friendly and fast! Booking appointments has never been easier."
+        </div>
+      </div>
+      
+      <!-- Pagination dots -->
+      <div class="pagination-dots-enhanced">
+        <div class="dot-enhanced active" onclick="changeTestimonial(0)"></div>
+        <div class="dot-enhanced" onclick="changeTestimonial(1)"></div>
+        <div class="dot-enhanced" onclick="changeTestimonial(2)"></div>
+      </div>
+    </div>
+
+    <!--shape divider botom-->
+    <!-- <div class="custom-shape-divider-bottom-1755686470">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+    </svg>
+    </div> -->
+  </section>
+  
+  <!-- Footer Section -->
+  <footer>
+    <div class="container">
+      <div class="row text-center text-md-start">
+        <div class="col-md-3 mb-4">
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 28px;">GLAMORAA</h2>
+          <p>Empowering Salons, <br>Elevating Beauty.</p>
+        </div>
+        <div class="col-md-3 mb-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white">Home</a></li>
+            <li><a href="#" class="text-white">Salon</a></li>
+            <li><a href="#" class="text-white">About Us</a></li>
+            <li><a href="#" class="text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 mb-4">
+          <h5>Contact Us</h5>
+          <p><i class="fas fa-map-marker-alt"></i> Nashik, Maharashtra</p>
+          <p><i class="fas fa-phone"></i> <a href="tel:9699823716" class="text-white">9699823716</a></p>
+          <p><i class="fas fa-envelope"></i> <a href="mailto:info@glamora.com" class="text-white">info@glamora.com</a></p>
+          <p><i class="fas fa-envelope"></i> <a href="mailto:info@glamora.com" class="text-white">www.solz.com</a></p>
+        </div>
+        <div class="col-md-3 mb-4">
+          <h5>Follow Us</h5>
+          <div class="d-flex gap-3 fs-4">
+            <a href="#" class="text-white"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4">@ GLAMORAA Salon ERP | All rights reserved | Infinity Techno Solutions.</div>
+    </div>
+  </footer>
+
+  <!-- Login Modal -->
+<div id="loginModal" class="modal" style="display: none;">
+  <div class="modal-content login-container">
+    <span class="close" onclick="closeLoginModal()">&times;</span>
+    <h2>Glamora Login</h2>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="username">Email or Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username or email" required />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Enter your password" required />
+      </div>
+
+      <div class="show-password">
+  <label class="checkbox-label">
+    <input type="checkbox" onclick="togglePassword()" />
+    <span>Show Password</span>
+  </label>
+  <a href="javascript:void(0);" onclick="openEmailVerificationModal()" class="forgot-link">Forgot Password?</a>
+  </div>
+
+    <button type="submit" class="btn-login">Login</button>
+    </form>
+
+    <div class="footer-text">
+    New user? <a href="javascript:void(0);" onclick="openRegisterModal()" style="color: #0077B6;">Register</a>
+    </div>
+
+    <div class="footer-text">@ Glamoraa Salon ERP | All rights reserved| Infinity Techno Solutions</div>
+  </div>
+</div>
+
+<!-- Registration Modal -->
+<div id="registerModal" class="modal" style="display: none;">
+  <div class="modal-content login-container">
+    <span class="close" onclick="closeRegisterModal()">&times;</span>
+    <h2>Customer Registration</h2>
+    <form id="registrationForm">
+      <div class="form-group">
+        <label>Customer ID</label>
+        <input type="text" value="Auto Generated" readonly />
+      </div>
+
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" name="fullName" placeholder="Enter full name" required />
+      </div>
+
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" name="email" placeholder="example@email.com" required />
+      </div>
+
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" name="phoneNumber" placeholder="Enter phone number" required />
+      </div>
+
+      <div class="form-group">
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dob" placeholder="Enter Date of Birth" required />
+      </div>
+
+      <div class="form-group">
+        <label>Anniversary Date</label>
+        <input type="date" name="Anniversary Date" placeholder="Anniversary Date" required />
+      </div>
+
+      <div class="form-group">
+        <label>Gender</label>
+        <select name="gender" required>
+          <option value="">Select</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required />
+      </div>
+
+      <div class="show-password">
+        <label class="checkbox-label">
+          <input type="checkbox" onclick="togglePassword()" />
+          <span>Show Password</span>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>Created At</label>
+        <input type="datetime-local" id="createdAt" readonly />
+      </div>
+
+      <button type="submit" class="btn-login">Register</button>
+    </form>
+
+    <div class="footer-text">
+  Already registered? <a href="javascript:void(0);" onclick="openLoginModal()" style="color: #0077B6;">Login</a>
+</div>
+
+    <div class="footer-text">© 2025 Glamoraa Salon ERP | All rights reserved</div>
+  </div>
+</div>
+
+<!-- 🔐 Email Verification Modal -->
+<div id="emailVerificationModal" class="modal" style="display: none;">
+  <div class="modal-content login-container">
+    <span class="close" onclick="closeEmailVerificationModal()">&times;</span>
+    <h2>Glamora Email Verification</h2>
+    <form id="emailVerificationForm">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your registered email" required />
+      </div>
+      <button type="button" class="btn-login" id="sendOtpBtn" onclick="sendOtp()">Send OTP</button>
+
+      <div class="form-group" id="otpSection" style="display: none; margin-top: 20px;">
+        <label for="otp">Enter OTP</label>
+        <input type="text" id="otp" name="otp" placeholder="Enter OTP" required />
+        <button type="button" class="btn-login" style="margin-top: 10px;" onclick="verifyOtp()">Verify OTP</button>
+      </div>
+    </form>
+
+    <div class="footer-text">
+      Already have an account?
+      <a href="javascript:void(0);" onclick="openLoginModal()" style="color: #0077B6;">Login</a>
+    </div>
+
+    <div class="footer-text">© 2025 Glamoraa Salon ERP | All rights reserved</div>
+  </div>
+</div>
+
+<!-- Reset Password Modal -->
+<div id="resetPasswordModal" class="modal" style="display: none;">
+  <div class="modal-content login-container">
+    <span class="close" onclick="closeResetPasswordModal()">&times;</span>
+    <h2>Reset Password</h2>
+
+    <form id="resetPasswordForm">
+      <div class="form-group">
+        <label for="newPassword">New Password</label>
+        <input type="password" id="newPassword" name="newPassword" placeholder="Enter new password" required />
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password" required />
+      </div>
+      <div class="form-group show-password">
+        <label class="checkbox-label">
+          <input type="checkbox" onclick="toggleResetPasswordVisibility()" />
+          <span>Show Password</span>
+        </label>
+      </div>
+      <button type="submit" class="btn-login">Reset Password</button>
+    </form>
+  </div>
+</div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Enhanced Testimonial JavaScript
+    const testimonials = [
+      {
+        name: "Priya Sharma",
+        stars: "★ ★ ★ ★ ★",
+        text: "User-friendly and fast! Booking appointments has never been easier."
+      },
+      {
+        name: "Rajesh Mehta",
+        stars: "★ ★ ★ ★ ☆",
+        text: "Great platform to discover verified salons nearby."
+      },
+      {
+        name: "Ananya Patel",
+        stars: "★ ★ ★ ★ ★",
+        text: "Professional service with attention to every detail. The hair treatment and styling exceeded my expectations."
+      }
+    ];
+
+    let currentTestimonial = 0;
+
+    function changeTestimonial(index) {
+      const card = document.getElementById('testimonialCard');
+      const dots = document.querySelectorAll('.dot-enhanced');
+      
+      // Remove active class from all dots
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[index].classList.add('active');
+      
+      // Add fade effect
+      card.style.opacity = '0';
+      card.style.transform = 'translate(-50%, -50%) scale(0.95)';
+      
+      setTimeout(() => {
+        // Update content
+        document.getElementById('clientName').textContent = testimonials[index].name;
+        document.querySelector('.stars-enhanced').textContent = testimonials[index].stars;
+        document.getElementById('testimonialText').textContent = testimonials[index].text;
+        
+        // Fade back in
+        card.style.opacity = '1';
+        card.style.transform = 'translate(-50%, -50%) scale(1)';
+      }, 300);
+      
+      currentTestimonial = index;
+    }
+
+    // Auto-rotate testimonials
+    setInterval(() => {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      changeTestimonial(currentTestimonial);
+    }, 6000);
+
+    // Add click handlers to client photos
+    document.querySelectorAll('.client-photo-enhanced').forEach((photo, index) => {
+      photo.addEventListener('click', () => {
+        if (index < testimonials.length) {
+          changeTestimonial(index);
+        }
+      });
+    });
+
+    // Add smooth entrance animations
+    window.addEventListener('load', () => {
+      const photos = document.querySelectorAll('.client-photo-enhanced');
+      photos.forEach((photo, index) => {
+        photo.style.opacity = '0';
+        photo.style.transform = 'scale(0.5)';
+        
+        setTimeout(() => {
+          photo.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+          photo.style.opacity = '1';
+          photo.style.transform = 'scale(1)';
+        }, index * 150);
+      });
+    });
+
+
+    // Initialize Swiper
+        const swiper = new Swiper('.mySwiper', {
+            slidesPerView: 'auto',
+            spaceBetween: 40,
+            centeredSlides: false,
+            loop: true,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                    centeredSlides: true,
+                },
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                    centeredSlides: false,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 35,
+                },
+                1200: {
+                    slidesPerView: 4,
+                    spaceBetween: 40,
+                }
+            },
+            effect: 'slide',
+            speed: 800,
+            grabCursor: true,
+        });
+
+        // Add loading animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.salon-card-container');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+
+        // Set initial state for loading animation
+        const cards = document.querySelectorAll('.salon-card-container');
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+        });
+
+        //GET STARTED -> Regustered Button Js
+        // Function to open registration modal
+function openRegisterModal() {
+  closeLoginModal(); // Close login modal if open
+  closeEmailVerificationModal(); // Close email verification modal if open
+  document.getElementById('registerModal').style.display = 'flex';
+}
+
+// Function to close registration modal
+function closeRegisterModal() {
+  document.getElementById('registerModal').style.display = 'none';
+}
+
+// Make sure you have these other modal functions too
+function openLoginModal() {
+  closeRegisterModal(); // Close registration modal if open
+  closeEmailVerificationModal(); // Close email verification modal if open
+  document.getElementById('loginModal').style.display = 'flex';
+}
+
+function closeLoginModal() {
+  document.getElementById('loginModal').style.display = 'none';
+}
+
+function openEmailVerificationModal() {
+  closeLoginModal(); // Close login modal if open
+  closeRegisterModal(); // Close registration modal if open
+  document.getElementById('emailVerificationModal').style.display = 'flex';
+}
+
+function closeEmailVerificationModal() {
+  document.getElementById('emailVerificationModal').style.display = 'none';
+}
+
+function closeResetPasswordModal() {
+  document.getElementById('resetPasswordModal').style.display = 'none';
+}
+
+// Close modal when clicking outside of it
+window.onclick = function(event) {
+  const loginModal = document.getElementById('loginModal');
+  const registerModal = document.getElementById('registerModal');
+  const emailModal = document.getElementById('emailVerificationModal');
+  const resetModal = document.getElementById('resetPasswordModal');
+  
+  if (event.target == loginModal) {
+    closeLoginModal();
+  }
+  if (event.target == registerModal) {
+    closeRegisterModal();
+  }
+  if (event.target == emailModal) {
+    closeEmailVerificationModal();
+  }
+  if (event.target == resetModal) {
+    closeResetPasswordModal();
+  }
+}
+
+// Set current date and time for registration
+document.addEventListener('DOMContentLoaded', function() {
+  const now = new Date();
+  const formattedDateTime = now.toISOString().slice(0, 16);
+  const createdAtField = document.getElementById('createdAt');
+  if (createdAtField) {
+    createdAtField.value = formattedDateTime;
+  }
+});
+
+// Toggle password visibility
+function togglePassword() {
+  const passwordField = document.getElementById('password');
+  const checkbox = event.target;
+  
+  if (checkbox.checked) {
+    passwordField.type = 'text';
+  } else {
+    passwordField.type = 'password';
+  }
+}
+
+// Toggle reset password visibility
+function toggleResetPasswordVisibility() {
+  const newPasswordField = document.getElementById('newPassword');
+  const confirmPasswordField = document.getElementById('confirmPassword');
+  const checkbox = event.target;
+  
+  if (checkbox.checked) {
+    newPasswordField.type = 'text';
+    confirmPasswordField.type = 'text';
+  } else {
+    newPasswordField.type = 'password';
+    confirmPasswordField.type = 'password';
+  }
+}
+
+// OTP functions
+function sendOtp() {
+  const email = document.getElementById('email').value;
+  if (email) {
+    // Add your OTP sending logic here
+    document.getElementById('otpSection').style.display = 'block';
+    alert('OTP sent to your email!');
+  } else {
+    alert('Please enter your email address.');
+  }
+}
+
+function verifyOtp() {
+  const otp = document.getElementById('otp').value;
+  if (otp) {
+    // Add your OTP verification logic here
+    closeEmailVerificationModal();
+    document.getElementById('resetPasswordModal').style.display = 'flex';
+  } else {
+    alert('Please enter the OTP.');
+  }
+}
+  </script>
+  <script src="script/Glamoraa.js"></script>
+</body>
+</html>

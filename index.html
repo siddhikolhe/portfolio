@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Siddhi Kolhe — Full Stack Developer</title>
+<meta name="description" content="Full Stack Developer from Nashik, India. Specialising in React, ASP.NET Core, and end-to-end product delivery."/>
+
+<!--
+  ╔══════════════════════════════════════════════════════╗
+  ║  GOOGLE FONTS                                        ║
+  ║  • Cormorant Garamond — elegant serif (logo, tags)   ║
+  ║  • Space Mono         — monospace (labels, code)     ║
+  ║  • Fraunces           — display serif (marquee)      ║
+  ║  • Playfair Display   — headline serif (titles)      ║
+  ║  • DM Sans            — clean sans (body text)       ║
+  ╚══════════════════════════════════════════════════════╝
+-->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+<!-- All styles in external stylesheet -->
+<!-- 
+  PATH OPTIONS — use whichever matches your folder structure:
+  If style.css is in same folder as index.html:  href="style.css"
+  If inside a CSS/ folder:                       href="CSS/portfolio.css"
+-->
+<link rel="stylesheet" href="Design/CSS/portfolio.css"/>
+</head>
+
+<body class="theme-golden-white">
+
+<!-- Custom cursor -->
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="curRing"></div>
+
+<!-- Scroll progress bar -->
+<div class="scroll-line" id="scrollLine"></div>
+
+
+<!-- ════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════ -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">Siddhi Kolhe</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#designs">Designs</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="theme-switcher">
+    <div class="theme-dot dot-gw active" data-theme="theme-golden-white" title="Golden & White"></div>
+    <div class="theme-dot dot-gray" data-theme="theme-gray-minimal" title="Gray Minimal"></div>
+    <div class="theme-dot dot-dark" data-theme="theme-dark" title="Dark Gold"></div>
+  </div>
+</nav>
+
+
+<!-- ════════════════════════════════════════
+     HERO SECTION
+════════════════════════════════════════ -->
+<section class="hero" id="home">
+
+  <div class="hero-text">
+    <p class="hero-eyebrow">Full Stack Developer · Nashik, India</p>
+
+    <h1 class="hero-name">
+      <span class="first">Siddhi</span>
+      <span class="last">Kolhe.</span>
+    </h1>
+
+    <p class="hero-role">React · ASP.NET Core · UI/UX</p>
+
+    <p class="hero-desc">
+      Results-driven developer with 14+ months crafting scalable web applications.
+      Specialising in React frontends, REST APIs, and end-to-end product delivery.
+    </p>
+
+    <div class="hero-cta">
+      <a href="#projects" class="btn-solid">View Work</a>
+      <a href="Siddhi_Kolhe_Resume .docx" target="_blank" class="btn-ghost">Download CV ↓</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-glow"></div>
+    <div class="hero-frame">
+      <div class="hero-img hero-code-visual">
+        <div class="code-window">
+          <div class="code-topbar">
+            <span class="dot dot-r"></span>
+            <span class="dot dot-y"></span>
+            <span class="dot dot-g"></span>
+            <span class="code-filename">portfolio.jsx</span>
+          </div>
+          <div class="code-body" id="codeBody"></div>
+        </div>
+      </div>
+      <div class="ftag t1">Available · 2025</div>
+      <div class="ftag t2">Frontend & Backend</div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ════════════════════════════════════════
+     STATS BAR
+════════════════════════════════════════ -->
+<div class="hero-stats">
+  <div class="hstat">
+    <div class="hstat-num">14<span style="font-size:24px">+</span></div>
+    <div class="hstat-label">Months Experience</div>
+  </div>
+  <div class="hstat">
+    <div class="hstat-num">5<span style="font-size:24px">+</span></div>
+    <div class="hstat-label">Projects Shipped</div>
+  </div>
+  <div class="hstat">
+    <div class="hstat-num">2</div>
+    <div class="hstat-label">Tech Stacks Mastered</div>
+  </div>
+  <div class="hstat">
+    <div class="hstat-num">MCS</div>
+    <div class="hstat-label">Master's Degree</div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     MARQUEE
+════════════════════════════════════════ -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>React</span><span>·</span>
+    <span>ASP.NET Core</span><span>·</span>
+    <span>Tailwind CSS</span><span>·</span>
+    <span>JavaScript</span><span>·</span>
+    <span>Figma</span><span>·</span>
+    <span>TypeScript</span><span>·</span>
+    <!-- Duplicate for seamless loop -->
+    <span>React</span><span>·</span>
+    <span>ASP.NET Core</span><span>·</span>
+    <span>Node.js</span><span>·</span>
+    <span>SQL Server</span><span>·</span>
+    <span>Figma</span><span>·</span>
+    <span>TypeScript</span><span>·</span>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     ABOUT SECTION
+════════════════════════════════════════ -->
+<section id="about">
+  <div class="about-grid">
+
+    <div class="about-left">
+      <p class="sec-label reveal">About Me</p>
+      <h2 class="sec-title reveal">
+        Building with <em>purpose</em>,<br>designing with care.
+      </h2>
+
+      <p class="about-text reveal">
+        I'm a Full Stack Developer from Nashik with 14+ months of hands-on experience
+        building scalable web applications. I specialise in React-based frontends paired
+        with robust ASP.NET Core / C# backends.
+      </p>
+      <p class="about-text reveal">
+        Key contributor to <strong style="color:var(--gold)">GLAMORAA</strong> — a multi-tenant
+        Salon ERP platform — where I owned end-to-end frontend development from UI/UX design
+        to REST API integration. I also mentor interns and drive Agile sprint cycles.
+      </p>
+
+      <div class="about-stat-row reveal">
+        <div class="stat-block">
+          <div class="stat-num">14<span style="font-size:28px">+</span></div>
+          <div class="stat-label">Months Exp.</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Projects</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">MCS</div>
+          <div class="stat-label">Master's</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-right">
+      <div class="skills-group reveal">
+        <div class="skill-group-label">Frontend</div>
+        <div class="skill-pills">
+          <span class="skill-pill">React.js</span>
+          <span class="skill-pill">JavaScript ES6+</span>
+          <span class="skill-pill">HTML5 / CSS3</span>
+          <span class="skill-pill">Tailwind CSS</span>
+          <span class="skill-pill">Bootstrap</span>
+          <span class="skill-pill">Figma</span>
+          <span class="skill-pill">Responsive UI</span>
+        </div>
+      </div>
+      <div class="skills-group reveal">
+        <div class="skill-group-label">Backend</div>
+        <div class="skill-pills">
+          <span class="skill-pill">C# · ASP.NET Core</span>
+          <span class="skill-pill">REST API Design</span>
+          <span class="skill-pill">JWT Auth</span>
+          <span class="skill-pill">RBAC</span>
+        </div>
+      </div>
+      <div class="skills-group reveal">
+        <div class="skill-group-label">Tools & Practices</div>
+        <div class="skill-pills">
+          <span class="skill-pill">SQL Server</span>
+          <span class="skill-pill">Git / GitHub</span>
+          <span class="skill-pill">Agile / Scrum</span>
+          <span class="skill-pill">Code Review</span>
+          <span class="skill-pill">VS Code</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     PROJECTS SECTION
+     Light/White card design with SVG icons
+     Browser chrome bar + coloured visual per project
+════════════════════════════════════════ -->
+<div class="projects-bg" id="projects">
+  <p class="sec-label reveal">Selected Work</p>
+  <h2 class="sec-title reveal">Things I've<br><em>built.</em></h2>
+
+  <div class="proj-grid">
+
+    <!-- CARD 1 — GLAMORAA (Featured, spans 2 cols) -->
+    <div class="proj-card featured reveal" onclick="window.open('https://siddhikolhe.github.io/Glamoraa-Frontend/','_blank')">
+      <div class="proj-browser-bar">
+        <div class="proj-dot r"></div>
+        <div class="proj-dot y"></div>
+        <div class="proj-dot g"></div>
+        <div class="proj-url-bar">glamoraa-erp.app</div>
+      </div>
+      <div class="proj-visual visual-glamoraa">
+        <!-- Salon / Scissors icon -->
+        <svg class="proj-icon" width="110" height="110" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="30" cy="80" r="14" stroke="#9B59B6" stroke-width="2" fill="rgba(155,89,182,0.08)"/>
+          <circle cx="80" cy="80" r="14" stroke="#9B59B6" stroke-width="2" fill="rgba(155,89,182,0.08)"/>
+          <line x1="55" y1="52" x2="30" y2="80" stroke="#9B59B6" stroke-width="2.5"/>
+          <line x1="55" y1="52" x2="80" y2="80" stroke="#9B59B6" stroke-width="2.5"/>
+          <line x1="55" y1="52" x2="55" y2="22" stroke="#9B59B6" stroke-width="2.5"/>
+          <circle cx="55" cy="52" r="7" fill="#9B59B6" opacity="0.8"/>
+          <polyline points="42,22 49,12 55,18 61,12 68,22" stroke="#B8935A" stroke-width="2" fill="none"/>
+          <circle cx="55" cy="52" r="12" stroke="#9B59B6" stroke-width="1" fill="none" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="proj-content">
+        <div class="proj-tags">
+          <span class="ptag">React.js</span>
+          <span class="ptag">ASP.NET Core</span>
+          <span class="ptag">SQL Server</span>
+          <span class="ptag">Role-Based Auth</span>
+          <span class="ptag">Multi-Tenant</span>
+        </div>
+        <h3 class="proj-title">GLAMORAA — Salon ERP System</h3>
+        <p class="proj-desc">A full-stack multi-tenant Salon ERP built with React.js and ASP.NET Core. Handles complete salon operations — appointment scheduling, billing & invoicing, staff management, and inventory tracking. Features role-based access control (RBAC) with three distinct user roles: Admin, Staff, and Manager, each with tailored dashboards and permissions. I led the entire frontend architecture from design to deployment.</p>
+      </div>
+      <div class="proj-footer">
+        <a class="proj-link" href="https://siddhikolhe.github.io/Glamoraa-Frontend/" target="_blank" onclick="event.stopPropagation()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 8L8 2M8 2H4M8 2V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+        <div class="proj-arrow">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2V7" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2 — SaaS Analytics Dashboard -->
+    <div class="proj-card reveal" onclick="window.open('https://siddhikolhe.github.io/pulse-dashboard/','_blank')">
+      <div class="proj-browser-bar">
+        <div class="proj-dot r"></div>
+        <div class="proj-dot y"></div>
+        <div class="proj-dot g"></div>
+        <div class="proj-url-bar">pulse-dashboard.app</div>
+      </div>
+      <div class="proj-visual visual-saas">
+        <!-- Dashboard / Bar chart icon -->
+        <svg class="proj-icon" width="90" height="90" viewBox="0 0 100 100" fill="none">
+          <rect x="8" y="12" width="84" height="60" rx="6" stroke="#4A90D9" stroke-width="2" fill="rgba(74,144,217,0.05)"/>
+          <line x1="8" y1="26" x2="92" y2="26" stroke="#4A90D9" stroke-width="1.5" opacity="0.3"/>
+          <rect x="18" y="38" width="10" height="26" rx="2" fill="#4A90D9" opacity="0.25"/>
+          <rect x="33" y="44" width="10" height="20" rx="2" fill="#4A90D9" opacity="0.45"/>
+          <rect x="48" y="32" width="10" height="32" rx="2" fill="#4A90D9" opacity="0.7"/>
+          <rect x="63" y="40" width="10" height="24" rx="2" fill="#4A90D9" opacity="0.45"/>
+          <polyline points="18,44 33,38 48,30 63,42 78,34" stroke="#4A90D9" stroke-width="2" fill="none"/>
+          <circle cx="18" cy="44" r="3" fill="#4A90D9"/>
+          <circle cx="48" cy="30" r="3" fill="#4A90D9"/>
+          <circle cx="78" cy="34" r="3" fill="#4A90D9"/>
+        </svg>
+      </div>
+      <div class="proj-content">
+        <div class="proj-tags">
+          <span class="ptag">HTML / CSS</span>
+          <span class="ptag">JavaScript</span>
+          <span class="ptag">Charts</span>
+          <span class="ptag">Responsive</span>
+        </div>
+        <h3 class="proj-title">Pulse — SaaS Analytics Dashboard</h3>
+        <p class="proj-desc">A clean, fully responsive SaaS analytics dashboard UI featuring real-time metric cards, interactive bar and line charts, user activity feeds, and revenue tracking panels. Built with vanilla HTML/CSS/JS with smooth animations and a modern dark-first design system.</p>
+      </div>
+      <div class="proj-footer">
+        <a class="proj-link" href="https://siddhikolhe.github.io/pulse-dashboard/" target="_blank" onclick="event.stopPropagation()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+        <div class="proj-arrow">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2V7" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 3 — HR Dashboard -->
+    <div class="proj-card reveal" onclick="window.open('https://siddhikolhe.github.io/HR-Dashboard/','_blank')">
+      <div class="proj-browser-bar">
+        <div class="proj-dot r"></div>
+        <div class="proj-dot y"></div>
+        <div class="proj-dot g"></div>
+        <div class="proj-url-bar">hr-dashboard.app</div>
+      </div>
+      <div class="proj-visual visual-hr">
+        <!-- People / HR icon -->
+        <svg class="proj-icon" width="90" height="90" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="28" r="12" stroke="#27AE60" stroke-width="2" fill="rgba(39,174,96,0.1)"/>
+          <path d="M28 72c0-12 10-22 22-22s22 10 22 22" stroke="#27AE60" stroke-width="2" fill="none"/>
+          <circle cx="22" cy="34" r="8" stroke="#27AE60" stroke-width="1.5" fill="rgba(39,174,96,0.06)" opacity="0.6"/>
+          <path d="M6 70c0-9 7-16 16-16" stroke="#27AE60" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <circle cx="78" cy="34" r="8" stroke="#27AE60" stroke-width="1.5" fill="rgba(39,174,96,0.06)" opacity="0.6"/>
+          <path d="M94 70c0-9-7-16-16-16" stroke="#27AE60" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <rect x="18" y="82" width="64" height="5" rx="2.5" fill="rgba(39,174,96,0.15)" stroke="#27AE60" stroke-width="1" opacity="0.5"/>
+          <rect x="18" y="82" width="44" height="5" rx="2.5" fill="#27AE60" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="proj-content">
+        <div class="proj-tags">
+          <span class="ptag">HTML / CSS</span>
+          <span class="ptag">JavaScript</span>
+          <span class="ptag">UI Design</span>
+        </div>
+        <h3 class="proj-title">HR Analytics Dashboard</h3>
+        <p class="proj-desc">A comprehensive HR management dashboard with employee directory, attendance tracking, leave management, and performance metrics. Features department-wise breakdowns, headcount trends, and visual KPI cards designed for HR teams to make data-driven decisions.</p>
+      </div>
+      <div class="proj-footer">
+        <a class="proj-link" href="https://siddhikolhe.github.io/HR-Dashboard/" target="_blank" onclick="event.stopPropagation()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+        <div class="proj-arrow">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2V7" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 4 — Colour Palette Generator -->
+    <div class="proj-card reveal" onclick="window.open('https://siddhikolhe.github.io/colour-palette/','_blank')">
+      <div class="proj-browser-bar">
+        <div class="proj-dot r"></div>
+        <div class="proj-dot y"></div>
+        <div class="proj-dot g"></div>
+        <div class="proj-url-bar">colour-palette.app</div>
+      </div>
+      <div class="proj-visual visual-palette">
+        <!-- Palette icon -->
+        <svg class="proj-icon" width="90" height="90" viewBox="0 0 100 100" fill="none">
+          <path d="M50 14C29 14 12 31 12 52c0 13 9 24 22 24 5 0 9-3 11-6 2-3 7-5 11-5 11 0 20-9 20-20 0-18-11-31-26-31z" stroke="#C0392B" stroke-width="2" fill="rgba(192,57,43,0.05)"/>
+          <circle cx="34" cy="36" r="6" fill="#E74C3C" opacity="0.7"/>
+          <circle cx="50" cy="26" r="6" fill="#F39C12" opacity="0.7"/>
+          <circle cx="66" cy="36" r="6" fill="#27AE60" opacity="0.7"/>
+          <circle cx="70" cy="52" r="6" fill="#3498DB" opacity="0.7"/>
+          <circle cx="34" cy="58" r="6" fill="#9B59B6" opacity="0.7"/>
+          <circle cx="50" cy="65" r="5" fill="#E67E22" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="proj-content">
+        <div class="proj-tags">
+          <span class="ptag">HTML / CSS / JS</span>
+          <span class="ptag">Color Theory</span>
+          <span class="ptag">UI Tool</span>
+        </div>
+        <h3 class="proj-title">Colour Palette Generator</h3>
+        <p class="proj-desc">An interactive web tool for generating, customising, and exporting colour palettes. Supports harmony rules (complementary, triadic, analogous), contrast ratio checks for accessibility, and one-click hex/CSS variable export for developers and designers.</p>
+      </div>
+      <div class="proj-footer">
+        <a class="proj-link" href="https://siddhikolhe.github.io/colour-palette/" target="_blank" onclick="event.stopPropagation()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+        <div class="proj-arrow">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2V7" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 5 — Real Estate Website -->
+    <div class="proj-card reveal" onclick="window.open('https://siddhikolhe.github.io/Real-Estate/','_blank')">
+      <div class="proj-browser-bar">
+        <div class="proj-dot r"></div>
+        <div class="proj-dot y"></div>
+        <div class="proj-dot g"></div>
+        <div class="proj-url-bar">real-estate-listings.app</div>
+      </div>
+      <div class="proj-visual visual-realestate">
+        <!-- House / Real estate icon -->
+        <svg class="proj-icon" width="90" height="90" viewBox="0 0 100 100" fill="none">
+          <polyline points="12,58 50,18 88,58" stroke="#E67E22" stroke-width="2.5" fill="none"/>
+          <rect x="18" y="58" width="64" height="30" stroke="#E67E22" stroke-width="2" fill="rgba(230,126,34,0.06)"/>
+          <rect x="43" y="70" width="14" height="18" stroke="#E67E22" stroke-width="1.5" fill="none"/>
+          <rect x="24" y="64" width="14" height="14" stroke="#E67E22" stroke-width="1.5" fill="rgba(230,126,34,0.08)" opacity="0.7"/>
+          <rect x="62" y="64" width="14" height="14" stroke="#E67E22" stroke-width="1.5" fill="rgba(230,126,34,0.08)" opacity="0.7"/>
+          <circle cx="82" cy="28" r="7" stroke="#E67E22" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <line x1="82" y1="35" x2="82" y2="43" stroke="#E67E22" stroke-width="1.5" opacity="0.6"/>
+          <circle cx="82" cy="43" r="3" fill="#E67E22" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="proj-content">
+        <div class="proj-tags">
+          <span class="ptag">HTML / CSS</span>
+          <span class="ptag">JavaScript</span>
+          <span class="ptag">UI Design</span>
+        </div>
+        <h3 class="proj-title">Real Estate Landing Page</h3>
+        <p class="proj-desc">A modern real estate website featuring property listings with search and filter capabilities, agent profiles, virtual tour links, and inquiry forms. Designed with a luxury aesthetic, smooth scroll animations, and a fully responsive layout for all screen sizes.</p>
+      </div>
+      <div class="proj-footer">
+        <a class="proj-link" href="https://siddhikolhe.github.io/Real-Estate/" target="_blank" onclick="event.stopPropagation()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+        <div class="proj-arrow">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2V7" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     DESIGNS SECTION — Horizontal Scroll Carousel
+     Light/white card previews with SVG icons
+════════════════════════════════════════ -->
+<div class="designs-bg" id="designs">
+  <div class="des-header">
+    <p class="sec-label reveal">UI & Design Work</p>
+    <h2 class="sec-title reveal">Where design meets<br><em>engineering.</em></h2>
+    <p class="designs-intro reveal">
+      From Figma wireframes to production builds — here's a selection of interfaces
+      I've designed and developed with attention to detail and user experience.
+    </p>
+  </div>
+
+  <div class="des-carousel-outer">
+    <button class="des-nav prev" id="desPrev" aria-label="Previous">‹</button>
+    <button class="des-nav next" id="desNext" aria-label="Next">›</button>
+
+    <div class="des-carousel-track" id="desTrack">
+
+      <!-- DESIGN CARD 1 — Glamoraa ERP -->
+      <div class="des-card active" onclick="window.open('Design/Glamoraa.html','_blank')">
+        <div class="des-preview des-prev-glamoraa">
+          <div class="des-preview-dots">
+            <div class="des-pd r"></div><div class="des-pd y"></div><div class="des-pd g"></div>
+          </div>
+          <svg class="des-preview-icon" width="70" height="70" viewBox="0 0 100 100" fill="none">
+            <circle cx="30" cy="76" r="12" stroke="#9B59B6" stroke-width="2" fill="rgba(155,89,182,0.1)"/>
+            <circle cx="70" cy="76" r="12" stroke="#9B59B6" stroke-width="2" fill="rgba(155,89,182,0.1)"/>
+            <line x1="50" y1="50" x2="30" y2="76" stroke="#9B59B6" stroke-width="2"/>
+            <line x1="50" y1="50" x2="70" y2="76" stroke="#9B59B6" stroke-width="2"/>
+            <line x1="50" y1="50" x2="50" y2="22" stroke="#9B59B6" stroke-width="2"/>
+            <circle cx="50" cy="50" r="6" fill="#9B59B6" opacity="0.8"/>
+            <polyline points="40,22 46,14 50,19 54,14 60,22" stroke="#B8935A" stroke-width="2" fill="none"/>
+          </svg>
+          <div class="des-active-label">Web App · Salon ERP</div>
+          <a class="des-open-btn" href="Design/Glamoraa.html" target="_blank" onclick="event.stopPropagation()">Open ↗</a>
+        </div>
+        <div class="des-body">
+          <p class="des-type">Web App · Salon ERP</p>
+          <h3 class="des-name">GLAMORAA — Salon ERP</h3>
+          <p class="des-desc">Multi-tenant Salon ERP with bookings, billing, staff management & role-based access control.</p>
+          <div class="des-tags"><span class="des-tag">React.js</span><span class="des-tag">ASP.NET</span><span class="des-tag">SQL</span></div>
+        </div>
+      </div>
+
+      <!-- DESIGN CARD 2 — Sakshi Beauty Salon -->
+      <div class="des-card" onclick="window.open('Design/Beauty_salon.html','_blank')">
+        <div class="des-preview des-prev-beauty">
+          <div class="des-preview-dots">
+            <div class="des-pd r"></div><div class="des-pd y"></div><div class="des-pd g"></div>
+          </div>
+          <svg class="des-preview-icon" width="70" height="70" viewBox="0 0 100 100" fill="none">
+            <!-- Flower / Beauty icon -->
+            <circle cx="50" cy="50" r="10" fill="#E91E8C" opacity="0.7"/>
+            <ellipse cx="50" cy="28" rx="8" ry="14" fill="#E91E8C" opacity="0.3"/>
+            <ellipse cx="50" cy="72" rx="8" ry="14" fill="#E91E8C" opacity="0.3"/>
+            <ellipse cx="28" cy="50" rx="14" ry="8" fill="#E91E8C" opacity="0.3"/>
+            <ellipse cx="72" cy="50" rx="14" ry="8" fill="#E91E8C" opacity="0.3"/>
+            <ellipse cx="34" cy="34" rx="8" ry="13" fill="#E91E8C" opacity="0.2" transform="rotate(45 34 34)"/>
+            <ellipse cx="66" cy="66" rx="8" ry="13" fill="#E91E8C" opacity="0.2" transform="rotate(45 66 66)"/>
+            <ellipse cx="66" cy="34" rx="8" ry="13" fill="#E91E8C" opacity="0.2" transform="rotate(-45 66 34)"/>
+            <ellipse cx="34" cy="66" rx="8" ry="13" fill="#E91E8C" opacity="0.2" transform="rotate(-45 34 66)"/>
+            <circle cx="50" cy="50" r="8" fill="#E91E8C" opacity="0.8"/>
+          </svg>
+          <div class="des-active-label">Beauty & Wellness</div>
+          <a class="des-open-btn" href="Design/Beauty_salon.html" target="_blank" onclick="event.stopPropagation()">Open ↗</a>
+        </div>
+        <div class="des-body">
+          <p class="des-type">Website · Beauty & Wellness</p>
+          <h3 class="des-name">Sakshi Beauty Studio</h3>
+          <p class="des-desc">Sophisticated beauty salon landing page with service listings, stylist profiles & online booking system.</p>
+          <div class="des-tags"><span class="des-tag">HTML</span><span class="des-tag">CSS</span><span class="des-tag">JS</span></div>
+        </div>
+      </div>
+
+      <!-- DESIGN CARD 3 — IBT International Beauty -->
+      <div class="des-card" onclick="window.open('Design/ibt.html','_blank')">
+        <div class="des-preview des-prev-ibt">
+          <div class="des-preview-dots">
+            <div class="des-pd r"></div><div class="des-pd y"></div><div class="des-pd g"></div>
+          </div>
+          <svg class="des-preview-icon" width="70" height="70" viewBox="0 0 100 100" fill="none">
+            <!-- Diploma / Academy icon -->
+            <rect x="14" y="20" width="72" height="52" rx="4" stroke="#00BCD4" stroke-width="2" fill="rgba(0,188,212,0.06)"/>
+            <line x1="14" y1="36" x2="86" y2="36" stroke="#00BCD4" stroke-width="1.5" opacity="0.4"/>
+            <circle cx="50" cy="56" r="12" stroke="#00BCD4" stroke-width="2" fill="rgba(0,188,212,0.08)"/>
+            <polyline points="44,56 48,60 56,52" stroke="#00BCD4" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <line x1="28" y1="26" x2="52" y2="26" stroke="#00BCD4" stroke-width="1.5" opacity="0.5"/>
+            <line x1="28" y1="30" x2="44" y2="30" stroke="#00BCD4" stroke-width="1" opacity="0.3"/>
+          </svg>
+          <div class="des-active-label">Beauty Academy</div>
+          <a class="des-open-btn" href="Design/ibt.html" target="_blank" onclick="event.stopPropagation()">Open ↗</a>
+        </div>
+        <div class="des-body">
+          <p class="des-type">Website · Beauty Academy</p>
+          <h3 class="des-name">IBT — International Beauty</h3>
+          <p class="des-desc">Responsive beauty brand website with animated hero section, treatment gallery & student testimonials.</p>
+          <div class="des-tags"><span class="des-tag">HTML</span><span class="des-tag">CSS</span><span class="des-tag">JS</span></div>
+        </div>
+      </div>
+
+      <!-- DESIGN CARD 4 — Café Website -->
+      <div class="des-card" onclick="window.open('Design/cafe.html','_blank')">
+        <div class="des-preview des-prev-cafe">
+          <div class="des-preview-dots">
+            <div class="des-pd r"></div><div class="des-pd y"></div><div class="des-pd g"></div>
+          </div>
+          <svg class="des-preview-icon" width="70" height="70" viewBox="0 0 100 100" fill="none">
+            <!-- Coffee cup icon -->
+            <rect x="20" y="40" width="44" height="34" rx="6" stroke="#A0522D" stroke-width="2" fill="rgba(160,82,45,0.08)"/>
+            <path d="M64 48 Q80 48 80 58 Q80 68 64 68" stroke="#A0522D" stroke-width="2" fill="none"/>
+            <line x1="28" y1="40" x2="28" y2="74" stroke="none"/>
+            <rect x="28" y="78" width="28" height="4" rx="2" stroke="#A0522D" stroke-width="1.5" fill="rgba(160,82,45,0.1)"/>
+            <!-- Steam -->
+            <path d="M32 34 Q35 28 32 22" stroke="#A0522D" stroke-width="1.5" fill="none" opacity="0.5" stroke-linecap="round"/>
+            <path d="M42 34 Q45 26 42 20" stroke="#A0522D" stroke-width="1.5" fill="none" opacity="0.5" stroke-linecap="round"/>
+            <path d="M52 34 Q55 28 52 22" stroke="#A0522D" stroke-width="1.5" fill="none" opacity="0.5" stroke-linecap="round"/>
+          </svg>
+          <div class="des-active-label">Food & Beverage</div>
+          <a class="des-open-btn" href="Design/cafe.html" target="_blank" onclick="event.stopPropagation()">Open ↗</a>
+        </div>
+        <div class="des-body">
+          <p class="des-type">Website · Food & Beverage</p>
+          <h3 class="des-name">Café Website</h3>
+          <p class="des-desc">Warm café landing page with full menu showcase, ambiance gallery, and online reservation section.</p>
+          <div class="des-tags"><span class="des-tag">HTML</span><span class="des-tag">CSS</span><span class="des-tag">JS</span></div>
+        </div>
+      </div>
+
+      <!-- DESIGN CARD 5 — Interior Design Studio -->
+      <div class="des-card" onclick="window.open('Design/interior.html','_blank')">
+        <div class="des-preview des-prev-interior">
+          <div class="des-preview-dots">
+            <div class="des-pd r"></div><div class="des-pd y"></div><div class="des-pd g"></div>
+          </div>
+          <svg class="des-preview-icon" width="70" height="70" viewBox="0 0 100 100" fill="none">
+            <!-- Sofa / Interior icon -->
+            <rect x="14" y="54" width="72" height="24" rx="5" stroke="#5C6BC0" stroke-width="2" fill="rgba(92,107,192,0.08)"/>
+            <rect x="22" y="40" width="56" height="20" rx="5" stroke="#5C6BC0" stroke-width="2" fill="rgba(92,107,192,0.06)"/>
+            <rect x="14" y="44" width="14" height="30" rx="4" stroke="#5C6BC0" stroke-width="2" fill="rgba(92,107,192,0.08)"/>
+            <rect x="72" y="44" width="14" height="30" rx="4" stroke="#5C6BC0" stroke-width="2" fill="rgba(92,107,192,0.08)"/>
+            <line x1="26" y1="78" x2="26" y2="88" stroke="#5C6BC0" stroke-width="2" opacity="0.5"/>
+            <line x1="74" y1="78" x2="74" y2="88" stroke="#5C6BC0" stroke-width="2" opacity="0.5"/>
+            <!-- Plant -->
+            <line x1="84" y1="80" x2="84" y2="50" stroke="#27AE60" stroke-width="1.5" opacity="0.5"/>
+            <circle cx="80" cy="46" r="6" fill="#27AE60" opacity="0.3"/>
+            <circle cx="88" cy="50" r="5" fill="#27AE60" opacity="0.25"/>
+            <circle cx="84" cy="42" r="5" fill="#27AE60" opacity="0.3"/>
+          </svg>
+          <div class="des-active-label">Interior Design</div>
+          <a class="des-open-btn" href="Design/interior.html" target="_blank" onclick="event.stopPropagation()">Open ↗</a>
+        </div>
+        <div class="des-body">
+          <p class="des-type">Website · Interior Design</p>
+          <h3 class="des-name">Interior Design Studio</h3>
+          <p class="des-desc">Elegant studio website with portfolio showcase, service offerings, client testimonials & project gallery.</p>
+          <div class="des-tags"><span class="des-tag">HTML</span><span class="des-tag">CSS</span><span class="des-tag">JS</span></div>
+        </div>
+      </div>
+
+    </div><!-- end track -->
+  </div><!-- end carousel-outer -->
+
+  <div class="des-dots" id="desDots">
+    <div class="des-dot-ind active" data-idx="0"></div>
+    <div class="des-dot-ind" data-idx="1"></div>
+    <div class="des-dot-ind" data-idx="2"></div>
+    <div class="des-dot-ind" data-idx="3"></div>
+    <div class="des-dot-ind" data-idx="4"></div>
+  </div>
+
+</div>
+
+
+<!-- ════════════════════════════════════════
+     EXPERIENCE SECTION
+════════════════════════════════════════ -->
+<section id="experience">
+  <p class="sec-label reveal">Experience</p>
+  <h2 class="sec-title reveal">Where I've<br><em>grown.</em></h2>
+
+  <div class="exp-list">
+
+    <div class="exp-row">
+      <div class="exp-period">
+        Jun 2025 — Jan 2026
+        <span class="exp-duration">7 Months</span>
+      </div>
+      <div>
+        <h3 class="exp-company">
+          Infinity Techno Solutions
+          <span class="exp-badge">Promoted</span>
+        </h3>
+        <p class="exp-role">Full Stack Web Developer</p>
+        <div class="exp-bullets">
+          <p class="exp-bullet">Led frontend development of GLAMORAA, a multi-tenant Salon ERP handling bookings, billing, staff, attendance, and inventory.</p>
+          <p class="exp-bullet">Built and integrated RESTful APIs using ASP.NET Core Web API for seamless full-stack feature delivery.</p>
+          <p class="exp-bullet">Implemented role-based access control (RBAC) and JWT authentication flows for multi-tenant architecture.</p>
+          <p class="exp-bullet">Improved performance through React component optimisation and efficient state management.</p>
+          <p class="exp-bullet">Participated in Agile sprint cycles, conducted code reviews, and mentored junior interns.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-period">
+        Dec 2024 — May 2025
+        <span class="exp-duration">6 Months</span>
+      </div>
+      <div>
+        <h3 class="exp-company">Infinity Techno Solutions</h3>
+        <p class="exp-role">Web Development Intern</p>
+        <div class="exp-bullets">
+          <p class="exp-bullet">Developed responsive interfaces using HTML, CSS, Bootstrap, and JavaScript for the Salon Management System.</p>
+          <p class="exp-bullet">Contributed to backend CRUD operations using ASP.NET Web API and SQL Server.</p>
+          <p class="exp-bullet">Collaborated with the development team on feature modules and participated in sprint reviews.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-period">
+        2022 — 2024
+        <span class="exp-duration">Graduate</span>
+      </div>
+      <div>
+        <h3 class="exp-company">Master of Computer Science</h3>
+        <p class="exp-role">University Graduate</p>
+        <p class="exp-desc">
+          Completed MCS with focus on software engineering and web technologies.
+          Built strong foundations in algorithms, system design, and modern development practices.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     CONTACT SECTION
+════════════════════════════════════════ -->
+<div class="contact-bg" id="contact">
+  <p class="sec-label reveal" style="justify-content:center;">Get In Touch</p>
+  <h2 class="contact-big reveal">Let's build something<br><em>great</em> together.</h2>
+  <p class="contact-sub reveal">Open to full-time React / ASP.NET Core roles with growth opportunities.</p>
+
+  <a href="/cdn-cgi/l/email-protection#a8dbc1ccccc0c1c3c7c4c0cd86cccddee8cfc5c9c1c486cbc7c5" class="contact-email-link reveal">
+    <span class="__cf_email__" data-cfemail="93e0faf7f7fbfaf8fcfffbf6bdf7f6e5d3f4fef2faffbdf0fcfe">[email&#160;protected]</span>
+  </a>
+
+  <div class="socials reveal">
+    <a href="https://github.com/siddhikolhe" target="_blank" class="soc-link">⟨/⟩ GitHub</a>
+    <a href="https://linkedin.com/in/siddhikolhe" target="_blank" class="soc-link">↗ LinkedIn</a>
+    <a href="https://behance.net/siddhikolhe" target="_blank" class="soc-link">✦ Behance</a>
+    <a href="Siddhi_Kolhe_Resume.pdf" download class="soc-link">↓ Resume</a>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer>
+  <span>© 2025 Siddhi Kolhe. All rights reserved.</span>
+  <span style="font-style:italic;font-family:'Cormorant Garamond',serif;font-size:14px;letter:'.04em;">Designed & built with care ✦</span>
+</footer>
+
+<!-- External JavaScript — update path to match your folder structure -->
+<script src="Design/script/portfolio.js"></script>
+</body>
+</html>

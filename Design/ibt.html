@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBT Salon - Premium Beauty Services</title>
+    <link rel="stylesheet" href="CSS/ibt.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>International Beauty Academy</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About Us</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Welcome to IBT Salon</h1>
+            <p>Where Beauty Meets Excellence</p>
+            <p class="hero-subtitle">Transform yourself with our premium beauty services and professional expertise</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn btn-primary">Explore Services</a>
+                <a href="javascript:void(0);" class="btn btn-secondary open-modal-btn">Book Now</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="hero-placeholder">
+                <!--i class="fas fa-cut fa-5x"></i-->
+                <img src="../image/IBT.jpg" style="width: 300px; height: auto; border-radius: 8px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About IBT Salon</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Your Premier Beauty Destination</h3>
+                    <p>At IBT Salon, we believe that beauty is an art form. With years of experience and a passion for excellence, our team of skilled professionals is dedicated to bringing out the best in you.</p>
+                    <p>We offer a complete range of beauty services using premium products and the latest techniques to ensure you look and feel your absolute best.</p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <i class="fas fa-award"></i>
+                            <h4>Expert Professionals</h4>
+                            <p>Certified and experienced beauticians</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-star"></i>
+                            <h4>Premium Quality</h4>
+                            <p>Only the finest products and equipment</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-heart"></i>
+                            <h4>Customer Care</h4>
+                            <p>Personalized service for every client</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offers Section --
+    <section id="offers" class="offers">
+        
+    </section>-->
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-category animate-on-scroll">
+                    <h3>Women's Services</h3>
+                    <ul class="service-list">
+                        <li>Professional Makeup</li>
+                        <li>Bridal Makeup</li>
+                        <li>Hair Styling & Cuts</li>
+                        <li>Hair Coloring</li>
+                        <li>Facial Treatments</li>
+                        <li>Skin Care</li>
+                        <li>Eyebrow Threading</li>
+                        <li>Manicure & Pedicure</li>
+                        <li>Hair Extensions</li>
+                        <li>Permanent Makeup</li>
+                    </ul>
+                </div>
+
+                <div class="service-category animate-on-scroll">
+                    <h3> Men's Services</h3>
+                    <ul class="service-list">
+                        <li>Professional Haircuts</li>
+                        <li>Beard Trimming & Styling</li>
+                        <li>Hair Styling</li>
+                        <li>Facial Treatments</li>
+                        <li>Hair Washing & Conditioning</li>
+                        <li>Scalp Treatments</li>
+                        <li>Eyebrow Shaping</li>
+                        <li>Hair Color Touch-ups</li>
+                        <li>Grooming Packages</li>
+                        <li>Special Event Styling</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- Gallery Section - Improved Structure -->
+  <section id="gallery" class="gallery">
+  <div class="container">
+    <h2 class="section-title">Our Work Gallery</h2>
+    <p class="gallery-subtitle">Discover the transformations and beauty creations by our expert team</p>
+
+    <div class="gallery-filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="makeup">Makeup</button>
+      <button class="filter-btn" data-filter="hair">Hair Styling</button>
+      <button class="filter-btn" data-filter="bridal">Bridal</button>
+      <button class="filter-btn" data-filter="mens">Men's Grooming</button>
+    </div>
+
+    <!-- ✅ SCROLLABLE WRAPPER -->
+    <div class="scroll-wrapper">
+      <div class="gallery-grid" id="galleryGrid">
+
+  <!-- Gallery Items -->
+  <div class="gallery-item visible" data-category="makeup">
+    <div class="gallery-image-wrapper">
+      <img src="image/ibt_images/IMG_3356.PNG" class="responsive-img" alt="Professional Makeup Look" loading="lazy">
+    </div>
+  </div>
+
+  <div class="gallery-item visible" data-category="hair">
+    <div class="gallery-image-wrapper">
+      <img src="image/ibt_images/IMG_2182.JPG" class="responsive-img" alt="Hair Styling" loading="lazy">
+    </div>
+  </div>
+
+  <div class="gallery-item visible" data-category="bridal">
+    <div class="gallery-image-wrapper">
+      <img src="image/ibt_images/IMG_2869.JPG" class="responsive-img" alt="Bridal Makeup" loading="lazy">
+    </div>
+  </div>
+
+  <div class="gallery-item visible" data-category="makeup">
+    <div class="gallery-image-wrapper">
+      <img src="image/ibt_images/IMG_3356.PNG" class="responsive-img" alt="Natural Makeup Look" loading="lazy">
+    </div>
+  </div>
+
+  <div class="gallery-item visible" data-category="mens">
+    <div class="gallery-image-wrapper">
+      <img src="image/ibt_images/IMG_3357.PNG" class="responsive-img" alt="Men's Haircut" loading="lazy">
+    </div>
+  </div>
+
+  <div class="gallery-item visible" data-category="hair">
+    <div class="gallery-image-wrapper">
+      <img src="image/ibt_images/IMG_3358.PNG" class="responsive-img" alt="Hair Coloring" loading="lazy">
+    </div>
+  </div>
+
+  <div class="gallery-item visible" data-category="bridal">
+    <div class="gallery-image-wrapper">
+      <img src="image/ibt_images/IMG_3359.PNG" class="responsive-img" alt="Bridal Hair" loading="lazy">
+    </div>
+  </div>
+
+  <div class="gallery-item visible" data-category="makeup">
+    <div class="gallery-image-wrapper">
+      <img src="image/ibt_images/IMG_3360.PNG" class="responsive-img" alt="Party Makeup" loading="lazy">
+    </div>
+  </div>
+
+  <div class="gallery-item visible" data-category="mens">
+    <div class="gallery-image-wrapper">
+      <img src="image/ibt_images/IMG_3361.PNG" class="responsive-img" alt="Beard Styling" loading="lazy">
+    </div>
+  </div>
+
+</div>
+
+
+
+    </div>
+  </div>
+</section>
+
+
+    <!-- Service Detail Modal -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalBody">
+                <!-- Modal content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>International Beauty Academy</h3>
+                    <p></p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Address</h4>
+                                <p>Nashik – Pune Rd, behind Passport Office,
+                                near Shree Purohit Thali, Dawkhar Wadi,
+                                Deolali Gaon, Nashik, Maharashtra 422101</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>7770010108</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>ibtbeautyacademy@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/ibt_international_academy?igsh=MW8xY3ptcDVnejFsbQ=="><i class="fab fa-instagram"></i></a>
+                        <!-- <a href="#"><i class="fab fa-twitter"></i></a> -->
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3></h3>
+                    <div class="contact-map" style="flex: 1 1 450px; max-width: 500px; padding: 25px; box-sizing: border-box;">
+                    <label class="form-label fw-semibold" style="display: block; margin-bottom: 8px;color:#845757"><strong>Location on Map</strong></label>
+                    <div style="width: 100%; height: 400px; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.15); margin: 0 auto;">
+                <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3750.1328817033586!2d73.82460450919314!3d19.960913181356986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdd95b83aeb642b%3A0xc03945b7392e8996!2sIBT%20International%20Beauty%20Academy%20%7C%7C%20Top%20Beauty%20Saloon%20In%20Nashik%20%7C%7C%20Top%20Academy%20in%20Beauty%20%7C%7C%20Beauty%20Academy%20Near%20Me!5e0!3m2!1sen!2sin!4v1748946779968!5m2!1sen!2sin"
+                width="450" 
+                height="400" 
+                style="border: 0; display: block;"
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>IBT Salon</h3>
+                    <p>Your premier destination for beauty and wellness. We're committed to making you look and feel your absolute best.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#appointment">Book Appointment</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Hair Styling</a></li>
+                        <li><a href="#services">Facial Treatments</a></li>
+                        <li><a href="#services">Makeup Services</a></li>
+                        <li><a href="#services">Nail Care</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i>Near Shree Purohit Thali, Devlali Goan-422101</p>
+                        <p><i class="fas fa-phone"></i> 7770010108</p>
+                        <p><i class="fas fa-envelope"></i> ibtbeautyacademy@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<!-- Modal -->
+<!-- Modal Overlay -->
+<div id="appointmentModal" style="display: flex; align-items: center; justify-content: center; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.5); z-index: 9999;">
+
+  <!-- Modal Content -->
+  <div style="display: flex; width: 650px; height: 490px; border-radius: 10px; overflow: hidden; font-family: 'Poppins', sans-serif; background-color: white; position: relative;">
+
+    <!-- Left Side: Form -->
+    <div style="flex: 1; background-color: #fff5dc; padding: 40px 30px; position: relative;">
+      <span onclick="document.getElementById('appointmentModal').style.display='none';" style="position: absolute; top: 15px; right: 20px; font-size: 22px; font-weight: bold; cursor: pointer;">&times;</span>
+
+      <h2 style="text-align: center; font-weight: 600; margin-bottom: 25px; color: #000;">Book an Appointment</h2>
+
+      <form id="appointment-form">
+        <div style="margin-bottom: 20px;">
+          <label for="service" style="font-weight: 500;">Select Service</label><br>
+          <select id="service" name="service" required style="width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #ccc; margin-top: 8px;">
+            <option value="" disabled selected>Choose a service</option>
+            <option value="haircut">Hair Cut & Style</option>
+            <option value="spa">Hair Spa</option>
+            <option value="facial">Facial</option>
+            <option value="makeup">Makeup</option>
+            <option value="manicure">Manicure</option>
+            <option value="package">Special Package</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <label for="fullAmount" style="font-weight: 500;">Service Amount (₹)</label><br>
+          <input type="text" id="fullAmount" readonly placeholder="Auto-filled based on service"
+            style="width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #ccc; margin-top: 8px;" />
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-bottom: 25px;">
+          <div style="flex: 1;">
+            <label for="date" style="font-weight: 500;">Preferred Date</label><br>
+            <input type="date" id="date" required
+              style="width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #ccc;" />
+          </div>
+          <div style="flex: 1;">
+            <label for="time" style="font-weight: 500;">Preferred Time</label><br>
+            <input type="time" id="time" required
+              style="width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #ccc;" />
+          </div>
+        </div>
+
+        <button type="submit"
+          style="width: 100%; padding: 12px; background-color: #a57d48; color: white; font-weight: 600; border: none; border-radius: 8px; font-size: 15px; cursor: pointer;">
+          Pay & Book Appointment
+        </button>
+      </form>
+    </div>
+
+    <!-- Right Side: Image and Logo -->
+    <div style="flex: 1; background: url('https://img.freepik.com/free-photo/modern-hair-salon-interior_23-2149616425.jpg') center/cover no-repeat; position: relative;">
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+        <img src="../../assets/image/glamoraa.png" alt="Glamoraa Logo" style="width: 298px; height:500px" />
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+    <script src="script/ibt.js"></script>
+</body>
+</html>
