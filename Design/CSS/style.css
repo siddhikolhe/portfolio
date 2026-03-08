@@ -153,6 +153,21 @@ body.theme-dark {
   --footer-bg:   #0D0C09;
 }
 
+
+.hero-tagline {
+   font-family: 'Playfair Display', serif;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  font-style: italic;
+  color: var(--gold);
+  opacity: 0.85;
+  margin: 6px 0 18px;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+  margin-top: 18px;
+
+}
+
+
 /* ═══════════════════════════════════════════════════════════
    BASE STYLES
 ═══════════════════════════════════════════════════════════ */
